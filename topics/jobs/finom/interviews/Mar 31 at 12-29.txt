@@ -1,0 +1,51 @@
+I've like 10 20 people, but then on top of that with that, we felt like, okay, well, what is something that we can differentiate in, and that was basically actually the identic experience, right? We, we thought, okay, instead of um building with AIS sprinkling AI, uh, on top of like these traditional experience, like, hey, you know, assistants, and whatnot, we thought, like, okay, how can we really with authentic workflows eliminate certain types of, let's say, jobs to be done, right?
+
+Um, and we started actually with accounting last year. One of our product teams, they basically launched this new rethinking of the accounting product. I mean, accounting is really boring, right. Like, okay, there's so many ways there are really so many ways you can build accounting for certain markets like Germany and stuff like that, right?
+
+It's basically like the tax reporting. Expenses, consolidation. Yeah, the other right, really boring stuff, but they thought like, instead of just blinking AI on top of the existing interfaces, we've thought like, okay, well, let's build this, like, from the ground up where you have, um, background jobs. Yeah, agentic.
+
+If you call it right, but basically, just like, react to events and and build something for you, right? Like, hey, okay, I'll I see that it's time to, uh, create a preliminary tax record and just present that to you and us. Like, okay, you want to approve and then file.
+
+That's true, all right to the government for that. So that really took off, um, as a vision, but also as a product. And, um, nowadays, basically, we think about scaling this out, like, across the entire 12, uh, and across the entire product, uh, platform, and we called it originally ic4.
+
+I'm not sure if the the name will really sticks because I think it goes Way Beyond just the simple. Is the platform that basically like, proactively reaches out to you and does some jobs for you, but also like monitors your cash flow. Um, gives you some okay, something missing.
+
+You're trending negatively. Yeah, right? So the idea is really like to scale out these experiences across the entire platform. We have Foundation that kind of works. Um, we're skating this out. There are a few projects that we're building as we speak actually around that. Um, so, yeah, I mean, it's safe to say it's.
+
+It's pretty big. Okay, that's right, um, I'm just messaging. My colleagues. No worries if you have the if you're in the time. That's, uh, okay, I do have one or two questions I would ask, but feel free.
+
+Uh, yeah, I have one more minute, don't worry. Yeah, uh, I mean, just two questions I can. Give you is basically, I mean, when would be amazing for you guys to for someone to start just, so I also imagine how am I going to Netherlands would have happen? I'm very free on that, but from your side.
+
+And actually, how is the team actually separated, like, are there people you know AI native kind of developers weaving all the product teams, or do you have like a agentic layer that talks to the teams? How does it work? Uh, yeah, yeah, I mean, we organized in a very straightforward, but in a good way, I think, um, basically, we have, um, like part of our organization is of course like core platform infrastructure foundations, right?
+
+Yeah, that's basically the teams that kept the platform alive and stuff like that pretty standard. With the team is actually like split between different product areas. We call them product engineering domains. Um, basically, are like product engineering squads built around like Mission. They're usually vertically aligned, right? So there are multiple crafts, um, that are put together in order to deliver something.
+
+Um, and, um, yeah, I think the most important part there is. We don't really like. There are some products that are. More AI native in terms of like authentic experience, like accounting basically that there ago. Um, we have now esc4, which is like the core team that builds like the core experiences, but to be honest, like the vision is really that we're spreading out right now.
+
+Is the whole platform is going to be stitched with basically like mCP based on the faces. So, like the connecting new skills are going to be really easy, um? That's the whole idea, right? We don't really want to have, like, part of the organization that builds their unedentic experiences and another part of the organization that thinks like, oh, you know, we're just building this, like old school, uh?
+
+Front-End mobile UI interfaces, right? Uh, just because you know, we're keeping the old product alive, right? That's kind of like, that's not the separating that we envision okay, um AI. Native people, I don't know what you mean, exactly by that. Yeah, some people who enable AI features within the different themes.
+
+Maybe I'm just all right. So, yeah, that's an interesting one. So. Historically Latinum. They used to be the separation where AI engineer used to be like a separate craft to fully transparent with you. We're kind of like discussing just merging that with the existing crowds in the, because in the end, like.
+
+Fact that you are experiencing, you may have, like everybody, is a product engineer, right? It's just, you're a little bit more AI leaning, right? You have a background? Uh, which is related to, like, yeah, knowing how to harness this evolves? Um, how to how to work with llms and sorta models and then basically build stitch together them into, like a hearing product.
+
+Okay, um? That's a bit of an expertise, but that's just like a flavor of the particular product engineer really, um? So, that's how we we see that. For example, if you were to join us, probably would make sense for you to join one of the one of the products causes that just works really at the bleeding edge.
+
+Yeah, we actually we have a core team, which is AIC core team that does exactly this. Okay, um? These are like functional teams, right? So you'd probably be working across the stack there, but with course AI. Um. Building AI agents, as well as part of it, right, but also not limited to, that also backend systems.
+
+I mean, it's we don't really like, okay, well, you're building an agent, but you're not really like doing anything beyond that, right? Because in the end, like, in order to productionize an agent you need to yeah and build this. Basically, absolutely. Is that you need to figure that? It's also like, you know, built with a solid engineer foundations like you thought about the latency you thought about observability and the other all this it's?
+
+Um. Uh, like, uh, basically the, uh, the standard service would say no, no one part service or not, right? It's just that, of course, the moment our llm powered Services are more heavily on like the python, right? Basically so, like, secondary language that we lose for that. The rest of the services that are in c-sharp.net.
+
+That's our core back in engineering language or not. A Windows shop, but essentially like.net, is basically or like runtime that we used to to build the. Um, but essentially, we're already like, effectively. Um, languages. In in a tool belt, right? Just because it didn't really make sense to build all the harnesses and everything in C sharp.
+
+Okay, wow. Interesting. Uh, do you use the ds5 for Python, for you know, uh, it's just something that I found, like two weeks ago, and I think it's really cool if you want to check. It's really nice DS DSB by yeah. Amazing, but anyway, I know you're in the time.
+
+Uh, thank you for those. Yeah, yeah, I'm just. I'm just thinking, oh, right, that's pretty cool. Pretty cool. Like, it's one of the most interesting Tech I found in software for AI. Just, you know, last month, or something. Um, I have an idea, right? So, I think, like, I don't know how you feel.
+
+It sounds to me, like, um. It's worth continuing the conversation, so if it's Mutual. Um, I'd like to set up a poll with actually. My colleague writes to to spend a little bit more time than burn to, um. The experiences and stuff like that. She did be up for this, um, right?
+
+And then, yeah, let's. Let's make this happen. Cool. Thank you. Cool, all right, man, um? Again, appreciate your time. Um, been awesome to meet you. And yeah, let's see where we can get from there. I'll reach out for sure. Thank you for the the time, and uh yeah. Let's, uh, that's right.
+
+We talked to Sam later. Cheers! Bye, cheers!

@@ -1,0 +1,111 @@
+I always have some kind of engagement, eh proposed very easily with this kind of business and ja, he mention to me about your company. I did some some search myself and it seems super interesting because of you know the many obvious challenges. Just like eh you, it's a very regulated kind of thing and I think about how the privacy works when he search Manica Medical Data.
+
+I using blockchain any how I don't know just many things that come to my mind, but we can go to the next minutes. Yes, sorry meetings job at fisp is name clients. It's not really thing is justituations and uh that's also why because now moving with my wife back to Europe.
+
+We wanna find something those you know in European side of course. That's why we talking and ehm eh ja what I'm doing here with my projects but also doing before with the latest implement I had in Next Year which was als in in Amsterdam. Eh I was just exploring what daytrack Eh most I was doing the engineering Eh.
+
+Analytics platform all from the ground up to the next year because it just only had this spreadshots and then ehm I wanted to bring theole the engineering analytics in other for them to have more insights. They were looking for and during this process I was als implementing some service for content moderation from difference media and there was using eh AI Pi is like recognition to extract met data and make sure that can fiel or content Eh Some and eh but at the time there is no of course agentic was just rock and the 10 reachement etc Eh then after that when I move to to this more Eh interpreter version of providing services.
+
+Then I started to see different use cases also because before looking to OK. I can do this now how can I make this happen and engineering part of it white. Now we have to. And grow so I was doing a bunch of lengraps and simple eh the integrations back to the systems feeting with some grounding information for used and the whole agentic hand offs K of capabilities are coming up and people wanna explore what that can do and the pricing and how the make sure that not only does things faster and nicer, but actually do things wrongly and evers faster that they can actually follow and going challenge and I'm really enjoying home he goes, but in this AI eh applying to different applications and uh having to have all the way this interprise manner.
+
+Systemsic Components have you optimize your build during this? This project You have to optimize in the same ways and what was the optimization and what was resulting that ja oké eh so at some point eh eh I was building for instance this agent for so there is the commodity website being project and then the uh had this kind of like different mappines for different website collect the ether they needed, because it was very different from different stars is.
+
+So eh There is a lot of eh ongoing changes on the website so their processes will just broke break because they needed someone to come and manually change. The tags so they can actually find information again the page. So eh, this is a lot of menor wor. And we had just like ever century ever monitoring so they could actually get some kind of alert and when this alert what was coming.
+
+This agent would be triggered and it was just initially. Just trying to go through the process all over with all the instructions on itself to simply eh. Get the worked on so for instance we using master because it was a types set up and the the whole thing is that ok first of all how do we make sure this is actually doing good things or not trying a times before you get to the right answer, Eh and then later on.
+
+We started to use some scores that you make sure we see how eh how the whole implementation is going so we can choose different strategies EHM and then also we discover some other libraries like ex which is kind of the s pi and on sure. If you ever seen but it's kind of like this ongoing south improving eh prompt tool EH for YouTube.
+
+H Make Sure You Can You Can Test It With A Bunch Of Metrics and qualifications using Allemers of judges etc and then you have ongoing improvingh prompt there is dynamic for your project, so we started to simply plug different specialized components in those cases and also creating different is skills instead of just having a whole thing and that was at some point to simplifying how this updates of the tags was happening and just waking up and uh there was an ever doing the night, but then eh 10 minutes later.
+
+The Social was Done and then the website was able to be collected correctly without air. So eh, it was one of the interesting use cases because he was not even like for the product, but we was something that gave them. I know 20 hours of engineers back weekly so of course is a good benchmark eh and we using we just evolving this.
+
+Agent in order to eh give us actually reports preampively of the pages instead of that, so we were OPIM why could actually give us as a value, but also how do we actually see that something is working? St Just the product was collected correctly. Ehm ja. Amazing. En eh, what is the eh, what is the how do you solve for example?
+
+Eh, eh, what is your secret good questionh? How do you balance speed over eh over over recall and position? Ehm Wow depends on on the evaluations kind of framework you create because sometimes just going to have agent Carl and say how much car is going do Andic and Complexity and you don't have to figure out and give your best h in the beginning.
+
+Of course it's fine but later on YouTube and he all comes back to how can you actually extract grenarity from your actions whatever big or small lookalize they are because if you just create a matrical completely is which is you know of course very coming those evaluation settings Eh you can say these was a what you get to the end of it, but what's end of it is.
+
+The whole task is like a one piece of the. Just one of the seven types of the test because you can imagine in your case. You have like agents conceptually for different kind of activities because the specific but also the verating everything and also creating some evaluation that were subjective.
+
+But of course we using smarter judges to to say something about this and you also create outputs with that become scoreing in a quantity again. So this all come to having h data set the well and what and how and what do you expect like I expect that for this kind of question you have to do at least one action.
+
+But probably ideally to actions because you wann to check also something else So then you check if the doing this action and you on the action. If they actually retre the at least you maximum three kind of information from the your retrival system. Andh you can you can get all.
+
+Do Research Ja, was you really agent fine tuning models internally on Twitter and I could haveone viral as well. We have we have a lot of ZT Guys credits on in front of us. We just have you can like who can run faster. In the direction of this we that's fine because heans exact.
+
+The only thing is like how do how do I not spend more time doing something else then what supposed the is g to give me money and sustainability on my company etc because you can do that a lot you know it's very interesting to just use the tools Ja that's why you need some like me the business and ehm no I so myother question would be like ok.
+
+How does eh how does agentic ai eh what is the the Eh sorry do you use in Genica for building stuff? I use open code Gemini Clot Code EH I'm using by and also goose just whatever I just try everything. Cool what you my favorite tool Ja Open confessureuse do specific the trut horse and you know just brainstorming do complex workflows I go to.
+
+Kut Eh den the question is. If you have a project Ehm, how do you approach both like more from a project management perspective and a technical Perspective Before hè so how do approaches this this assignment for me Ja W Why I'm Liking To Do This Point Also Because My Online Is Con is something that I can actually fall through and also because I wann to give like a quality information to my agent and I wanna also understand, which I ways can evaluate is conture.
+
+So basically you find ways that this can be broken somehow in create kind of a system eh even personally or something that you know people of decide to use like a framework of how task as well described eh because now this. To collect understand and also to format and I work with this and I use frameworks that you know simply going to make plans research etc Anduse do and of course when the feature is of understanding.
+
+If this feature is actually more of technical inside for the company. But or actually a value creating for the product for the customers, etc because that has a different also way to go about, but I usually see that the technical is not the biggest challenge at this point. It's more about trying to the 10 how this is going to a fact and how you actually supposed in to be measuring that in order to get something out simply have two week.
+
+Dan nothing actually changes etc and the technical I go the go broad first Go Specific later Kind of Way Because I I Like to Imagine That I can use where every can be the best option, but the best option by itelf. Be the best within the context Anduse building just like can my my workflow do this properly using no eh not eh how doesnated information and just the B so that's that's most of it when you come to like you know I request something we need something can you create this into what delivery and and get on.
+
+Ja mensen Hey en eh regarding EH Identicing Tasks Ehm we been diging deeped into the space for the best cle of the months. What is your high level understanding of what the field is now? And what is the biggest lack? You think in this in the space corityical clinical environment and before you answer, I need to get the charger because my better is.
+
+Yes, yes so first of all eh the first my mind is actually. I mean my wife is a privacy specialist and my mind is always full of this idea of how do you make sure that is data is? There is no there is not a way for this data to to you know go out and have to have a problem with it etc EH weveout just know you doing the right thing, eh that that's enough.
+
+How Do You Do This With Mental Data And Still Where You Extract something out of it because you know imagine ways, but that will be my first question like oké. How do you do this having said that we have a good solution on that then I I like the direction that I'm trying to go now days in this topic because the way Think is that even for identic workflows, but still on them.
+
+You need to make sure that whever you doing is actually correct doing why while you're doing and you in order to do that you need to kind of like know happen and what should be the right answer anduse and checkings of the you know the correctness and on happen during the process of agentics and we have this commit concept of like OK.
+
+You do changes on database and of it you commit then the changes are applied so if something can happen also in this workflows You have a system that can be Rob back. The it doesn't do destructive actions without you have in the chance of saying that this is not correct.
+
+Ehm and because they kind of like clinical trials of. And this is going to simply help you on the you know later also users because it's already to be trained on the real situations even when you cancel and do it. This is good information because you can use it to und and together with libraries and let's solutions, but they are libraries Thatly Eh Work on those evaluations back to the prompt and that's talking about the research.
+
+That's like, that's a bad work like it's outside of the user transaction stuff is just going to happen on the on the side let just like analytics Eh you don't it doesn't have for the user right h then you with this trials. Let's say you can actually get to some confidence and this can be applied on the runtime as well.
+
+So I can imagine that this wor. Anything, EH and sometimes you just like bunch of those actions when com you do not doing the the how pointment the do that kind of gu of together Ehm so I see that you know you can have kind of also thinking budgets for different kind of tasks not for the thinking, but also for the for how long he takes for that you finish.
+
+Supposely you canot finish this after to because it's not supportion take to like you. You are not supposition spend less in 5 minutes because look This is really complex. Don't fuck up kind of configurationh and. All those eh characteristics that we judge on a process that did not work with AI.
+
+It's simply lag of evaluation tools during the moment useful Eh just so you can actually kind of like case the whole brain so I See is like a good brain is the AI which is can go many directions and you know format itself and do all kinds of magical stuff, but then you don't you can on use this machine.
+
+You have to trust the shape you have to trust how exacture and just plug it and like have a moving robot kind of think eh and that's how I see it's g to work eh the idea that we could just like gary from software. In the terminism is broke in my opinion, but we can use this is away to accelerate the the speed of actual getting value from the machine.
+
+Eh that's I see it and sometimes this this g to be outside. The scene No one is g to be affected. No one is going to get. Anduse do. The harness is is the important part of the piece of software EH and eh well we all know that all these frontier labs are eh like soing up all this data to to make traces to make their models better.
+
+So how do we stay ahead of the game and not Beingell we easy for this to coming. But how do we how do you how do you how do we Nee? See how differentiate and social where is the what is the one thing that models can not copy from from software eh Wow there is eh first of all we can talk about something that soft your just canot replicate in a model because it's not the wearing information leaves.
+
+Preferences the ability to work for the different preferences that you see and have this out box. Let's say in the common behavor in the musle memory of the agents is not something that you can just plugin in a model and that's it and also to be honest. We just talking before the whole advancements and how we actually you know create innovations in in Lab in House and then you see outside that people like Oh someone is actually launching.
+
+This is one thing like a lot of people probably like you know. This person is focusing on that eh and create if you do it and you you probably eh testimony of that eh is that create trust so you trust the like hey. The first one to you know make use of that and showh in proper users and etc production was he doesn't give you any special machine that no one has or no one would be able to have because it's all about intense to to.
+
+Grow your intent actual grounding and then you can apply this into an AI in follow true bl bla but still that's kind of what happen so trust is what you get and you guys is start up. I guess Trust is very important because people to give money and and eh etc you in the market.
+
+I I know for sure how this h the lack of confidence or you know speed on the hoper of administrative work is. Because also I was I had to treat something tropical disease in UMC Amsterdam for some time and he was a whole thing to face. Anyway, some experience on that I also in next year.
+
+I actually hired the a person to be are data analys and he was not from he was, but he was doing in bunch of data work for eh Masters and Doctors I Think Eh in AMC as well his name. Vink. En als sorry he, because he do analysis and all kinds of table kind of work and he told me.
+
+How is in the inside the Hospital. How do the business No? I think. Yeah, so we so we have we have ticken deliver. I think the first thing is we buil every component the model to the harness to the platform to search engine and betting models. Everything so we built everything enter end that gives freedom to to hosted where we wanted we on the European Party or European Hyper Scanner.
+
+We can eh we can account for every everybits and bite that cont eh and ehm then eh we also are applying as a medical device so we want to become like a CT Scan or Scalpel Whatever Like Doctors Can Use and can actually make diagnoses with oké and that in itself eh the this EMDR classification which gives us a lot of credibility and trust because eh this eh this.
+
+This NDR is is a high standard. Of course he is software and also make sure that you evaluate risks and mitigate them and I think we're the one of the first in the. Classification so eh so this is how we how we do it and eh and this is the business approach from it nice technically Eh ja technically we we do everything in house Yes we sometimes for if we need to to fork something we for something but we saw that what every build was more flexible and to reflector of a source stuff.
+
+Ehm en eh ja I mean this is flexibility to to has and everything has been well follow from beginning. So ja, removing had in that direction so that's what we do eh we we build a Rex system foration databasically Eh we also the Rex system for chemical information like the box and and the NDR part will be combineing patient data in a safe way with clinical knowledges way to get advice and support.
+
+Oké, this is the future at least for the coming comity working on Yeah. Now we active New Working on Cont. Crafts and and decision grafts. So if we have a patient case we understand decision has be made by Dok and will be the first steps of very very sl based solid way oficeical data thing is or you guys thinking about z to the data inside.
+
+The whole you can see this information, but you can get information you need without know anything. Kind of thing is we about because not necessary we we sign contracts with our clients, gives us the Ehm the possibility to to get the process the data, so usually we don't have any issues of eh of allowing patient data and adding thisek.
+
+And other encryption metersible, but not necessary so that's. Wow interesting I know the time Do you I do have like another if you want to do and I do have a plan because could be like inter weeks because be in the for it we actually looking for jobs in under the that we can make the move without having one.
+
+So eh ja, she is also looking for one in the GDPR space. Oké good ehm then eh ja then i thinkother question basically are missing on your whole adventure right now work without correctly Paypal We have eh to seniors of architect. One media is very strong going to and we als have a data scientist also mid seniors destinent and junior data engineers.
+
+This is the death team right nowh and I'm leading the team from HR perspective eh but the lead the senior guys. Hier in eh ontdek ehm en ja there is always room for good people Eh we have more enough work EH and actually we to see an update in EH in work.
+
+The coming si months now let's say we. We have an updateing work already so when it's got. It's go to be very busy becoming weeks and eh and we need somebody we fits into the team, but also has knows what he's talking about like experience actually to to talk to you and I think you be I mean every works out of work in a team so we have eh I think the next step would be is to take our our platform toentic ones, so so we have the core.
+
+The core is there. We have the search for patient data. We have a search for difficult information. Now we need to tied it up into useful work for doctors. So for example EH Preparing MDT which is a multi disciplinary Eh. Is a very complex medical medical thing and we love to see is an agents building a digital case with all the patient data and and the guideline data.
+
+This is the case This is the decision. You have to make so this is the next that we were moving and the building. We next step oké eh and then you have more like you know more regular stuff like intakes and anything that touches the patient be useful for doctor or for hospital.
+
+That is what we want to automatic. Oké, looks looks really interesting in the Ja It. Thank you for the whole time and I want know like from your side. What's up the best date for someone to start. If that would be the case, there's no there's no eh I mean.
+
+We tent to take decisions quickly ehm eh so I will put forward eh I'll have a discussion. Oké eh but it's go to see the flexibility to come evenement residency so there is no work situation that's fine that's that's good we do thank you very much and YouTube en bye.

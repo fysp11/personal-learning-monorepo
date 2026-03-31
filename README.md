@@ -14,6 +14,10 @@ This repository is a personal learning workspace organized as a monorepo. Each t
 learning/
   README.md
   topics/
+    helm-mastery/
+    jobs/
+      delphyr/
+      finom/
     langgraph/
 ```
 
@@ -38,6 +42,10 @@ Example:
 topics/langgraph/
   README.md
   notes/
+
+topics/jobs/
+  delphyr/          # Research, interview prep, transcripts
+  finom/            # Research, cheatsheets
 ```
 
 ## Suggested Workflow
