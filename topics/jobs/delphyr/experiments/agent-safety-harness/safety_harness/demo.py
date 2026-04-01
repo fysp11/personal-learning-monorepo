@@ -211,8 +211,10 @@ def run_demo():
 
     print("Actions by status:")
     for a in summary["actions"]:
-        icon = {"committed": "V", "pending_review": "?", "rejected": "X"}.get(a["status"], "-")
-        print(f"  [{icon}] {a['tool']:<30} conf={a['confidence']:.2f}  sev={a['severity']:<10} -> {a['status']}")
+        icon = {"committed": "V", "pending_review": "?", "rejected": "X"}.get(a["status"].value if hasattr(a["status"], "value") else a["status"], "-")
+        sev = a["severity"].value if hasattr(a["severity"], "value") else a["severity"]
+        status = a["status"].value if hasattr(a["status"], "value") else a["status"]
+        print(f"  [{icon}] {a['tool']:<30} conf={a['confidence']:.2f}  sev={sev:<10} -> {status}")
 
     print()
     print("Key insight: Patient data retrieval (MEDIUM severity) was auto-committed,")
