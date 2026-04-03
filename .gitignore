@@ -57,3 +57,5 @@ htmlcov/
 .firecrawl/
 memory/
 node_modules/
+.worktrees/
+.claude/
