@@ -8,6 +8,15 @@
 
 ---
 
+## Recommended Re-entry Order
+
+- `IVO-WEB-RESEARCH.md` - external cross-check on Ivo, Finom AI signals, and interview-pattern evidence
+- `glassdoor-research.md` - Finom-specific hiring-process and interview-pattern signals
+- `../../prep/2-central-ai--ivo-question-drafting-strategy.md` - how to build a deliberate question bank across design, technical, and product angles
+- `../../prep/2-central-ai--ivo-simulation-1-founder-org-design.md` - mock for the founder / central-AI / org-design path
+- `../../prep/2-central-ai--ivo-simulation-2-ai-accounting-risk.md` - mock for the AI accounting / quality / trust path
+- `../../prep/2-central-ai--ivo-48h-prep-focus.md` - compressed final prep note
+
 ## What Changed Since The First Interview
 
 The first useful update is organizational.
