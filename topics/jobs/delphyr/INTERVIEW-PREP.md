@@ -58,3 +58,8 @@ Date: 2026-04-02
 ## Related Prep Notes
 - prep/Medical-RAG-Guardrails-Landscape.md
 - prep/Guardrails-In-Code.md
+- prep/Medical-AI-Eval-Metrics-Cheat-Sheet.md
+- prep/Mastra-Scorers-Implementation.md
+
+## Code Examples
+- code/medical-extraction-agent.ts
