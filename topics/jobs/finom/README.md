@@ -4,90 +4,58 @@
 - Company: Finom
 - Focus: SMB financial platform combining banking, invoicing, and AI accounting
 - Relevant role: Senior AI Engineer
-- Main interview artifact: `finom_cheatsheet.pdf`
-- Conversation artifact: `interviews/Mar 31 at 12-29.txt`
-- Upcoming interview: Wednesday, April 8, 2026 with Ivo
+- Current next interview: Wednesday, April 8, 2026 with Ivo Dimitrov
+- Current open org question: whether this role sits in the central AI team, a product squad, or spans both
 
-## What We Have
-- `finom_cheatsheet.pdf`: strong prep summary for the CTO conversation with company context, fit map, gaps, and suggested questions.
-- `interviews/Mar 31 at 12-29.txt`: transcript fragment from the March 31, 2026 conversation.
-- `interviews/Mar 31 at 12-29.m4a`: source audio recording.
+## Start Here
+- `application/senior-ai-engineer-match-analysis.md` - strongest fit and objection-handling summary
+- `interviews/1-introduction--dmitry/README.md` - first-round dashboard with raw assets and cleaned summary
+- `interviews/2-central-ai--ivo/README.md` - current round prep for the April 8, 2026 interview
+- `prep/2-central-ai--ivo-48h-prep-focus.md` - highest-signal short prep note for the next interview
+- `finom_cheatsheet.pdf` - compact company and role cheat sheet
 
 ## Company Notes
-- Amsterdam-based SMB challenger bank / financial platform.
-- Product scope called out in prep notes: banking, invoicing, and AI accounting in one mobile-first platform.
-- Cheatsheet notes: 125K+ customers across DE, FR, IT, ES, NL; 500+ employees; Series C in June 2025; profitability and strong ARR growth were highlighted there.
-- Growth target noted in cheatsheet: 1M business customers by end of 2026.
-- Competitive set noted in cheatsheet: Qonto, Revolut Business, N26 Business, Tide.
+- Amsterdam-based SMB financial platform spanning banking, invoicing, and AI accounting.
+- Existing prep notes highlight 125K+ customers across multiple European markets, 500+ employees, and strong growth after the June 2025 Series C.
+- Competitive set called out in existing materials: Qonto, Revolut Business, N26 Business, and Tide.
 
-## Interviewers
-- Dmitry Ivanov - CTO
-- Ivo - Co-founder, runs central AI team
-
-## AI / Product Direction
+## AI and Product Direction
 - Finom is pushing beyond "AI sprinkled on top" toward agentic workflows that proactively complete work.
-- Accounting was described as the first major area rebuilt around this model.
-- Example workflow from the transcript: the system notices it is time to prepare a preliminary tax record, drafts it, asks for approval, and then files it.
-- The broader vision is a platform that proactively performs jobs, monitors cash flow, flags missing items, and warns about negative trends.
-- Internal naming mentioned in the transcript: `AICore` / `AIC core`; the speaker also noted the scope is growing beyond that label.
+- Accounting appears to be the first major workflow area rebuilt around this model.
+- Example from the first interview summary: the system drafts a preliminary tax record, asks for approval, and then files it.
+- The broader platform vision includes proactive cash-flow monitoring, missing-item detection, and negative-trend alerts.
 
-## Team / Engineering Notes
-- Organization is split between core platform/infrastructure and product engineering domains.
-- Product engineering domains are vertically aligned squads built around missions.
-- Current direction is to spread AI capabilities across the platform rather than isolate "AI teams" from "traditional product teams."
-- The transcript suggests Finom is moving away from AI engineer as a fully separate craft and toward product engineers with stronger AI specialization.
-- There is still a core AI-oriented team working on foundational experiences.
-- This role would likely sit in a product-facing team working at the "bleeding edge."
+## Team and Stack Signals
+- Interviewers in scope so far:
+  - Dmitry Ivanov - CTO
+  - Ivo Dimitrov - co-founder, described by the recruiter as running the central AI team
+- Stack notes from current materials:
+  - Python for LLM-heavy services and agent harnesses
+  - .NET / C# across the broader backend platform
+  - likely polyglot environment with AI work embedded into product delivery
 
-## Stack Notes
-- `Python`: used heavily for LLM-powered services and agent-related harnesses.
-- `.NET / C#`: core backend engineering runtime across the platform.
-- The speaker framed the environment as effectively polyglot, with Python added where it makes more sense than building AI harnesses in C#.
-- Cheatsheet also suggests an analytics/data angle worth probing, including ClickHouse.
+## Interview Timeline
+- Monday, March 31, 2026 - first conversation with Dmitry Ivanov in `interviews/1-introduction--dmitry/`
+- Sunday, April 6, 2026 - recruiter update that Ivo wants to meet
+- Wednesday, April 8, 2026 - planned second interview with Ivo in `interviews/2-central-ai--ivo/`
 
-## Interview Signals
-- The conversation ended with a clear positive signal: "it's worth continuing the conversation."
-- Next step mentioned: follow-up conversation with the CTO's colleague, `Rita`, for a deeper discussion on experience and fit.
-- New recruiter update from Samuel: a second conversation is set for Wednesday, April 8, 2026 with `Ivo`, described as one of the co-founders and the person running Finom's separate central AI team.
-- Recruiter signal from the screenshots: Finom is still deciding who the hiring manager will be for the role.
-- Ivo appears to be a key stakeholder even if the final reporting line is not locked yet.
-- The transcript also contains useful answers to ask/follow up on:
-- Where AI sits organizationally.
-- How AI specialization is treated inside engineering.
-- How cross-stack ownership works for agentic products.
+## Current Status
+- The main next action is prep for the Ivo interview on Wednesday, April 8, 2026.
+- The first interview transcript is partial and should not be the main re-entry point; use `interviews/1-introduction--dmitry/Mar-31-Interview.md` or that folder's README instead.
+- The strongest prep path for the next round is: match analysis -> first-round summary -> Ivo round prep -> 48h focus note.
 
-## Current Timeline
-- March 31, 2026: initial conversation with Dmitry Ivanov.
-- April 6, 2026: recruiter shared that Ivo wants to meet.
-- Wednesday, April 8, 2026: planned second interview with Ivo.
+## Best Angles
+- Production AI systems with end-to-end ownership
+- Agentic workflows over document-heavy operations
+- Evaluation, observability, and reliability discipline
+- Strong product-engineering judgment without overclaiming fintech specialization
 
-## New Org Signal
-- There is a separate `central AI team` run by co-founder `Ivo`.
-- This slightly updates the earlier picture from the Dmitry transcript: Finom may be balancing both embedded AI/product work and a more centralized AI capability.
-- One thing to clarify in the next interview is whether this role sits in the central AI team, a product squad, or works across both.
+## Open Questions For The Next Round
+- What is the mandate of the central AI team today?
+- What should be centralized versus embedded in product squads?
+- What would this role own first if hired?
+- How does Finom evaluate quality and failure handling for accounting and financial workflows?
 
-## Fit Summary From Existing Notes
-- Strongest overlaps called out in the cheatsheet:
-- Multi-agent orchestration
-- RAG + tool calling
-- Document understanding pipelines
-- Quality / measurement / observability
-- Kubernetes / cloud / CI/CD
-- Main gaps called out in the cheatsheet:
-- Model training with PyTorch / TensorFlow / Hugging Face
-- Direct fintech domain experience
-- Fraud / anomaly detection
-- Kafka / Flink depth
-
-## Good Questions Already Prepared
-- How inter-agent coordination and failure isolation work.
-- How quality is measured for domain-heavy tasks like tax categorization.
-- How Finom handles multi-country expansion in AI/accounting workflows.
-- Whether AI engineers are embedded in squads or organized as a platform team.
-- Balance of new AI feature development vs reliability/observability hardening.
-
-## Gaps In The Workspace
-- `CLAUDE.md` only says to read `AGENTS.md` first.
-- `AGENTS.md` is empty.
-- This `README.md` was empty before this summary.
-- The transcript appears partial; if more complete notes exist elsewhere, they are not in this folder.
+## Maintenance Notes
+- Keep this README as the one-minute dashboard for current stage, next action, and strongest support files.
+- Update the relevant `interviews/<round>/` folder first after each interview, then refresh the timeline and current status here.
