@@ -13,6 +13,7 @@
 - `interviews/2-central-ai--ivo/README.md` - current round prep for the April 8, 2026 interview
 - `prep/2-central-ai--ivo-day-of-card.md` - **day-of quick reference** for the Ivo interview
 - `prep/2-central-ai--ivo-story-bank.md` - pre-formatted STAR stories mapped to Finom
+- `prep/2-central-ai--ivo-rehearsal-flow.md` - **walk-through rehearsal** for the actual interview
 - `prep/2-central-ai--ivo-48h-prep-focus.md` - highest-signal short prep note for the next interview
 - `prep/finom-ai-competitive-landscape.md` - AI competitive landscape analysis
 - `prep/multi-agent-system-architecture-for-fintech.md` - MAS architecture prep (matches Finom's public AI Accountant design)
