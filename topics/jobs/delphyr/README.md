@@ -12,7 +12,10 @@
 - `interviews/2-technical--dejan-tim/README.md` - round-specific technical interview prep
 - `prep/Medical-RAG-Guardrails-Landscape.md` - focused RAG and safety review
 - `prep/Medical-AI-Eval-Metrics-Cheat-Sheet.md` - evaluation and monitoring refresh
-- `code/README.md` - technical rehearsal code index
+- `prep/rag-guardrail-architecture-design.md` - deep technical guardrail pipeline architecture
+- `prep/post-technical-interview-analysis.md` - post-April-4 analysis and next steps
+- `prep/healthcare-ai-competitive-landscape.md` - competitive landscape analysis
+- `code/README.md` - technical rehearsal code index (extraction agent + citation verification)
 
 ## Company Overview
 - Amsterdam-based healthcare AI startup focused on reducing administrative burden on healthcare professionals.
@@ -47,6 +50,8 @@
 ## Current Status
 - The workspace is ready for Delphyr follow-up work, but no post-April-4 outcome has been captured yet.
 - Next action: record outcome notes for the technical round, then either prepare the next interview folder or close the loop in this README.
+- New deeper technical materials added: guardrail architecture design and post-interview analysis framework.
+- Cross-company insights connecting Delphyr and Finom prep: `../cross-company-insights.md`
 
 ## Best Angles
 - Production AI systems over messy data, not demos

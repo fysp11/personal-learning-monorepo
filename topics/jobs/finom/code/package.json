@@ -1,0 +1,12 @@
+{
+  "name": "finom-mas-coordination-demo",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "demo": "bun run accounting-mas-pipeline.ts"
+  },
+  "dependencies": {
+    "zod": "^4.3.6"
+  }
+}
