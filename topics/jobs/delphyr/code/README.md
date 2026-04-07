@@ -20,6 +20,34 @@ Self-contained Mastra example for a clinical extraction agent with grouped custo
 - Explicit formulas so the metrics stay separable in discussion
 - `runEvals(...)` over a tiny sample dataset with ground truth
 
+## Citation Verification Pipeline
+
+`citation-verification.ts` — Demonstrates claim-level citation verification for medical RAG outputs, matching Delphyr's emphasis on exact, verifiable source quotes.
+
+### What it shows
+
+- **Claim-to-source matching**: Each claim is traced back to its cited source passage
+- **Verification levels**: supported (exact match), partial (paraphrase/missing terms), unsupported (hallucination)
+- **Hallucination detection**: Catches hallucinated details (e.g., "anaphylaxis" when source says "rash")
+- **Missing source detection**: Catches citations pointing to nonexistent documents
+- **Aggregate metrics**: Support rate, average match score, trustworthiness assessment
+
+### Run
+
+```bash
+bun run citation
+```
+
+### Three test scenarios
+
+1. **Well-cited summary**: All claims verified against real sources → trustworthy
+2. **Hallucinated detail**: Source says "rash" but output claims "anaphylaxis" → partial, flagged
+3. **Nonexistent source**: Citation points to document that doesn't exist → unsupported, blocked
+
+---
+
+## Clinical Extraction Agent
+
 ## Run in terminal
 
 From this folder:

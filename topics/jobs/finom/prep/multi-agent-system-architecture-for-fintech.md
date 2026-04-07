@@ -6,6 +6,13 @@ Saved: 2026-04-07
 
 Finom publicly describes its AI Accountant as a **distributed multi-agent system (MAS)** — multiple autonomous AI agents collaborating within a shared environment. This is not generic "we use AI." It's an explicit architectural choice.
 
+**Key public signals:**
+- CEO Andrey Petrov: "By combining financial data with an AI agent that can operate independently, we're making enterprise-grade financial management accessible to small businesses."
+- Launched in Germany first (largest EU SME market), with EU expansion planned
+- EU SMEs spend ~5% of annual turnover on accounting and tax compliance — the addressable pain is concrete
+- 4.8/5 rating with 1.2K reviews on Product Hunt — strong early adoption signal
+- The system "automatically manages routine tasks, sends timely notifications, and only requests confirmation from the user when necessary" — this is the approve-then-act pattern
+
 If Ivo asks about multi-agent systems, agent coordination, or how to design reliable distributed AI workflows, this is the conversation to be ready for.
 
 ---
