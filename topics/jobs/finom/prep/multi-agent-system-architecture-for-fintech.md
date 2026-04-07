@@ -8,10 +8,14 @@ Finom publicly describes its AI Accountant as a **distributed multi-agent system
 
 **Key public signals:**
 - CEO Andrey Petrov: "By combining financial data with an AI agent that can operate independently, we're making enterprise-grade financial management accessible to small businesses."
+- **CAIO Ivo Dimitrov: "The biggest mistake AI companies make is trying to build their own models instead of orchestrating existing foundations."** → The team's philosophy is orchestration over model-building. Frame MAS answers around application-layer engineering.
 - Launched in Germany first (largest EU SME market), with EU expansion planned
+- **AI-powered lending launched March 2026** in NL with AI credit scoring — a second MAS surface beyond accounting
+- **Finom X migration:** Own payments infrastructure + EMI license across 5 EU markets — more control over data pipelines feeding AI
 - EU SMEs spend ~5% of annual turnover on accounting and tax compliance — the addressable pain is concrete
 - 4.8/5 rating with 1.2K reviews on Product Hunt — strong early adoption signal
 - The system "automatically manages routine tasks, sends timely notifications, and only requests confirmation from the user when necessary" — this is the approve-then-act pattern
+- 500+ employees, 45 hires in March 2026 alone, 116 open positions — aggressive scaling
 
 If Ivo asks about multi-agent systems, agent coordination, or how to design reliable distributed AI workflows, this is the conversation to be ready for.
 

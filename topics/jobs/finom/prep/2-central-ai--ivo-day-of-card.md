@@ -4,7 +4,15 @@ Date: Wednesday, April 8, 2026
 Duration: 45 minutes
 Interviewer: Ivo Dimitrov (co-founder, **Chief AI Officer**)
 
-> **Fresh intel (April 7):** TheOrg lists Ivo as "Chief AI Officer" — not just CVO or central AI lead. This is a C-level AI mandate. Also: Finom's AI Accountant is publicly described as a **distributed multi-agent system (MAS)** — multiple autonomous AI agents collaborating. Finom targets **1M business customers by end of 2026**.
+> **Fresh intel (April 7):**
+> - TheOrg lists Ivo as "Chief AI Officer" — this is a C-level AI mandate
+> - Finom's AI Accountant is a **distributed multi-agent system (MAS)** — publicly stated
+> - Finom targets **1M business customers by end of 2026**
+> - **Ivo quote:** "The biggest mistake AI companies make is trying to build their own models instead of orchestrating existing foundations." → He believes in **orchestration over model-building**. Frame your answers around application-layer engineering, not foundation model work.
+> - **AI-Powered Lending launched March 2026** in NL with AI credit scoring — a second major AI surface beyond accounting. This strengthens the case for a central AI team.
+> - **Finom X:** Migrated off Solaris to own payments infrastructure + EMI license across 5 EU markets — more control over data pipelines feeding AI features.
+> - **Hiring surge:** 45 hires in March alone, 500+ employees, 116 open positions.
+> - **Qonto (main competitor):** Published AI Vision Statement March 2026, runs 50+ internal AI agents via Dust platform, partnered with Twin for autonomous agents. Pursuing "Jidoka" (automation with human touch).
 
 ---
 
@@ -37,6 +45,25 @@ Interviewer: Ivo Dimitrov (co-founder, **Chief AI Officer**)
 3. **Ambiguity to repeatable capability** → vague mandate → shipped v1 in weeks → reused across 3 workflows
 
 > **MAS talking point:** "Finom's AI Accountant is a multi-agent system — I've built production systems with the same shape: typed agent boundaries, confidence propagation between stages, failure isolation, and end-to-end observability. See `multi-agent-system-architecture-for-fintech.md` for full prep."
+
+---
+
+## Key Framing: "Orchestrate, Don't Build"
+
+Ivo's public philosophy is orchestration over foundation model building. This means:
+- **DO:** Talk about application-layer engineering, agent coordination, evaluation, workflow design, quality systems
+- **DO:** Emphasize composing existing models with domain-specific orchestration
+- **DON'T:** Talk about training models, fine-tuning at scale, or competing with model labs
+- **Bridge:** "The defensible value in fintech AI isn't the models — it's the orchestration, domain policy enforcement, quality systems, and workflow control that sit on top."
+
+## AI Surface Expansion (use to strengthen central AI case)
+
+Finom's AI is no longer just accounting:
+- **AI Accounting Agent** — live, MAS architecture, Germany + EU expansion
+- **AI-Powered Lending** — launched March 2026 in NL, AI credit scoring
+- **Coming:** AI-enhanced financial analytics, invoice financing, credit lines for freelancers
+
+→ "With AI expanding from accounting into lending and analytics, the case for centralized AI capabilities is even stronger. Shared evaluation, observability, and quality infrastructure across these surfaces prevents each team from reinventing the wheel."
 
 ---
 
