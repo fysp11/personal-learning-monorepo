@@ -17,6 +17,9 @@
 - `prep/2-central-ai--ivo-48h-prep-focus.md` - highest-signal short prep note for the next interview
 - `prep/finom-ai-competitive-landscape.md` - AI competitive landscape analysis
 - `prep/multi-agent-system-architecture-for-fintech.md` - MAS architecture prep (matches Finom's public AI Accountant design)
+- `prep/german-sme-accounting-domain-primer.md` - German tax forms and SME accounting domain vocabulary
+- `code/README.md` - MAS coordination pipeline code demo
+- `../eu-ai-act-regulatory-prep.md` - EU AI Act awareness (shared with Delphyr)
 - `finom_cheatsheet.pdf` - compact company and role cheat sheet
 
 ## Company Notes
