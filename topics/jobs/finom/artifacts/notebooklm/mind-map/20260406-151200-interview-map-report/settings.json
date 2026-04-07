@@ -1,0 +1,13 @@
+{
+  "artifact_type": "mind-map",
+  "settings": {
+    "visualization_style": "hierarchical",
+    "detail_depth": "comprehensive",
+    "focus": "interview-map-report"
+  },
+  "tips": [
+    "Keep the two main interview paths visually distinct.",
+    "Use the five decision axes as cross-links, not isolated branches.",
+    "Show where candidate stories and candidate questions attach."
+  ]
+}

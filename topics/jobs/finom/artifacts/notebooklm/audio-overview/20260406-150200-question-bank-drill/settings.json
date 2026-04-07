@@ -1,0 +1,14 @@
+{
+  "artifact_type": "audio-overview",
+  "settings": {
+    "duration": "long",
+    "tone": "educational",
+    "hosts": "auto",
+    "focus": "question-bank-drill"
+  },
+  "tips": [
+    "Make the hosts read questions aloud before giving answer shapes.",
+    "Prefer repeatable frameworks over one-off clever answers.",
+    "Ask for explicit hostile follow-up examples."
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "artifact_type": "flashcards",
+  "settings": {
+    "card_count": "standard",
+    "difficulty": "hard",
+    "focus": "hostile-followups"
+  },
+  "tips": [
+    "Use the cards to rehearse recovery, not perfect wording.",
+    "Tie each follow-up to what is actually being tested.",
+    "Cluster the cards by pressure type for focused study."
+  ]
+}

@@ -1,64 +1,120 @@
-# Interview Summary - March 31, 2026
+# Interview Summary - March 31, 2025
 
-**Date:** March 31, 2026  
+**Date:** March 31, 2025  
 **Interviewer:** Dmitry Ivanov (CTO) at Finom  
 **Candidate:** Fysp  
-**Duration:** ~8.5 minutes captured  
+**Format:** Intro call (~8.5 minutes)
 
 ---
 
 ## Transcript Quality
 
-- The source transcript appears to cover only the final portion of the interview.
-- Despite the noisy transcription, the main product, org, and stack signals are fairly clear.
+- Full transcript now available and reformatted
+- Clean read from WhisperKit local inference
 
-## Key Topics Discussed
+---
 
-### Finom product direction
-- Finom is trying to go beyond "AI sprinkled on top" of existing interfaces.
-- The focus is on agentic workflows that proactively complete real jobs to be done.
-- Accounting was described as the first major area where this approach was pushed seriously.
-- Example given: the system prepares a preliminary tax record, asks for approval, and then files it.
-- The longer-term ambition is to extend this model across the full platform.
-- The broader platform vision includes proactive support such as cash-flow monitoring, missing-item detection, and negative-trend alerts.
+## Company Overview
 
-### Team and organization
-- Engineering is split between core platform / infrastructure and product engineering domains.
-- Product engineering domains are vertically aligned squads built around missions.
-- Finom does not want a strict split between "AI product teams" and "traditional product teams."
-- The direction appears to be embedding AI capabilities throughout the platform.
-- Dmitry said they had historically treated AI engineer as a more separate craft, but are discussing merging that more tightly into the general product engineering craft.
-- The framing was that everyone is fundamentally a product engineer, with some people leaning more heavily into AI specialization.
+Finom is a product platform for businesses, originally starting with 10-20 people. The company's differentiation strategy focuses on **authentic AI experiences** — not just sprinkling AI on top of traditional interfaces, but genuinely rethinking workflows to eliminate certain types of jobs to be done.
 
-### Role shape
-- The likely fit for this role is a team working at the bleeding edge of product development.
-- Dmitry mentioned an `AIC` / `AI core` team that works on foundational experiences.
-- The role is not limited to "just building agents."
-- The expectation is cross-stack ownership: AI agents plus backend systems plus production concerns.
-- Dmitry explicitly tied agent work to solid engineering fundamentals such as latency and observability.
+### Key Product: Agentic Accounting
 
-### Stack signals
-- LLM-powered services are more Python-heavy.
-- The broader backend platform is primarily `.NET / C#`.
-- The engineering environment is effectively polyglot, using the right language for the right layer.
-- Dmitry explicitly said it did not make sense to build all AI harnesses in C#.
+Last year, one product team launched a new rethinking of the accounting product. Rather than bolting AI onto existing interfaces, they built it from the ground up with:
 
-### Process / next step
-- The conversation ended on a positive signal.
-- Dmitry said it sounded worth continuing the conversation.
-- He proposed a follow-up with his colleague `Rita` for a deeper discussion about experience and fit.
+- **Background jobs** that react to events
+- **Agentic automation** that proactively creates preliminary tax reports and asks for approval before filing to the government
+
+This took off as both a vision and a product.
+
+### The Vision: IC4 Platform
+
+The company is now scaling this agentic approach across the entire product platform, originally called **IC4** (though the name may change). The vision is a platform that:
+
+- Proactively reaches out to users and does jobs for them
+- Monitors cash flow
+- Alerts users when something is missing or trending negatively
+
+They have the foundation in place and are actively building more projects around this vision.
+
+---
+
+## Organization Structure
+
+### Team Setup
+
+- **Core platform infrastructure** teams (standard foundation teams that keep the platform alive)
+- **Product engineering domains** — squads built around missions, usually vertically aligned
+- **EIC4** — the core team building the core agentic experiences
+
+### AI Integration Philosophy
+
+The vision is that the **whole platform will be stitched with MCP-based interfaces**, making it easy to connect new AI skills. They don't want a separation between "AI team" and "traditional team" — everyone is a product engineer, with some being more AI-leaning.
+
+### AI Engineer Role
+
+Historically at Phenom (Dmitry's previous company), AI engineers were a separate craft. But Finom is moving toward **merging AI expertise with existing product engineering crafts**. The ideal is:
+
+- Everyone is a product engineer
+- Some have extra expertise in AI/ML (LLMs, model integration, prompting)
+- This is considered a "flavor" of product engineering, not a separate role
+
+For someone joining, they'd likely work on one of the products at the bleeding edge, or join the **IC4 core team** that builds AI agents across the stack.
+
+---
+
+## Technical Stack
+
+- **Primary backend:** C# / .NET (core backend engineering language)
+- **Secondary language:** Python (for LLM-powered services)
+- **Philosophy:** Two languages in the toolbelt — Python makes sense for building AI harnesses, C# for everything else
+
+### Interesting Tech Mentioned
+
+Dmitry asked about **DSPy** (Declarative Self-Improving Python) — found two weeks ago, described as "really cool" and "one of the most interesting tech in software for AI recently."
+
+---
+
+## Interviewer Questions
+
+1. **When would be amazing for someone to start?** — Dmitry is flexible on Netherlands timing
+2. **How is the team separated?** — AI-native developers in product teams, or an agentic layer? How does it work?
+
+---
+
+## Next Steps
+
+- Dmitry wants to set up a call with a colleague to spend more time discussing the experiences and role
+- Expressed mutual interest in continuing the conversation
+- Will follow up
+
+---
+
+## Key Signals
+
+| Area | Signal |
+|------|--------|
+| **Company direction** | Agentic AI platform across entire product suite |
+| **Role fit** | IC4 core team building AI agents, or product teams at bleeding edge |
+| **Technical alignment** | Python + C# stack, interest in DSPy, MCP-based architecture |
+| **Culture** | No AI/non-AI separation — everyone is product engineer with AI-leaning optional |
+| **Next step** | Call with colleague confirmed |
+
+---
 
 ## Most Useful Takeaways
 
-- Finom appears to care about production AI engineering more than AI novelty.
-- The role is best understood as product engineering with strong AI depth, not as a detached research or platform-only role.
-- Reliability, observability, and real workflow integration are likely central evaluation criteria.
-- Your strongest alignment is with agentic systems that are operational, measurable, and production-grade.
+- Finom cares about production AI engineering more than AI novelty
+- The role is product engineering with strong AI depth, not a detached research or platform-only role
+- Reliability, observability, and real workflow integration are likely central evaluation criteria
+- Strongest alignment: agentic systems that are operational, measurable, and production-grade
+
+---
 
 ## Good Follow-Up Angles
 
-- Ask how inter-agent coordination and failure isolation are handled.
-- Ask how quality is measured for tax/accounting workflows across different countries.
-- Ask how embedded the AI-specialist role really is inside product squads.
-- Ask how they divide responsibility between the `AI core` / `AIC` layer and the broader product engineering teams.
-- Ask where reliability hardening currently constrains rollout.
+- Ask how inter-agent coordination and failure isolation are handled
+- Ask how quality is measured for tax/accounting workflows across different countries
+- Ask how embedded the AI-specialist role really is inside product squads
+- Ask how they divide responsibility between the IC4 core layer and broader product engineering teams
+- Ask where reliability hardening currently constrains rollout

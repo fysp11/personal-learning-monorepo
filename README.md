@@ -16,9 +16,8 @@ learning/
   topics/
     helm-mastery/
     jobs/
-      delphyr/
-      finom/
     langgraph/
+    ai-engineering/
 ```
 
 Each folder under `topics/` is a focused learning area. You can treat each one as an isolated mini-project with its own notes, code, and experiments.

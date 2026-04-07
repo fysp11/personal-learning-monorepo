@@ -1,0 +1,13 @@
+{
+  "artifact_type": "flashcards",
+  "settings": {
+    "card_count": "standard",
+    "difficulty": "hard",
+    "focus": "tradeoffs"
+  },
+  "tips": [
+    "Make each card explicitly two-sided.",
+    "Show which factors shift the decision boundary.",
+    "Prefer answer structures over polished scripts."
+  ]
+}

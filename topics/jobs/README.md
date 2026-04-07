@@ -224,10 +224,15 @@ topics/jobs/<company>/
   prep/
     <topic-or-round>.md
   artifacts/
+    notebooklm/
+      sources.md
+      prompts/
+        <artifact-type>-<slug>-prompt.md
+      outputs/
+        <artifact-type>-<slug>-output.md
     <reusable-study-assets>.md
   code/                       # optional
   reports/                    # optional
-  notebooklm-studio/          # optional
   updates/                    # optional
 ```
 

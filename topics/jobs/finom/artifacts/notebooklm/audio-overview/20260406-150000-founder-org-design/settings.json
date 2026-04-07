@@ -1,0 +1,14 @@
+{
+  "artifact_type": "audio-overview",
+  "settings": {
+    "duration": "medium",
+    "tone": "technical",
+    "hosts": "auto",
+    "focus": "founder-org-design"
+  },
+  "tips": [
+    "Use the round README and simulation file as primary sources.",
+    "Prefer strategic tradeoffs over detailed implementation mechanics.",
+    "Ask the hosts to call out bad answers explicitly."
+  ]
+}
