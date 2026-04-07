@@ -2,7 +2,9 @@
 
 Date: Wednesday, April 8, 2026
 Duration: 45 minutes
-Interviewer: Ivo Dimitrov (co-founder, central AI team lead)
+Interviewer: Ivo Dimitrov (co-founder, **Chief AI Officer**)
+
+> **Fresh intel (April 7):** TheOrg lists Ivo as "Chief AI Officer" — not just CVO or central AI lead. This is a C-level AI mandate. Also: Finom's AI Accountant is publicly described as a **distributed multi-agent system (MAS)** — multiple autonomous AI agents collaborating. Finom targets **1M business customers by end of 2026**.
 
 ---
 
@@ -30,9 +32,11 @@ Interviewer: Ivo Dimitrov (co-founder, central AI team lead)
 
 ## My 3 Strongest Angles
 
-1. **Production agent systems at scale** → 30-60K docs/day, staged pipeline, confidence routing
+1. **Production multi-agent systems at scale** → 30-60K docs/day, staged pipeline, confidence routing — maps directly to Finom's MAS architecture
 2. **Eval and observability discipline** → 3-layer evals, workflow metrics > component metrics
 3. **Ambiguity to repeatable capability** → vague mandate → shipped v1 in weeks → reused across 3 workflows
+
+> **MAS talking point:** "Finom's AI Accountant is a multi-agent system — I've built production systems with the same shape: typed agent boundaries, confidence propagation between stages, failure isolation, and end-to-end observability. See `multi-agent-system-architecture-for-fintech.md` for full prep."
 
 ---
 

@@ -14,9 +14,12 @@ Finom is pursuing **embedded agentic AI inside financial operations** — not a 
 
 Key differentiators in their approach:
 - AI is embedded in the core product, not a separate add-on
+- **Distributed multi-agent system (MAS)**: multiple autonomous AI agents collaborating on tasks — this is publicly stated, not inferred
 - Agentic workflows that propose-then-act, with human approval gates
+- ~99% accuracy on auto-reconciliation (invoice-to-payment matching) — a strong public metric
 - Cross-workflow ambition: accounting first, then support, onboarding, risk
-- Central AI team for reusable capability, embedded in product squads for delivery
+- Chief AI Officer (Ivo Dimitrov) at C-level — signals AI is a company-level strategic priority
+- Target: 1 million business customers by end of 2026
 
 ---
 
@@ -24,13 +27,17 @@ Key differentiators in their approach:
 
 ### Qonto (France, main European competitor)
 
-**AI approach:** Qonto has added AI features to expense management and bookkeeping. Their focus appears to be on auto-categorization of transactions and receipt matching. They position AI as "smart automation" within their existing invoicing and expense flows.
+**AI approach:** Qonto has made significant AI moves:
+- Launched "Moshi," an AI chatbot built with Mistral AI (2024). By June 2025, 54% of customer support chats handled by AI with satisfaction scores comparable to human agents.
+- Partnered with Twin (March 2025) for autonomous finance agents using OpenAI's CUA model — these agents extract bank transactions, identify missing invoices, retrieve them from provider websites, and upload them into Qonto.
+- Acquired accounting fintech Regate (2024) to expand into accountant/accounting-firm market segment.
 
 **Compared to Finom:**
-- Qonto's AI appears more feature-level (auto-categorize, auto-match) than workflow-level (draft-approve-file)
-- Finom's agentic approach is more ambitious — the system does more of the job, not just assists
-- Finom's risk: higher complexity, harder to get right
-- Finom's advantage: if it works, it's a stronger moat
+- Qonto is moving toward agentic workflows too (via Twin partnership), not just feature-level AI
+- Qonto's approach is more partnership-driven (Mistral for chat, Twin for agents); Finom appears to build more in-house (distributed multi-agent system)
+- Qonto's support AI at 54% automation is a strong operational metric
+- Finom's advantage: tighter integration between AI and core financial workflows (accounting is native, not acquired)
+- Finom's risk: Qonto's partnership velocity is high and they have a larger customer base
 
 ### Revolut Business
 
@@ -63,10 +70,12 @@ Key differentiators in their approach:
 ## Landscape Insight
 
 The competitive picture suggests:
-1. **No one is doing deep agentic accounting AI well yet** — the space is early
-2. Most competitors are at the **feature-assist level** (auto-categorize, auto-match), not the **workflow-completion level** (draft, approve, file)
-3. Finom's bet on agentic workflows is riskier but potentially more defensible
-4. The central AI team approach makes sense because the reusable capability (eval, observability, approval rails, document understanding) spans all workflows
+1. **The race to agentic accounting is real** — Qonto's Twin partnership shows they're moving this direction too
+2. Finom's **in-house MAS approach** is more integrated but requires more engineering; Qonto's **partnership model** is faster to market but less defensible
+3. Finom's ~99% auto-reconciliation accuracy is a strong public metric that suggests production maturity
+4. The CAIO title for Ivo signals company-level AI commitment that competitors may not match organizationally
+5. The central AI team approach makes sense because the reusable capability (eval, observability, approval rails, document understanding) spans all workflows
+6. **Key differentiator opportunity:** The quality and governance layer around multi-agent systems is where engineering rigor creates defensibility — this is exactly where the role fits
 
 ---
 

@@ -1,15 +1,18 @@
 # Ivo Dimitrov
 
 ## Role
-- Senior Finom leader associated with the central AI team
-- Public sources most consistently identify him as former CPO and later Chief Venture Officer
+- **Chief AI Officer (CAIO)** at Finom — confirmed via TheOrg (unverified listing but consistent with recruiter signals)
+- Previously identified as CPO, then Chief Venture Officer — the CAIO title appears to be the most current
 - Recruiter Samuel described him as one of the co-founders and the person running Finom's separate central AI team
+- Leadership team of 5, with 3 direct reports: CRO, Group Head of Legal/Compliance, and Office Coordinator
 
 ## Background
-- Strong product leadership background
+- Strong product leadership background: 12 years in design and product management, 6+ years in fintech
+- Previous entrepreneurial experience: owned a mobile marketplace for tattoo artists
 - Public sources associate him with CPO-level ownership in Finom's earlier years
-- Public profiles suggest Berlin-based and long experience across product / design / fintech
+- Berlin-based
 - Public interview materials show he thinks in terms of SME workflows, usability, and integrated financial operations
+- Quote: "Our product development has been entirely driven by listening to our customers and understanding their real-world challenges"
 
 ## What Stands Out
 - Likely moved from core product leadership into broader company-level AI / venture scope
