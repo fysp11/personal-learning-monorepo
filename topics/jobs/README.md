@@ -7,6 +7,7 @@ Each company lives in its own folder under `topics/jobs/<company>/`. The goal is
 ## Cross-Company Resources
 
 - `cross-company-insights.md` - transferable patterns and insights between Finom and Delphyr preparations
+- `eu-ai-act-regulatory-prep.md` - EU AI Act awareness for both fintech and healthcare AI contexts
 
 ## Design Principles
 
