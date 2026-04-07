@@ -4,6 +4,10 @@ This folder is the job-search prep workspace.
 
 Each company lives in its own folder under `topics/jobs/<company>/`. The goal is to keep all research, prep, transcripts, and interview-specific artifacts in one place so a company can be resumed quickly without reconstructing context.
 
+## Cross-Company Resources
+
+- `cross-company-insights.md` - transferable patterns and insights between Finom and Delphyr preparations
+
 ## Design Principles
 
 - One company = one self-contained workspace.

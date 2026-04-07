@@ -11,7 +11,10 @@
 - `application/senior-ai-engineer-match-analysis.md` - strongest fit and objection-handling summary
 - `interviews/1-introduction--dmitry/README.md` - first-round dashboard with raw assets and cleaned summary
 - `interviews/2-central-ai--ivo/README.md` - current round prep for the April 8, 2026 interview
+- `prep/2-central-ai--ivo-day-of-card.md` - **day-of quick reference** for the Ivo interview
+- `prep/2-central-ai--ivo-story-bank.md` - pre-formatted STAR stories mapped to Finom
 - `prep/2-central-ai--ivo-48h-prep-focus.md` - highest-signal short prep note for the next interview
+- `prep/finom-ai-competitive-landscape.md` - AI competitive landscape analysis
 - `finom_cheatsheet.pdf` - compact company and role cheat sheet
 
 ## Company Notes
@@ -41,8 +44,10 @@
 
 ## Current Status
 - The main next action is prep for the Ivo interview on Wednesday, April 8, 2026.
+- **Day-of quick reference:** `prep/2-central-ai--ivo-day-of-card.md`
 - The first interview transcript is partial and should not be the main re-entry point; use `interviews/1-introduction--dmitry/Mar-31-Interview.md` or that folder's README instead.
-- The strongest prep path for the next round is: match analysis -> first-round summary -> Ivo round prep -> 48h focus note.
+- The strongest prep path for the next round is: match analysis -> first-round summary -> Ivo round prep -> day-of card.
+- Cross-company insights connecting Finom and Delphyr prep: `../cross-company-insights.md`
 
 ## Best Angles
 - Production AI systems with end-to-end ownership
