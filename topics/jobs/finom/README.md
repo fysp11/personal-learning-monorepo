@@ -18,7 +18,8 @@
 - `prep/finom-ai-competitive-landscape.md` - AI competitive landscape analysis
 - `prep/multi-agent-system-architecture-for-fintech.md` - MAS architecture prep (matches Finom's public AI Accountant design)
 - `prep/german-sme-accounting-domain-primer.md` - German tax forms and SME accounting domain vocabulary
-- `code/README.md` - MAS coordination pipeline code demo
+- `code/README.md` - MAS coordination pipeline + fraud detection overlay code demos
+- `../system-design-interview-frameworks.md` - system design answer frameworks (shared with Delphyr)
 - `prep/finom-ai-lending-expansion-analysis.md` - AI lending, analytics, and multi-country expansion analysis
 - `prep/post-ivo-interview-capture-framework.md` - **post-interview signal capture** (fill after April 8 interview)
 - `../confidence-calibration-patterns.md` - confidence calibration deep-dive (shared with Delphyr)

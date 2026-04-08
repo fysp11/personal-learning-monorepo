@@ -19,7 +19,8 @@
 - `prep/healthcare-ai-competitive-landscape.md` - competitive landscape analysis
 - `updates/delphyr-april-2026-intel.md` - fresh April 2026 intelligence (M1/M2, deployments, agentic shift)
 - `../confidence-calibration-patterns.md` - confidence calibration deep-dive (shared with Finom)
-- `code/README.md` - technical rehearsal code index (extraction agent + citation verification)
+- `code/README.md` - technical rehearsal code index (extraction + citation + safety harness)
+- `../system-design-interview-frameworks.md` - system design answer frameworks (shared with Finom)
 
 ## Company Overview
 - Amsterdam-based healthcare AI startup focused on reducing administrative burden on healthcare professionals.

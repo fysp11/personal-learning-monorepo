@@ -4,7 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "demo": "bun run accounting-mas-pipeline.ts"
+    "demo": "bun run accounting-mas-pipeline.ts",
+    "fraud": "bun run fraud-detection-overlay.ts"
   },
   "dependencies": {
     "zod": "^4.3.6"

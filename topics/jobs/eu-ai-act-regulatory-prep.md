@@ -35,24 +35,43 @@ The AI Act classifies systems into four risk levels:
 
 ### Is Finom's AI high-risk under the AI Act?
 
-**Probably not for core accounting automation**, but it depends on the specific use case:
+**It depends on the specific use case — and lending changes the picture significantly:**
 
-- **Credit scoring / loan decisions**: Explicitly listed as high-risk in Annex III
+- **Credit scoring / loan decisions**: **Explicitly listed as high-risk in Annex III.** This is now relevant because Finom launched AI-powered lending (working capital credit lines for Dutch businesses) in early 2026, with invoice financing and freelancer credit lines planned for late 2026.
 - **Fraud detection**: Explicitly excluded from high-risk classification
 - **Accounting automation** (categorization, reconciliation, tax prep): Not explicitly listed as high-risk — likely falls under limited or minimal risk
 - **Automated financial decisions affecting users**: Could be high-risk if the system makes autonomous decisions that significantly affect users' financial standing
 
+### Lending Makes Finom a High-Risk AI Operator (Annex III)
+
+With lending, Finom must comply with high-risk requirements for credit scoring:
+
+1. **Conformity assessment** — the credit scoring AI must undergo assessment before deployment
+2. **Risk management system** — continuous identification and mitigation of risks in credit decisions
+3. **Data governance** — training data must be representative and free from bias (e.g., no geographic or demographic proxy discrimination)
+4. **Technical documentation** — full description of the credit scoring model, its design choices, and evaluation results
+5. **Human oversight** — humans must be able to understand, interpret, and override AI credit decisions
+6. **Transparency** — applicants must be informed that AI is involved in credit decisions
+7. **Explainability** — under GDPR's right to explanation AND AI Act, credit decisions must be explainable to the applicant
+8. **Post-market monitoring** — ongoing monitoring of credit model performance, fairness, and drift
+9. **Logging** — automatic recording of credit decisions for traceability
+
 ### What "AI Act-ready" likely means for Finom
 
 - Transparency: Users know when they're interacting with AI
-- Human oversight: Approval gates before consequential actions (filing taxes, making payments)
+- Human oversight: Approval gates before consequential actions (filing taxes, making payments, **credit decisions**)
 - Auditability: Decision trails for AI-driven financial operations
 - Risk management: Documented risk assessment for each AI capability
 - Data quality: Training and evaluation data quality standards
+- **Explainability**: Credit scoring decisions must be explainable to applicants
+- **Fairness monitoring**: Credit models must be tested for demographic bias
+- **Conformity assessment**: Lending AI requires formal compliance verification
 
-### Interview talking point for Finom
+### Interview talking points for Finom
 
 > "AI Act readiness in fintech likely means the engineering bar is higher for transparency, auditability, and human oversight. The good news is that these are the same things that make AI systems production-ready anyway — approval gates, decision logging, evaluation, and staged rollout. Compliance and reliability are aligned here."
+
+> "With lending, the picture changes — credit scoring is explicitly high-risk under Annex III. That means conformity assessment, explainability, fairness monitoring, and post-market oversight are engineering requirements, not just nice-to-haves. I'd want to build the evaluation framework with calibration and fairness metrics from day one, not retrofit them later."
 
 ---
 
