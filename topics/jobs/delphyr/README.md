@@ -14,7 +14,11 @@
 - `prep/Medical-AI-Eval-Metrics-Cheat-Sheet.md` - evaluation and monitoring refresh
 - `prep/rag-guardrail-architecture-design.md` - deep technical guardrail pipeline architecture
 - `prep/post-technical-interview-analysis.md` - post-April-4 analysis and next steps
+- `prep/hybrid-retrieval-architecture-deep-dive.md` - patient-scoped hybrid retrieval design with implementation plan
+- `prep/mdt-preparation-agent-design.md` - MDT meeting preparation agent architecture (4-agent decomposition)
 - `prep/healthcare-ai-competitive-landscape.md` - competitive landscape analysis
+- `updates/delphyr-april-2026-intel.md` - fresh April 2026 intelligence (M1/M2, deployments, agentic shift)
+- `../confidence-calibration-patterns.md` - confidence calibration deep-dive (shared with Finom)
 - `code/README.md` - technical rehearsal code index (extraction agent + citation verification)
 
 ## Company Overview
@@ -30,10 +34,14 @@
 - Decision-support workflows inside existing HIS and EHR systems
 
 ## Key Milestones
-- Delphyr M1 is positioned as the first Dutch-built clinical language model.
+- Delphyr M1 is positioned as the first Dutch-built clinical language model (7B parameters, Dutch-native).
+- **M2 is the AI Copilot** — the product-facing layer on top of M1, integrated directly into EHRs.
 - Product messaging emphasizes citations, guardrails, auditability, and EU data residency.
-- Public partners and integration signals include ChipSoft, InterSystems, and Bricks.
-- Public pilots include Erasmus MC and the Dutch Endometriosis Center.
+- **Public messaging shifted to "AI agents for clinicians"** in March 2026 — agentic framing is now explicit.
+- Public partners and integration signals include ChipSoft, InterSystems, and Bricks (via Tetra).
+- **Reinier de Graaf Hospital** — confirmed live production deployment (not just pilot).
+- Erasmus MC and the Dutch Endometriosis Center — active pilots.
+- M1 benchmarks: PubMedQA 76.8%, MedMCQA 62.5%, MedQA 64.7%.
 
 ## Team
 - Michel Abdel Malek, MD - CEO and Founder

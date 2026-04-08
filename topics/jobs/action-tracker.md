@@ -27,24 +27,34 @@
 
 ## Week 2: Apr 7-14, 2026
 
-### Before Finom 2nd Round (if scheduled)
-- [ ] Complete MCP skill server experiment
+### Finom — Post-Ivo Interview (April 8)
+- [ ] **Fill post-ivo-interview-capture-framework.md** immediately after interview
+- [ ] Update Finom README with interview outcome and next steps
+- [ ] Review if lending/expansion talking points were relevant
+- [ ] Complete MCP skill server experiment (if next round scheduled)
 - [ ] Practice system design answer: "Design German SMB transaction categorization"
-- [ ] Know UStVA filing process step-by-step
 - [ ] Research Qonto's AI features for comparison talking point
-- [ ] Review Dmitry Ivanov's recent LinkedIn posts for conversation hooks
 
-### Before Delphyr 2nd Round (if scheduled)
+### Delphyr — Post-Technical Round Follow-up
+- [ ] **Record April 4 technical interview outcome** (critical missing piece)
 - [ ] Complete agent safety harness experiment
-- [ ] Practice MDT preparation agent design answer
+- [ ] Build hybrid retrieval prototype (see hybrid-retrieval-architecture-deep-dive.md)
+- [ ] Practice MDT preparation agent design answer (see mdt-preparation-agent-design.md)
 - [ ] Know MDR Class IIa requirements and 2-3 examples of certified AI SaMD
 - [ ] Read about HL7 FHIR Patient/Observation resources
-- [ ] Review clinical AI landscape for recent developments
+
+### New Deep Research (Both)
+- [x] Finom AI lending expansion analysis (finom-ai-lending-expansion-analysis.md)
+- [x] Hybrid retrieval architecture deep-dive (hybrid-retrieval-architecture-deep-dive.md)
+- [x] MDT preparation agent design (mdt-preparation-agent-design.md)
+- [x] Confidence calibration patterns (confidence-calibration-patterns.md)
+- [x] Delphyr April 2026 fresh intelligence (delphyr-april-2026-intel.md)
 
 ### Gap Closing
 - [ ] Fine-tune DistilBERT on a transaction categorization dataset (bridges PyTorch gap)
 - [ ] Compare biomedical vs. general embeddings on PubMed data (bridges clinical RAG gap)
 - [ ] Build C#/.NET + Python polyglot service demo (bridges .NET gap)
+- [ ] Build confidence calibration dashboard prototype (applies to both roles)
 
 ---
 

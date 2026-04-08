@@ -7,7 +7,11 @@ Each company lives in its own folder under `topics/jobs/<company>/`. The goal is
 ## Cross-Company Resources
 
 - `cross-company-insights.md` - transferable patterns and insights between Finom and Delphyr preparations
+- `confidence-calibration-patterns.md` - deep technical pattern on confidence calibration for production AI (applies to both roles)
 - `eu-ai-act-regulatory-prep.md` - EU AI Act awareness for both fintech and healthcare AI contexts
+- `star-stories.md` - STAR story bank mapped to both companies
+- `comparison-strategy.md` - side-by-side comparison and decision framework
+- `action-tracker.md` - weekly action tracker with experiment priorities
 
 ## Design Principles
 

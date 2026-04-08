@@ -19,6 +19,9 @@
 - `prep/multi-agent-system-architecture-for-fintech.md` - MAS architecture prep (matches Finom's public AI Accountant design)
 - `prep/german-sme-accounting-domain-primer.md` - German tax forms and SME accounting domain vocabulary
 - `code/README.md` - MAS coordination pipeline code demo
+- `prep/finom-ai-lending-expansion-analysis.md` - AI lending, analytics, and multi-country expansion analysis
+- `prep/post-ivo-interview-capture-framework.md` - **post-interview signal capture** (fill after April 8 interview)
+- `../confidence-calibration-patterns.md` - confidence calibration deep-dive (shared with Delphyr)
 - `../eu-ai-act-regulatory-prep.md` - EU AI Act awareness (shared with Delphyr)
 - `finom_cheatsheet.pdf` - compact company and role cheat sheet
 
@@ -29,6 +32,10 @@
 
 ## AI and Product Direction
 - Finom is pushing beyond "AI sprinkled on top" toward agentic workflows that proactively complete work.
+- **AI-Powered Lending** launched in early 2026 — working capital credit lines for Dutch businesses.
+- Invoice financing and credit lines for freelancers expected by late 2026.
+- AI-enhanced financial analytics on the near-term roadmap.
+- Deeper integrations with tax and accounting systems across all 5 markets planned.
 - **The AI Accountant is a distributed multi-agent system (MAS)** — multiple autonomous AI agents collaborating within a shared environment. This is publicly stated.
 - Auto-reconciliation engine matches invoices to payments with ~99% accuracy.
 - Accounting appears to be the first major workflow area rebuilt around this model.

@@ -1,6 +1,6 @@
 # Cross-Company Insights: Finom x Delphyr
 
-Saved: 2026-04-07
+Saved: 2026-04-08 (updated)
 
 ## Purpose
 
@@ -126,8 +126,28 @@ This profile is rarer than "I can build agents" or "I know RAG." The prep work f
 
 ---
 
+## New Deep-Dive Resources (April 8, 2026)
+
+### Technical Patterns
+- `confidence-calibration-patterns.md` — cross-company deep-dive on confidence calibration as the engineering discipline behind staged autonomy. Covers ECE, reliability diagrams, per-agent confidence emission, confidence propagation, and domain-specific calibration challenges for both fintech and clinical AI.
+
+### Finom-Specific
+- `finom/prep/finom-ai-lending-expansion-analysis.md` — analysis of Finom's expansion beyond accounting into lending, analytics, and multi-country tax. Maps how the central AI team's reusable infrastructure applies to each new surface.
+- `finom/prep/post-ivo-interview-capture-framework.md` — structured framework for capturing signals from the April 8 Ivo interview.
+
+### Delphyr-Specific
+- `delphyr/prep/hybrid-retrieval-architecture-deep-dive.md` — technical design for patient-scoped hybrid retrieval combining dense embeddings, sparse keyword matching, and clinical re-ranking. Includes implementation plan and evaluation framework.
+- `delphyr/prep/mdt-preparation-agent-design.md` — four-agent decomposition for MDT meeting preparation: timeline, clinical question, guideline retrieval, and gap detection agents.
+- `delphyr/updates/delphyr-april-2026-intel.md` — fresh intelligence from web research including M1/M2 model details, Reinier de Graaf deployment confirmation, and agentic messaging shift.
+
+---
+
 ## Next Steps
 
-1. **After the Finom Ivo interview (April 8):** Capture outcome, assess whether the central AI framing landed
+1. **After the Finom Ivo interview (April 8):** Capture outcome using `finom/prep/post-ivo-interview-capture-framework.md`, assess whether the central AI framing landed
 2. **After Delphyr outcome is known:** Record what happened, identify what transferred
 3. **Regardless of outcomes:** Continue building the evaluation and guardrail code examples — they are portfolio pieces that work for any correctness-sensitive AI role
+4. **Technical experiments to build next:**
+   - Hybrid retrieval prototype (connects to existing citation-verification.ts)
+   - MDT preparation agent scaffold (demonstrates orchestration thinking)
+   - Confidence calibration dashboard (applies to both roles)
