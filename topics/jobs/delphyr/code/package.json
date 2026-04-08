@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "eval": "bun run medical-extraction.experiments.ts",
-    "citation": "bun run citation-verification.ts"
+    "citation": "bun run citation-verification.ts",
+    "safety": "bun run agent-safety-harness.ts"
   },
   "dependencies": {
     "@ai-sdk/openai": "^3.0.50",

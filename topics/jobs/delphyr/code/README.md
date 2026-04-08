@@ -20,6 +20,36 @@ Self-contained Mastra example for a clinical extraction agent with grouped custo
 - Explicit formulas so the metrics stay separable in discussion
 - `runEvals(...)` over a tiny sample dataset with ground truth
 
+## Agent Safety Harness
+
+`agent-safety-harness.ts` — Demonstrates transactional commit/rollback patterns for clinical AI agents. This is the **highest-signal experiment** for Delphyr interviews — it directly addresses the safety harness pattern discussed in round 1.
+
+### What it shows
+
+- **Staged actions**: Every action is proposed before execution — no silent side effects
+- **Confidence-based routing**: auto-commit (high), human review (medium), reject (low)
+- **Compensating actions**: Committed work can be rolled back via compensating actions
+- **Workflow-level rollback**: If a downstream action invalidates upstream, roll back everything
+- **Full audit trail**: Every stage/commit/rollback/escalation logged for MDR compliance
+- **Escalation paths**: System never silently proceeds when uncertain
+
+### Run
+
+```bash
+bun run safety
+```
+
+### Two demo scenarios
+
+1. **MDT Preparation (happy path)**: 5-step clinical workflow with mixed confidence levels — shows auto-commit, human review, and rejection in action
+2. **Rollback demo**: Downstream drug interaction check discovers the upstream medication extraction missed an allergy — entire workflow rolled back and escalated
+
+### Interview talking point
+
+> "I prototyped a transactional agent harness inspired by database commit/rollback semantics. The key insight is that in clinical workflows, you need both action-level confidence routing AND the ability to rollback an entire workflow if a downstream action reveals the upstream was wrong."
+
+---
+
 ## Citation Verification Pipeline
 
 `citation-verification.ts` — Demonstrates claim-level citation verification for medical RAG outputs, matching Delphyr's emphasis on exact, verifiable source quotes.

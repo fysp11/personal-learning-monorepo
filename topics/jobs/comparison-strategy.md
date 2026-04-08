@@ -6,7 +6,7 @@
 |-----------|---------|-------|
 | **Domain** | Clinical AI / Healthcare | Fintech / SMB Banking |
 | **Stage** | Early-stage, small team | Series C, 500+ employees |
-| **Funding** | Unknown (likely smaller) | €300M+ |
+| **Funding** | €1.75M (March 2026, HF/DEGIRO founders) | €300M+ |
 | **Location** | Netherlands (Amsterdam area) | Amsterdam HQ |
 | **Team size** | ~6 people (2 seniors, DS, juniors) | 500+ (AI Core team ~10-15?) |
 | **Tech stack** | Python, custom search/embeddings | C#/.NET + Python polyglot |
@@ -79,20 +79,47 @@ Both roles converge on these core competencies — study these regardless of whi
 - Domain-specific regulation (MDR for Delphyr, EMI/PSD2 for Finom)
 - Data residency and sovereignty requirements
 
+## Post-Round-1 Learnings (Updated April 8, 2026)
+
+### What Worked in Both Interviews
+- **Self-healing scraper agent story** — resonated strongly with both interviewers as proof of production AI experience
+- **Evaluation depth** — both teams valued systematic quality measurement over "it seems to work"
+- **DSPy familiarity** — mentioned as a signal of staying current with AI tooling
+- **Privacy-first thinking** — relevant to both EU-regulated domains
+
+### Finom-Specific Signals (from Dmitry)
+- IC4 agentic platform vision — role is about building AI capabilities at scale
+- MCP-based interface architecture — Dmitry is interested in tool composition patterns
+- Python + C# polyglot environment — AI work in Python, platform in .NET
+- Production AI engineering > novelty — values reliability over demo quality
+
+### Delphyr-Specific Signals (from Michel)
+- Self-healing agent patterns translated well to clinical safety
+- Commit/rollback pattern was specifically discussed and valued
+- Small team + high ownership = working style alignment
+- Quick decision-making culture — "move fast, but safely"
+
+### Key Adjustment: Both roles converge on the same profile
+The central insight from round 1: both companies want **someone who builds reliable AI systems in correctness-sensitive domains**. The domain specifics differ but the engineering discipline is identical.
+
+---
+
 ## Preparation Timeline
 
-### Week of Apr 1-7 (NOW)
+### Week of Apr 1-7 (Completed)
 - [x] Analyze both interview transcripts
 - [x] Create structured preparation materials
-- [ ] Research both companies deeply (web, LinkedIn, product demos)
-- [ ] Build MCP skill server experiment (relevant to Finom)
-- [ ] Study MDR classification process (relevant to Delphyr)
+- [x] Research both companies deeply
+- [x] Prepare STAR stories mapped to each company's needs
 
-### Week of Apr 7-14
+### Week of Apr 7-14 (Current)
+- [x] Deep-dive: AI lending expansion, fraud/risk architecture (Finom)
+- [x] Deep-dive: hybrid retrieval, MDT agent design (Delphyr)
+- [x] Deep-dive: confidence calibration patterns (both)
+- [x] Build agent safety harness experiment (Delphyr)
+- [ ] Build MCP skill server experiment (Finom)
 - [ ] Practice system design answers for both roles
-- [ ] Build mini eval framework experiment (relevant to both)
-- [ ] Deep-dive into EU tax regimes (Finom) and clinical guidelines (Delphyr)
-- [ ] Prepare STAR stories mapped to each company's needs
+- [ ] Build hybrid retrieval prototype (Delphyr)
 
 ### Ongoing
 - [ ] Follow both companies on LinkedIn for updates
