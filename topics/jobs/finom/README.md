@@ -21,6 +21,9 @@
 - `code/README.md` - MAS coordination pipeline + fraud detection overlay code demos
 - `../system-design-interview-frameworks.md` - system design answer frameworks (shared with Delphyr)
 - `prep/finom-ai-lending-expansion-analysis.md` - AI lending, analytics, and multi-country expansion analysis
+- `prep/fraud-risk-architecture-playbook.md` - fraud detection architecture reference
+- `prep/fintech-vocabulary-quick-reference.md` - **quick recall** German accounting + fintech terms
+- `../first-90-days-frameworks.md` - first 90 days plan for the Finom role
 - `prep/post-ivo-interview-capture-framework.md` - **post-interview signal capture** (fill after April 8 interview)
 - `../confidence-calibration-patterns.md` - confidence calibration deep-dive (shared with Delphyr)
 - `../eu-ai-act-regulatory-prep.md` - EU AI Act awareness (shared with Delphyr)

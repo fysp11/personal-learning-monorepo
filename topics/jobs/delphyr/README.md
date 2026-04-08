@@ -18,6 +18,8 @@
 - `prep/mdt-preparation-agent-design.md` - MDT meeting preparation agent architecture (4-agent decomposition)
 - `prep/healthcare-ai-competitive-landscape.md` - competitive landscape analysis
 - `updates/delphyr-april-2026-intel.md` - fresh April 2026 intelligence (M1/M2, deployments, agentic shift)
+- `prep/clinical-ai-vocabulary-quick-reference.md` - **quick recall** clinical AI + Dutch healthcare terms
+- `../first-90-days-frameworks.md` - first 90 days plan for the Delphyr role
 - `../confidence-calibration-patterns.md` - confidence calibration deep-dive (shared with Finom)
 - `code/README.md` - technical rehearsal code index (extraction + citation + safety harness)
 - `../system-design-interview-frameworks.md` - system design answer frameworks (shared with Finom)

@@ -12,6 +12,8 @@ Each company lives in its own folder under `topics/jobs/<company>/`. The goal is
 - `star-stories.md` - STAR story bank mapped to both companies
 - `comparison-strategy.md` - side-by-side comparison and decision framework
 - `action-tracker.md` - weekly action tracker with experiment priorities
+- `first-90-days-frameworks.md` - first 90 days plans for both roles
+- `system-design-interview-frameworks.md` - CLEAR framework + 5 design prompts
 
 ## Design Principles
 

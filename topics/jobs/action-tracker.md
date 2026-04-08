@@ -43,18 +43,29 @@
 - [ ] Know MDR Class IIa requirements and 2-3 examples of certified AI SaMD
 - [ ] Read about HL7 FHIR Patient/Observation resources
 
-### New Deep Research (Both)
+### New Deep Research (Both) — Completed April 8
 - [x] Finom AI lending expansion analysis (finom-ai-lending-expansion-analysis.md)
+- [x] Finom fraud/risk architecture playbook (fraud-risk-architecture-playbook.md)
+- [x] Finom fraud detection overlay code (bun run fraud)
+- [x] Finom fintech vocabulary quick reference (fintech-vocabulary-quick-reference.md)
 - [x] Hybrid retrieval architecture deep-dive (hybrid-retrieval-architecture-deep-dive.md)
 - [x] MDT preparation agent design (mdt-preparation-agent-design.md)
-- [x] Confidence calibration patterns (confidence-calibration-patterns.md)
+- [x] Delphyr agent safety harness code (bun run safety)
+- [x] Delphyr clinical AI vocabulary quick reference (clinical-ai-vocabulary-quick-reference.md)
 - [x] Delphyr April 2026 fresh intelligence (delphyr-april-2026-intel.md)
+- [x] Confidence calibration patterns (confidence-calibration-patterns.md)
+- [x] System design interview frameworks (system-design-interview-frameworks.md)
+- [x] First 90 days frameworks for both roles (first-90-days-frameworks.md)
+- [x] EU AI Act updated with lending/credit scoring high-risk implications
+- [x] Comparison strategy updated with post-round-1 learnings
+- [x] Delphyr INTERVIEW-PREP.md updated with M1/M2 and agentic shift
 
-### Gap Closing
+### Gap Closing (Still Open)
 - [ ] Fine-tune DistilBERT on a transaction categorization dataset (bridges PyTorch gap)
 - [ ] Compare biomedical vs. general embeddings on PubMed data (bridges clinical RAG gap)
 - [ ] Build C#/.NET + Python polyglot service demo (bridges .NET gap)
 - [ ] Build confidence calibration dashboard prototype (applies to both roles)
+- [ ] Build hybrid retrieval prototype code (extends citation-verification.ts)
 
 ---
 
