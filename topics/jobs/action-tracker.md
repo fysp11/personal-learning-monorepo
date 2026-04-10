@@ -3,7 +3,7 @@
 ## Week 1: Apr 1-7, 2026 (Current)
 
 ### Completed
-- [x] Analyze both 1st round interview transcripts
+- [x] Analyze both 1st round interview source records
 - [x] Create structured preparation materials (interview analysis, technical deep-dives)
 - [x] Build interview simulation Q&A for both roles
 - [x] Create experiment blueprints for hands-on demonstrations

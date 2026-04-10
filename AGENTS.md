@@ -11,8 +11,8 @@ Job search preparation workspace. Each company gets its own subdirectory under `
 - `CLAUDE.md` — company-specific Claude instructions
 - `AGENTS.md` — company-specific agent instructions
 - Research reports, cheatsheets, and prep materials
-- `interviews/` — recordings and transcripts
+- `interviews/` — captured materials and source records
 
 ### Active Companies
-- **Delphyr** — research report, interview recording + transcript
+- **Delphyr** — research report, interview captured material + source record
 - **Finom** — cheatsheet PDF

@@ -202,7 +202,7 @@ Practice questions with structured answers (STAR-format where applicable). Based
 
 ## Pre-Interview Checklist
 
-- [ ] Re-read the 1st round transcript to recall specific moments
+- [ ] Re-read the first-round README to recall specific moments
 - [ ] Review MDR classification requirements (IEC 62304, ISO 14971)
 - [ ] Look up one recent NICE or ESMO clinical guideline to reference specifically
 - [ ] Prepare a question about their embedding model training process

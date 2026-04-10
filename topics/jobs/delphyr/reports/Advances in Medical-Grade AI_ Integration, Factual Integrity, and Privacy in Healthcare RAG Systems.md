@@ -35,7 +35,7 @@ Standard LLMs struggle with "long-horizon" EHRs—histories spanning years and t
 
 ##### **1\. Categorizing Support and Severity**
 
-Abridge outlines a "Gold Standard" for assessing the factuality of AI-generated documentation based on two axes:| Support Axis | Definition || \------ | \------ || **Directly Supported** | Content precisely matches the transcript with no deviations. || **Reasonable Inference** | Logically inferred; most clinicians would agree (e.g., mentioning "diabetes" when metformin and HbA1c are discussed). || **Questionable Inference** | Plausible but doubtful; other interpretations exist. || **Unmentioned** | Claim is not substantiated by any part of the transcript. || **Contradiction** | Directly conflicts with the source transcript (e.g., noting "no pain" when the patient reported pain). |  
+Abridge outlines a "Gold Standard" for assessing the factuality of AI-generated documentation based on two axes:| Support Axis | Definition || \------ | \------ || **Directly Supported** | Content precisely matches the source record with no deviations. || **Reasonable Inference** | Logically inferred; most clinicians would agree (e.g., mentioning "diabetes" when metformin and HbA1c are discussed). || **Questionable Inference** | Plausible but doubtful; other interpretations exist. || **Unmentioned** | Claim is not substantiated by any part of the source record. || **Contradiction** | Directly conflicts with the source source record (e.g., noting "no pain" when the patient reported pain). |  
 Severity Axis,Impact on Clinical Care  
 Major,"High risk of negative impact on care or substantial harm (e.g., incorrect dosage)."  
 Moderate,Low but non-trivial risk to patient safety.  
@@ -47,7 +47,7 @@ Modern systems do not rely on a single LLM pass. Instead, they use a "first draf
 
 * **Detection:**  Task-specific models (trained on over 50,000 clinical examples) detect unsupported claims. Abridge reports that its system catches  **97% of confabulations** , compared to only 82% by GPT-4o.  
 * **Self-Correction:**  Once an error is detected, the system automatically revises the note (e.g., correcting "Prozac" to "Lexapro" based on a patient's mid-conversation correction) or deletes the claim entirely.  
-* **Linked Evidence:**  Tools allow clinicians to click on a summary sentence and see the original transcript or EHR evidence, facilitating rapid human verification.
+* **Linked Evidence:**  Tools allow clinicians to click on a summary sentence and see the original source record or EHR evidence, facilitating rapid human verification.
 
 #### *III. Privacy Architecture and Threat Mitigation*
 

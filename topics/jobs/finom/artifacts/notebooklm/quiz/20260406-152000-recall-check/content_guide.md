@@ -18,5 +18,5 @@
 ## What to de-emphasize
 
 - low-signal process complaints
-- transcript-level detail
+- source record-level detail
 - framework-name trivia

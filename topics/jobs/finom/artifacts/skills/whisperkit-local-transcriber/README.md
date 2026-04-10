@@ -1,6 +1,6 @@
 # WhisperKit Local Transcriber
 
-Reusable local-only transcription skill for Apple Silicon Macs using WhisperKit.
+Reusable local-only capture skill for Apple Silicon Macs using WhisperKit.
 
 ## Files
 - `SKILL.md` - trigger description and workflow

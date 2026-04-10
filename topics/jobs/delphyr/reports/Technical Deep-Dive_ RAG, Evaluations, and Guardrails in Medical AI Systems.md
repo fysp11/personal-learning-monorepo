@@ -52,13 +52,13 @@ Evaluating "hallucinations"—or unsupported claims—requires moving beyond bin
 
 ##### **The Support Axis: Assessing Factual Claims**
 
-Claims are categorized based on their relationship to the source transcript or EHR:
+Claims are categorized based on their relationship to the source source record or EHR:
 
 * **Directly Supported:**  Matches the source precisely.  *Example:*  "Start  **Lisinopril 20mg**  daily" matches the verbal order exactly.  
-* **Circumstantially Supported (Reasonable Inference):**  Logical deductions.  *Example:*  Referencing "diabetes" when the transcript only discusses metformin and blood sugar levels.  
+* **Circumstantially Supported (Reasonable Inference):**  Logical deductions.  *Example:*  Referencing "diabetes" when the source record only discusses metformin and blood sugar levels.  
 * **Circumstantially Supported (Questionable Inference):**  Plausible but uncertain.  *Example:*  Assuming  **Atrial Fibrillation**  solely because the patient takes  **Eliquis** , which could also be for DVT or PE.  
 * **Unmentioned:**  Substantiated by nothing in the source.  *Example:*  Including a " **follow up in three months** " plan item when follow-up was never discussed.  
-* **Contradiction:**  Directly conflicts with the record.  *Example:*  Note states "patient denies chest pain" while the transcript records the patient reporting it.
+* **Contradiction:**  Directly conflicts with the record.  *Example:*  Note states "patient denies chest pain" while the source record records the patient reporting it.
 
 ##### **The Severity Axis**
 
@@ -79,14 +79,14 @@ Automated guardrails serve as the final filter before documentation enters the r
 A clinical-grade guardrail system operates in two distinct phases:
 
 1. **Detection via Task-Specific Models:**  These models, trained on over  **50,000 examples** , analyze each claim and generate a specific  **"reasoning"**  for its assessment (e.g.,  *"The statement is not supported because the patient corrected the medication name later in the dialogue"* ).  
-2. **Automatic Self-Correction:**  Based on the reasoning, the system performs  **Alignment**  (correcting the draft to match the transcript) or  **Deletion**  (removing the claim entirely if it is unmentioned).
+2. **Automatic Self-Correction:**  Based on the reasoning, the system performs  **Alignment**  (correcting the draft to match the source record) or  **Deletion**  (removing the claim entirely if it is unmentioned).
 
 ##### **Architectural Implementation and Query Logic**
 
 To be effective, these systems must integrate via  **Ambient Listening**  directly into existing  **EHR**  or  **GPIS**  environments. Architects should follow established query guidelines to improve guardrail performance:
 
 * **Preserve Context:**  Use full nouns and avoid vague pronouns like "it" to ensure the retriever pulls the correct document.  
-* **Avoid Inferences in Queries:**  Request raw data (e.g., "list weights from last 10 visits") rather than asking the model to calculate weight changes, which can introduce arithmetic hallucinations.Verifiable citations, or  **Linked Evidence** , transform the AI from a black box into a transparent assistant, allowing clinicians to click a claim and see the exact timestamp in the transcript that supports it.
+* **Avoid Inferences in Queries:**  Request raw data (e.g., "list weights from last 10 visits") rather than asking the model to calculate weight changes, which can introduce arithmetic hallucinations.Verifiable citations, or  **Linked Evidence** , transform the AI from a black box into a transparent assistant, allowing clinicians to click a claim and see the exact timestamp in the source record that supports it.
 
 #### *6\. Topic V: Regulatory Landscape and Future Compliance*
 

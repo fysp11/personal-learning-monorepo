@@ -20,7 +20,7 @@
 
 ## What to de-emphasize
 
-- transcript-level detail
+- source record-level detail
 - raw Glassdoor complaints
 - minute implementation specifics unless they anchor a key tradeoff
 

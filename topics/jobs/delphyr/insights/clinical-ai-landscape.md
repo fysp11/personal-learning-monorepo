@@ -16,7 +16,7 @@
 | **Glass Health** | Clinical decision support | Series A | Evidence-based recommendations |
 | **Viz.ai** | Medical imaging AI | Growth | FDA-cleared stroke detection |
 | **PathAI** | Pathology AI | Growth | Diagnostic precision |
-| **Abridge** | Clinical documentation | Series C | Real-time medical transcription |
+| **Abridge** | Clinical documentation | Series C | Real-time medical capture |
 | **Nuance/DAX** | Clinical documentation | Microsoft-owned | Ambient clinical intelligence |
 
 ### Delphyr's Unique Position

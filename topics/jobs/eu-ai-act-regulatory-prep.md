@@ -76,7 +76,7 @@ Delphyr's clinical decision support tools likely fall into at least Class IIa, m
 1. **Risk management system**: Documented, continuous risk identification and mitigation
 2. **Data governance**: Training data quality, relevance, representativeness, and freedom from bias
 3. **Technical documentation**: Full system description, design choices, evaluation results
-4. **Record-keeping / logging**: Automatic recording of events for traceability
+4. **Record-keeping / logging**: Automatic captured material of events for traceability
 5. **Transparency**: Clear information to users about the system's capabilities and limitations
 6. **Human oversight**: Designed to be overseen by humans, with ability to override or stop
 7. **Accuracy, robustness, cybersecurity**: Appropriate levels for the intended purpose

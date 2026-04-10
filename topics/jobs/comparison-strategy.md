@@ -82,7 +82,7 @@ Both roles converge on these core competencies — study these regardless of whi
 ## Preparation Timeline
 
 ### Week of Apr 1-7 (NOW)
-- [x] Analyze both interview transcripts
+- [x] Analyze both interview source records
 - [x] Create structured preparation materials
 - [ ] Research both companies deeply (web, LinkedIn, product demos)
 - [ ] Build MCP skill server experiment (relevant to Finom)

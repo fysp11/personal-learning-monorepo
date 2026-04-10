@@ -9,8 +9,8 @@ Usage:
 
 Notes:
 - Uses WhisperKit locally with an already-downloaded model.
-- Writes .txt transcripts next to each audio file.
-- Refuses to overwrite existing transcripts unless --overwrite is set.
+- Writes .txt source records next to each audio file.
+- Refuses to overwrite existing source records unless --overwrite is set.
 USAGE
 }
 
@@ -86,7 +86,7 @@ transcribe_one() {
   tmp_file="$(mktemp)"
 
   if [[ -f "$output_file" && "$overwrite" -ne 1 ]]; then
-    echo "Skipping existing transcript: $output_file" >&2
+    echo "Skipping existing source record: $output_file" >&2
     rm -f "$tmp_file"
     return 0
   fi
@@ -101,7 +101,7 @@ transcribe_one() {
   "${cmd[@]}" > "$tmp_file"
 
   perl -pe 's/\e\[[0-9;]*[[:alpha:]]//g' "$tmp_file" \
-    | awk 'found { print } /^Transcription of .*: *$/ { found=1; next }' \
+    | awk 'found { print } /^Capture of .*: *$/ { found=1; next }' \
     | sed '1{/^[[:space:]]*$/d;}' > "$output_file"
 
   rm -f "$tmp_file"

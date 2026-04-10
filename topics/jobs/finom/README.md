@@ -4,13 +4,17 @@
 - Company: Finom
 - Focus: SMB financial platform combining banking, invoicing, and AI accounting
 - Relevant role: Senior AI Engineer
-- Current next interview: Wednesday, April 8, 2026 with Ivo Dimitrov
+- Current next interview: Interview 3, a 90-minute technical round with Finom's Senior AI Engineer / likely lead in the AI engineering team
 - Current open org question: whether this role sits in the central AI team, a product squad, or spans both
+- New grounded signal from the April 8 Ivo conversation: Finom's AI org is effectively `both` central and embedded, with explicit adoption work on top
 
 ## Start Here
+- `interviews/3-lead-ai-engineer/README.md` - round-specific dashboard for Interview 3
+- `prep/3-lead-ai-engineer-prep-plan.md` - main prep plan for the current technical round
 - `application/senior-ai-engineer-match-analysis.md` - strongest fit and objection-handling summary
 - `interviews/1-introduction--dmitry/README.md` - first-round dashboard with raw assets and cleaned summary
-- `interviews/2-central-ai--ivo/README.md` - current round prep for the April 8, 2026 interview
+- `interviews/3-lead-ai-engineer/README.md` - recruiter-confirmed third-round format and grounded prep signals
+- `interviews/2-central-ai--ivo/README.md` - prior round materials for the Ivo interview
 - `prep/2-central-ai--ivo-day-of-card.md` - **day-of quick reference** for the Ivo interview
 - `prep/2-central-ai--ivo-story-bank.md` - pre-formatted STAR stories mapped to Finom
 - `prep/2-central-ai--ivo-rehearsal-flow.md` - **walk-through rehearsal** for the actual interview
@@ -40,21 +44,31 @@
 - Interviewers in scope so far:
   - Dmitry Ivanov - CTO
   - Ivo Dimitrov - co-founder, **Chief AI Officer (CAIO)** per TheOrg; recruiter described him as running the central AI team
+  - Interview 3 interviewer not yet confirmed by name; recruiter follow-up suggests confusion around a `Julia` who appears to be a recruiter / CC artifact, so the safest grounded read is still Ivo's `leading engineer`
 - Stack notes from current materials:
   - Python for LLM-heavy services and agent harnesses
   - .NET / C# across the broader backend platform
   - likely polyglot environment with AI work embedded into product delivery
+- Org notes now grounded by the Ivo conversation:
+  - separate `ML team` and `AI team`
+  - AI team focuses on LLM/product-pattern work rather than classic predictive ML
+  - some people are embedded in domains, others move across projects
+  - explicit `adoption` stream exists to spread AI-first behavior across the company
 
 ## Interview Timeline
 - Monday, March 31, 2026 - first conversation with Dmitry Ivanov in `interviews/1-introduction--dmitry/`
 - Sunday, April 6, 2026 - recruiter update that Ivo wants to meet
-- Wednesday, April 8, 2026 - planned second interview with Ivo in `interviews/2-central-ai--ivo/`
+- Wednesday, April 8, 2026 - second interview with Ivo in `interviews/2-central-ai--ivo/`
+- Thursday, April 9, 2026 - recruiter moved you to Interview 3: 30 minutes of technical questions with a Senior AI Engineer, then 60 minutes of live problem-solving with Claude Code or Codex
 
 ## Current Status
-- The main next action is prep for the Ivo interview on Wednesday, April 8, 2026.
-- **Day-of quick reference:** `prep/2-central-ai--ivo-day-of-card.md`
-- The first interview transcript is partial and should not be the main re-entry point; use `interviews/1-introduction--dmitry/Mar-31-Interview.md` or that folder's README instead.
-- The strongest prep path for the next round is: match analysis -> first-round summary -> Ivo round prep -> day-of card.
+- The main next action is prep for Interview 3, the technical round with Finom's Senior AI Engineer / likely AI engineering lead.
+- Round dashboard: `interviews/3-lead-ai-engineer/README.md`
+- **Primary prep file:** `prep/3-lead-ai-engineer-prep-plan.md`
+- The Ivo interview folder README is the grounded input for Interview 3 prep.
+- The recruiter follow-up for Interview 3 confirms the `30 + 60` structure and `Claude Code` / `Codex` live format, but does **not** reliably identify the engineer by name.
+- The first interview README is the distilled source for Dmitry's product, org, and stack signals.
+- The strongest prep path for the next round is: match analysis -> first-round summary -> interview 3 prep plan -> live-round drills.
 - Cross-company insights connecting Finom and Delphyr prep: `../cross-company-insights.md`
 
 ## Best Angles
@@ -62,12 +76,16 @@
 - Agentic workflows over document-heavy operations
 - Evaluation, observability, and reliability discipline
 - Strong product-engineering judgment without overclaiming fintech specialization
+- Proactive workflow execution with explicit approval and control surfaces
+- Ability to use `Codex` / `Claude` to accelerate delivery without losing rigor
 
 ## Open Questions For The Next Round
+- Who exactly is the Interview 3 interviewer, and how close are they to day-to-day AI engineering delivery?
 - What is the mandate of the central AI team today?
 - What should be centralized versus embedded in product squads?
 - What would this role own first if hired?
 - How does Finom evaluate quality and failure handling for accounting and financial workflows?
+- Where do they currently see AI coding tools increasing speed versus causing drag?
 
 ## Maintenance Notes
 - Keep this README as the one-minute dashboard for current stage, next action, and strongest support files.

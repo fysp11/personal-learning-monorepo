@@ -1,6 +1,6 @@
 ---
 name: whisperkit-local-transcriber
-description: Create local-only transcripts from audio files using WhisperKit on Apple Silicon. Use this whenever the user wants to transcribe `.m4a`, `.mp3`, `.wav`, or similar audio locally, wants to avoid cloud APIs, wants WhisperKit or Apple Silicon optimized transcription, wants to overwrite or refresh transcript text files next to audio files, or asks how to batch-transcribe a folder of recordings. This skill should also trigger when the user cares about offline transcription, cached local models, NotebookLM audio exports, interview recordings, or converting audio into `.txt` files for later analysis.
+description: Create local-only source records from audio files using WhisperKit on Apple Silicon. Use this whenever the user wants to transcribe `.m4a`, `.mp3`, `.wav`, or similar audio locally, wants to avoid cloud APIs, wants WhisperKit or Apple Silicon optimized capture, wants to overwrite or refresh source record text files next to audio files, or asks how to batch-transcribe a folder of captured materials. This skill should also trigger when the user cares about offline capture, cached local models, NotebookLM audio exports, interview captured materials, or converting audio into `.txt` files for later analysis.
 ---
 
 # WhisperKit Local Transcriber
@@ -10,10 +10,10 @@ Use this skill to transcribe audio with `WhisperKit` while keeping inference loc
 ## What this skill does
 
 - Uses `whisperkit-cli` instead of remote speech APIs.
-- Prefers cached local models via `--model-path` so transcription can run fully offline after the model exists.
-- Writes plain `.txt` transcripts next to the source audio unless the user asks for another location.
-- Preserves the user's naming scheme and only overwrites transcripts when the user explicitly asks.
-- Uses a helper script so the transcript extraction is consistent and not reimplemented every time.
+- Prefers cached local models via `--model-path` so capture can run fully offline after the model exists.
+- Writes plain `.txt` source records next to the source audio unless the user asks for another location.
+- Preserves the user's naming scheme and only overwrites source records when the user explicitly asks.
+- Uses a helper script so the source record extraction is consistent and not reimplemented every time.
 
 ## When to use which mode
 
@@ -32,15 +32,15 @@ Run with `--model-path` in this mode. Do not use `--model` unless the user expli
 ### Mode 2: local inference with one-time model fetch
 Use this when the user wants WhisperKit but has not cached a model yet.
 
-- Explain that audio stays local during transcription.
+- Explain that audio stays local during capture.
 - Explain that the model may need a one-time download.
 - After the download, recommend switching to `--model-path` for future runs.
 
 ## Default decisions
 
-- Prefer `large-v3` for transcript quality.
+- Prefer `large-v3` for source record quality.
 - Prefer `--language en` when the audio is clearly English; otherwise omit language unless the user specifies it.
-- Prefer `--without-timestamps` for clean reading transcripts.
+- Prefer `--without-timestamps` for clean reading source records.
 - Write one `.txt` file per input audio with the same basename.
 - If the user wants timestamps or diarization, add them only when asked.
 
@@ -85,16 +85,16 @@ scripts/transcribe_local.sh \
 
 When you use this skill, report back with:
 - the files transcribed
-- the transcript files written
-- whether existing transcripts were overwritten
+- the source record files written
+- whether existing source records were overwritten
 - whether the run used `--model-path` and was fully offline
 - any missing prerequisites
 
 ## Guardrails
 
 - Do not claim `fully local` if the run used `--model` and had to fetch a model.
-- Do not silently overwrite transcripts unless the user asked for overwrite or replacement.
-- Do not switch to OpenAI Whisper API or any hosted transcription service as a fallback.
+- Do not silently overwrite source records unless the user asked for overwrite or replacement.
+- Do not switch to OpenAI Whisper API or any hosted capture service as a fallback.
 - Do not assume `turbo` naming from stock Whisper maps directly to WhisperKit; prefer working WhisperKit model names.
 - If `large-v3` is too slow and the user explicitly wants speed over quality, explain the tradeoff before choosing a smaller or distilled model.
 
@@ -108,7 +108,7 @@ When you use this skill, report back with:
 
 Use `scripts/transcribe_local.sh` for repeatable execution. It:
 - supports one file or a full folder
-- extracts only the transcript body from WhisperKit CLI output
+- extracts only the source record body from WhisperKit CLI output
 - writes `.txt` next to each audio file
-- can overwrite existing transcripts when `--overwrite` is provided
+- can overwrite existing source records when `--overwrite` is provided
 

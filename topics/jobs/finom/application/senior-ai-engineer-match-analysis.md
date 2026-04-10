@@ -3,7 +3,7 @@
 Based on:
 - [Job posting](./senior-ai-engineer-job-posting.md)
 - `../finom_cheatsheet.pdf`
-- `../interviews/Mar 31 at 12-29.txt`
+- `../interviews/1-introduction--dmitry/README.md`
 
 Saved: 2026-04-06
 
@@ -91,7 +91,7 @@ That should help, especially if framed as pragmatic execution rather than generi
 ## Moderate Match Areas
 
 ### 1. Product-minded cross-functional work
-The role expects collaboration with domain teams and solution managers, and the transcript suggests AI will be embedded into product engineering rather than treated as a silo.
+The role expects collaboration with domain teams and solution managers, and the interview signals suggest AI will be embedded into product engineering rather than treated as a silo.
 
 You appear well aligned here if you emphasize:
 - business problem framing
@@ -144,7 +144,7 @@ Best bridge:
 - make it clear you understand the precision/recall and operational tradeoff dimension, even if the exact domain differs
 
 ### 4. Embedded AI in a fintech product org
-The transcript suggests they want product engineers with AI specialization, not a detached AI lab profile.
+The interview signals suggest they want product engineers with AI specialization, not a detached AI lab profile.
 
 Risk:
 - If you over-index on agent frameworks or experimentation language, you may sound too tooling-focused.

@@ -43,7 +43,7 @@ topics/langgraph/
   notes/
 
 topics/jobs/
-  delphyr/          # Research, interview prep, transcripts
+  delphyr/          # Research, interview prep, notes
   finom/            # Research, cheatsheets
 ```
 

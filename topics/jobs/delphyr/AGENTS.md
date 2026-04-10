@@ -22,10 +22,10 @@ This folder is the Delphyr interview workspace. Keep it usable as a fast re-entr
 - Keep interview folders numbered: `1-...`, `2-...`, `3-...`.
 - Use readable slugs after the round number, such as `2-technical--dejan-tim`.
 - Prefer Markdown for synthesized notes.
-- Keep raw source filenames unchanged for audio or transcripts.
+- Keep raw source filenames unchanged for captured material.
 
 ## After Each Interview
-- Save raw audio and raw transcript inside the relevant `interviews/<round>/` folder.
+- Save raw captured material inside the relevant `interviews/<round>/` folder.
 - Add or update that round folder's `README.md` with interview context, strongest signals, open questions, and next-step prep.
 - Add or update a cleaned summary file when needed, using the existing folder naming style.
 - Update the top-level `README.md` timeline and current status so the latest stage is visible immediately.

@@ -16,6 +16,90 @@ Interviewer: Ivo Dimitrov (co-founder, **Chief AI Officer**)
 
 ---
 
+## 4-Minute Skim
+
+### My thesis
+
+**Central AI should own the reusable hard parts and earn adoption through shipped value, while product teams stay closest to workflow outcomes and user reality.**
+
+### My technical thesis
+
+**The product is the controlled workflow, not the raw model output.**
+
+### My best decomposition example
+
+Do **not** use:
+- `do my taxes`
+
+Use:
+- `draft VAT treatment and booking for one invoice`
+
+Why:
+- close to Finom's accounting AI reality
+- small enough to evaluate
+- important enough to show judgment
+- clearly separates `AI ambiguity-handling` from `deterministic tax/accounting logic`
+
+### My clean split
+
+`AI should own`
+- messy extraction
+- semantic classification
+- ambiguous intent interpretation
+
+`Deterministic systems should own`
+- VAT / policy rules
+- thresholds
+- routing
+- accounting math
+- write permissions
+
+### My workflow skeleton
+
+```text
+invoice
+  -> quality gate
+  -> extract fields
+  -> normalize vendor
+  -> classify expense intent
+  -> retrieve tax context
+  -> apply VAT policy
+  -> build booking draft
+  -> route by risk
+  -> ask one targeted question if blocked
+```
+
+### My rollout line
+
+**Autonomy should be earned by workflow class, not declared globally.**
+
+### If he pushes on human review
+
+Say:
+
+**Human review is only useful if the system routes the right cases, shows the right evidence, and learns from corrections. Otherwise it is just manual cleanup disguised as safety.**
+
+### If he pushes on decomposition
+
+Say:
+
+**I only decompose where control buys safety or debuggability. I do not do it for elegance.**
+
+### My 2 best questions if time is short
+
+1. How do you define the mandate of the central AI team today?
+2. If this role joined, what would be the first high-leverage area to own?
+
+### Red flags
+
+- do not sound like a framework tourist
+- do not sound like an AI-platform maximalist
+- do not fake fintech depth
+- do not use one global confidence score
+- do not treat human review as a cure-all
+
+---
+
 ## 30-Second Intro
 
 "I build production AI systems for workflows where correctness matters. My strongest work is in agentic pipelines, document-heavy operations, and evaluation discipline. Finom interests me because you're embedding AI into real financial operations — not adding a chatbot, but rebuilding workflows around proactive AI. That's the kind of problem where my background in production reliability, staged automation, and reusable capability design creates the most value."
@@ -25,6 +109,12 @@ Interviewer: Ivo Dimitrov (co-founder, **Chief AI Officer**)
 ## Core Thesis (memorize this)
 
 **Central AI should own the reusable hard parts and earn adoption through shipped value, while product teams stay closest to workflow outcomes and user reality.**
+
+## 20-Second Backup Answer
+
+If you lose the thread, fall back to:
+
+**I try to separate ambiguity from policy. AI is useful for messy extraction and intent classification. Deterministic systems should own tax logic, routing, approvals, and write actions. That is how you build trust in accounting AI.**
 
 ---
 
@@ -45,6 +135,21 @@ Interviewer: Ivo Dimitrov (co-founder, **Chief AI Officer**)
 3. **Ambiguity to repeatable capability** → vague mandate → shipped v1 in weeks → reused across 3 workflows
 
 > **MAS talking point:** "Finom's AI Accountant is a multi-agent system — I've built production systems with the same shape: typed agent boundaries, confidence propagation between stages, failure isolation, and end-to-end observability. See `multi-agent-system-architecture-for-fintech.md` for full prep."
+
+## Best Concrete Example To Use
+
+**Use this example repeatedly:** `invoice -> VAT treatment -> booking draft`
+
+Short version:
+- break it into joints
+- measure each joint separately
+- let AI classify ambiguous intent
+- let deterministic code apply VAT / booking policy
+- route low-confidence or high-risk cases to review
+
+One-line version:
+
+**A good Finom AI workflow is not one smart prompt; it is a staged system with local metrics, local failure handling, and selective autonomy.**
 
 ---
 
@@ -88,6 +193,10 @@ How to not become a bottleneck:
 - Paved roads, not gatekeeping
 - Treat bypass as product signal
 
+### One-line version
+
+**Central AI should own evals, observability, routing, and shared primitives. Product squads should own workflow outcomes.**
+
 ---
 
 ## First 90 Days Answer
@@ -98,6 +207,17 @@ How to not become a bottleneck:
 4. Establish minimal shared quality layer: eval definitions, runtime traces, failure taxonomy
 
 Goal: one visible win + minimum reusable structure
+
+## Best Evaluation Answer
+
+I would separate:
+- `component metrics` — extraction, classification, reconciliation quality
+- `workflow metrics` — approval rate, override rate, severe error rate, rework, time saved
+- `failure review` — costly edge cases and false-confidence clusters
+
+Key line:
+
+**A global confidence score is not enough. I want node-specific evaluation plus workflow-level outcomes.**
 
 ---
 

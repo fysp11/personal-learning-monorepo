@@ -49,10 +49,10 @@ A "Hallucination-Free" objective requires purpose-built guardrails that automati
 ##### **The Support Axis: Categorizing Claims**
 
 Category,Definition  
-Directly Supported,Precisely matches the transcript/record with no assumptions.  
+Directly Supported,Precisely matches the source record/record with no assumptions.  
 Reasonable Inference,Logically follows; most clinicians would agree on the link.  
 Questionable Inference,"Plausible, but other interpretations exist; lacks high confidence."  
-Unmentioned,Claim is not substantiated by the transcript or record.  
+Unmentioned,Claim is not substantiated by the source record or record.  
 Contradiction,The claim directly conflicts with the patient record.
 
 ##### **Privacy and the Vulnerability of Vector Data**

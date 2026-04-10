@@ -24,7 +24,7 @@
 
 - detailed Glassdoor process complaints
 - very long source summaries
-- transcript-level detail from round one
+- source record-level detail from round one
 
 ## Best listening use
 

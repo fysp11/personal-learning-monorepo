@@ -2,7 +2,7 @@
 
 This folder is the job-search prep workspace.
 
-Each company lives in its own folder under `topics/jobs/<company>/`. The goal is to keep all research, prep, transcripts, and interview-specific artifacts in one place so a company can be resumed quickly without reconstructing context.
+Each company lives in its own folder under `topics/jobs/<company>/`. The goal is to keep all research, prep, notes, and interview-specific artifacts in one place so a company can be resumed quickly without reconstructing context.
 
 ## Cross-Company Resources
 
@@ -95,9 +95,9 @@ Examples:
 - `2-central-ai--ivo`
 
 Use each interview folder for:
-- raw recording
-- transcript
-- transcript cleanup / summary
+- raw captured material
+- source record
+- source record cleanup / summary
 - round-specific prep
 - interviewer-specific research that only matters for that round
 
@@ -110,9 +110,9 @@ Observed file pattern for an interview folder:
 
 ```text
 interviews/<round>/
-  <audio>.m4a # raw interview recording
-  <transcript>.txt # raw transcript
-  <date>-Audio.md # cleaned interview recording metadata
+  <audio>.m4a # raw interview captured material
+  <source record>.txt # raw source record
+  <date>-Audio.md # cleaned interview captured material metadata
   <date>-Interview.md # cleaned interview summary/notes
   README.md                # when prep is specific to the round
   <person>-PROFILE.md      # optional, if interviewer research is round-specific
@@ -221,7 +221,7 @@ topics/jobs/<company>/
   interviews/
     1-<stage>--<slug>/
       <raw-audio>.m4a
-      <raw-transcript>.txt
+      <raw-source record>.txt
       <date>-Audio.md
       <date>-Interview.md
       README.md               # only if round-specific prep is needed
@@ -249,7 +249,7 @@ topics/jobs/<company>/
 - Use numbered interview folders: `1-...`, `2-...`, `3-...`
 - Use readable slugs after the interview number
 - Prefer Markdown for synthesized notes
-- Keep raw audio/transcript filenames unchanged if they come from the source system
+- Keep raw audio/source record filenames unchanged if they come from the source system
 
 ### File Placement
 

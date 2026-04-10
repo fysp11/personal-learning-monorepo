@@ -66,6 +66,22 @@ Talk about:
 - how you would verify citations and support
 - how to make outputs cheap for clinicians to trust and review
 
+### Best Tim Answer Style
+- Start from the clinical risk.
+- Explain how to make outputs verifiable.
+- Mention concrete checks: citations, support validation, and abstention.
+- Prefer traceable correctness over speed.
+
+### Strong Tim Phrases
+- "In medical AI, retrieval without verifiability is only a partial solution."
+- "I would rather make the system slower but easier to trust."
+- "Claim-level evidence matters more than document-level references."
+
+### Avoid With Tim
+- Treating citations like a UX add-on.
+- Talking about RAG like it automatically solves hallucinations.
+- Sounding impressed by model capability without discussing trust.
+
 ## What Dejan Likely Cares About
 
 Based on his notes:
@@ -81,6 +97,23 @@ Talk about:
 - how you evaluate architecture trade-offs
 - how you deal with integrations and operational complexity
 - when you would build specialized components vs rely on external tools
+
+### Best Dejan Answer Style
+- Explain the problem.
+- Describe the architecture.
+- Name trade-offs.
+- Discuss failure modes.
+- Explain monitoring and iteration.
+
+### Strong Dejan Phrases
+- "I try to optimize for operability, not just elegance."
+- "I would separate what must be deterministic from what can be model-driven."
+- "Build-vs-buy depends on trust boundaries, speed, and how core the capability is."
+
+### Avoid With Dejan
+- Hand-wavy system descriptions.
+- Ideology about frameworks or vendors.
+- Overfocusing on prompts instead of architecture and operations.
 
 ## Best Topics To Be Ready On
 
@@ -195,6 +228,31 @@ Best options:
 - What is the trust boundary today between deterministic logic and model reasoning?
 - How are citations generated and verified in practice?
 - What does success look like in the first 3 months for this role?
+
+## Interviewer-Specific Pivots
+
+If Tim asks how to make medical RAG trustworthy:
+- Pivot to citations, support validation, patient scope, and abstention.
+
+If Tim asks how to evaluate output quality:
+- Pivot to support vs severity, scenario testing, and clinician review.
+
+If Dejan asks about a system you built:
+- Pivot to architecture, trade-offs, monitoring, and lessons learned.
+
+If Dejan asks how you would design this at Delphyr:
+- Pivot to integrations, trust boundaries, operational simplicity, and staged rollout.
+
+## Best Overall Positioning
+
+To Tim:
+> I care about whether the system can justify what it says.
+
+To Dejan:
+> I care about whether the system can run reliably in the real world.
+
+To both:
+> I like building AI systems that are useful, testable, and trustworthy, not just impressive in demos.
 
 ## Final Reminder
 

@@ -4,7 +4,7 @@
 - Company: Delphyr
 - Focus: healthcare AI assistants embedded in existing clinical systems
 - Relevant themes: medical RAG, citations, guardrails, monitoring, EU privacy
-- Last recorded interview: Monday, March 31, 2026 with Michel Abdel Malek
+- Last interview: Monday, March 31, 2026 with Michel Abdel Malek
 - Last scheduled round: Friday, April 4, 2026 technical interview with Tim de Boer and Dejan Petkovic
 
 ## Start Here
@@ -44,7 +44,7 @@
 - Elise Wardenaar - Data Protection Officer
 
 ## Interview Timeline
-- Monday, March 31, 2026 - initial interview captured in `interviews/1-introduction--michel/`
+- Monday, March 31, 2026 - initial interview with Michel in `interviews/1-introduction--michel/`
 - Friday, April 4, 2026 - technical round prepared in `interviews/2-technical--dejan-tim/`
 
 ## Current Status

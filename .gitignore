@@ -59,3 +59,15 @@ memory/
 node_modules/
 .worktrees/
 .claude/
+
+# Media captures
+*.m4a
+*.mp3
+*.wav
+*.aac
+*.flac
+*.ogg
+*.oga
+*.wma
+*.aiff
+*.alac

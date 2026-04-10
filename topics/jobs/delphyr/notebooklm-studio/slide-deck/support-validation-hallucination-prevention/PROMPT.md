@@ -23,7 +23,7 @@ Create a **7-slide** interview-prep presentation for **myself** on preventing un
 4. **Mini Examples I Can Remember**
    - Direct support: source clearly states the same medication and dose
    - Questionable inference: inferring atrial fibrillation only because Eliquis appears in the med list
-   - Contradiction: note says “denies chest pain” while the transcript says the opposite
+   - Contradiction: note says “denies chest pain” while the source record says the opposite
 
 5. **Support vs Severity**
    - Weak support can be harmless or dangerous depending on context
