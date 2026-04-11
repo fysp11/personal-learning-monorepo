@@ -71,6 +71,10 @@
 - The strongest prep path for the next round is: match analysis -> first-round summary -> interview 3 prep plan -> live-round drills.
 - Cross-company insights connecting Finom and Delphyr prep: `../cross-company-insights.md`
 
+## New Insights (Apr 11)
+- `insights/live-coding-with-ai-agents-advanced-patterns.md` — three modes of agent-assisted coding, verbal checkpoints, common pitfalls for live rounds
+- `insights/confidence-calibration-deep-dive.md` — ECE, Platt scaling, per-market calibration, calibration drift monitoring, earned autonomy as a measurable ratchet
+
 ## Best Angles
 - Production AI systems with end-to-end ownership
 - Agentic workflows over document-heavy operations

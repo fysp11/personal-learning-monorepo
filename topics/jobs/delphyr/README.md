@@ -53,6 +53,11 @@
 - New deeper technical materials added: guardrail architecture design and post-interview analysis framework.
 - Cross-company insights connecting Delphyr and Finom prep: `../cross-company-insights.md`
 
+## New Insights (Apr 11)
+- `insights/ambient-listening-architecture-analysis.md` — full engineering analysis of Delphyr's newest product surface: ASR → diarization → SOAP structuring → privacy
+- `insights/mdt-evaluation-benchmark-framework.md` — 6-dimension evaluation framework for MDT briefing quality with severity-weighted scoring
+- `insights/clinical-ai-landscape-april-2026.md` — updated competitive landscape and company intelligence
+
 ## Best Angles
 - Production AI systems over messy data, not demos
 - Correctness, traceability, and failure-mode awareness

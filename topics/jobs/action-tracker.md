@@ -86,8 +86,26 @@
 
 | Date | Company | Contact | Action | Status |
 |------|---------|---------|--------|--------|
-| Mar 31 | Delphyr | Interviewer | 1st round call | Done |
+| Mar 31 | Delphyr | Michel | 1st round call | Done |
 | Mar 31 | Finom | Dmitry (CTO) | 1st round call | Done |
 | Apr 1 | Delphyr | Samuel | Send detailed feedback | TODO |
-| TBD | Finom | Dmitry's colleague | 2nd round scheduled | Waiting |
-| TBD | Delphyr | TBD | 2nd round if invited | Waiting |
+| Apr 4 | Delphyr | Tim & Dejan | 2nd round (technical) | Done — outcome not recorded |
+| Apr 8 | Finom | Ivo (CAIO) | 2nd round (central AI) | Done |
+| ~Apr 14 | Finom | Senior AI Engineer | 3rd round (90 min technical + live) | Upcoming |
+| Apr 18 | Delphyr | Michel/Samuel | Follow up if no news | Pending |
+
+---
+
+## Week 3: Apr 7-14, 2026 — New Materials Added (Apr 11)
+
+### Finom — New Insights
+- [x] `insights/live-coding-with-ai-agents-advanced-patterns.md` — meta-patterns for the 60-min live round: scaffold/implement/debug modes, verbal checkpoints, pitfalls
+- [x] `insights/confidence-calibration-deep-dive.md` — ECE, Platt scaling, per-market calibration, calibration drift monitoring, earned autonomy ratchet
+
+### Delphyr — New Insights
+- [x] `insights/ambient-listening-architecture-analysis.md` — full pipeline analysis: ASR → diarization → SOAP structuring → citation → privacy architecture
+- [x] `insights/mdt-evaluation-benchmark-framework.md` — 6-dimension evaluation framework with severity-weighted scoring, benchmark dataset design, practical targets
+
+### Cross-Company — New Insights
+- [x] `cross-company-production-feedback-loops.md` — correction classification, signal routing, eval suite growth, calibration drift detection, earned autonomy ratchet
+- [x] `cross-company-error-taxonomy-worked-examples.md` — concrete error trees for both Finom (transaction processing) and Delphyr (clinical AI), with severity matrices and worked examples
