@@ -135,7 +135,14 @@
 ### Delphyr — Tactical Prep (Apr 11)
 - [x] `delphyr/prep/status-assessment-and-next-round-angles.md` — status assessment, follow-up templates, 4 new conversation hooks, transferable value inventory
 
-### All Code Experiments Verified Running
-All 5 runnable experiments tested successfully with `bun run`:
-- `finom/code`: `rehearsal`, `calibration`, `multi-market` ✅
-- `delphyr/code`: `soap`, `citation` ✅
+### All Code Experiments Verified Running (Apr 11)
+All 7 runnable experiments tested successfully:
+- `finom/code`: `rehearsal`, `calibration`, `multi-market` ✅ (bun)
+- `delphyr/code`: `soap`, `citation` ✅ (bun)
+- `finom/experiments/mcp-accounting-skills`: 32/32 tests pass ✅ (pytest)
+- `delphyr/experiments/agent-safety-harness`: 17/17 tests pass ✅ (pytest)
+
+### Finom — Final Prep (Apr 11)
+- [x] `finom/prep/fresh-intel-april-2026.md` — latest public signals (AI Accountant GA, 200K+ accounts, payroll/ZM roadmap)
+- [x] `finom/prep/3-lead-ai-engineer-night-before.md` — 45-minute night-before review sequence
+- [x] `finom/NEXT_STEP.md` updated with full prep materials index
