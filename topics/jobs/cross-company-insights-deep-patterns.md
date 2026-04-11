@@ -253,3 +253,18 @@ When asked about healthcare experience in a Finom interview, or about fintech ex
 > "The domain is different, but the engineering challenges are structurally identical. In both cases, you need [pick relevant pattern above]. Here's how I'd apply it to [their domain]..."
 
 This document provides the specific patterns to make that bridge concrete rather than hand-wavy.
+
+---
+
+## Implementation Evidence (Added Apr 11)
+
+The patterns above are now backed by working code experiments:
+
+| Pattern | Finom Implementation | Delphyr Implementation |
+|---------|---------------------|----------------------|
+| Pattern 1 (Confidence Routing) | `finom/code/confidence-calibration.ts` — ECE, Platt scaling, threshold analysis | `delphyr/code/soap-extraction-pipeline.ts` — confidence per SOAP entry |
+| Pattern 3 (Deterministic Boundaries) | `finom/code/multi-market-expansion-drill.ts` — tax rules as data, not code | `delphyr/code/citation-verification.ts` — deterministic claim matching |
+| Pattern 5 (Error Taxonomy) | `cross-company-error-taxonomy-worked-examples.md` — Finom tree | Same file — Delphyr clinical error tree |
+| Pattern 6 (Feedback Loops) | `cross-company-production-feedback-loops.md` — correction routing | Same file — clinical correction handling |
+
+Run any experiment with `bun run <script>` in the respective code directory.

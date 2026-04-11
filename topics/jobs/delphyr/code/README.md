@@ -46,6 +46,41 @@ bun run citation
 
 ---
 
+---
+
+## SOAP Note Extraction Pipeline
+
+`soap-extraction-pipeline.ts` — Demonstrates the ambient listening → structured clinical note pipeline, implementing the architecture from `insights/ambient-listening-architecture-analysis.md`.
+
+### What it shows
+
+- **Speaker-labeled transcript → SOAP routing**: Patient statements → Subjective, doctor observations → Objective/Assessment/Plan
+- **Pattern-based extraction with confidence scoring**: Each SOAP entry has a confidence score and citation to source transcript line
+- **Negation detection**: Separate safety layer that catches "no cough" vs "cough", "no dizziness" vs "dizziness"
+- **Reference comparison**: Gold-standard SOAP note enables precision/recall measurement per section
+- **Clinical safety checks**: Medications extracted? Allergies checked? Vital signs captured? Follow-up planned? Safety net included?
+- **Citation linking**: Every claim traces to source transcript line number (the "retrieve, don't reason" principle)
+
+### Run
+
+```bash
+bun run soap
+```
+
+### Scenarios covered
+
+- Realistic Dutch patient consultation (Mrs. de Vries, chest pain workup)
+- 22 transcript utterances with doctor/patient speaker labels
+- Negation handling (no cough, no dizziness, no fainting)
+- Medication reconciliation (existing + new prescriptions)
+- Safety net instructions (return sooner if worsens)
+
+### Interview talking point
+
+> "The hardest part of ambient listening isn't the ASR — it's the structuring. A transcript can be word-perfect but still generate a wrong SOAP note if the model misattributes a statement or misses a negation. That's why negation detection is a separate safety layer, and every SOAP entry cites its source line."
+
+---
+
 ## Clinical Extraction Agent
 
 ## Run in terminal

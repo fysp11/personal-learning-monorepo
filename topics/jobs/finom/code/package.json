@@ -4,7 +4,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "demo": "bun run accounting-mas-pipeline.ts"
+    "demo": "bun run accounting-mas-pipeline.ts",
+    "rehearsal": "bun run live-round-rehearsal.ts",
+    "calibration": "bun run confidence-calibration.ts",
+    "multi-market": "bun run multi-market-expansion-drill.ts"
   },
   "dependencies": {
     "zod": "^4.3.6"
