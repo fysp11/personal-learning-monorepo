@@ -29,6 +29,17 @@ Format: Claude Code or Codex live exercise
 
 ---
 
+### Fresh intel (April 11)
+
+- AI Accountant is now **GA for all German customers** (not beta)
+- **200K+ accounts** across Europe (up from 125K in earlier prep)
+- Roadmap: **Lohnsteueranmeldung** (payroll) and **Zusammenfassende Meldung** (intra-EU) coming soon
+- GmbH/UG support expanding (beyond freelancers)
+- **Invoice financing and credit lines** expected late 2026
+- Target: **€225B** SMB financial services market
+
+---
+
 ## Before the Call (15 min)
 
 - [ ] Terminal open, font size large for screen share
