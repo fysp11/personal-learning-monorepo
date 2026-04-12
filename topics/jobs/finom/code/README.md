@@ -118,6 +118,34 @@ bun run calibration
 
 ---
 
+## 4. MCP Accounting Skills Server
+
+`mcp-accounting-server.ts` — A Model Context Protocol skill server exposing accounting tools across 5 EU markets.
+
+### What it shows
+
+- **MCP tool contracts**: Three tools with Zod input/output schemas (categorize, VAT, booking)
+- **Market policy modules**: DE (SKR03), FR (PCG), ES (PGC), IT (Piano dei Conti), NL (RGS) — all from a single `MarketPolicy` interface
+- **Deterministic vs AI separation**: VAT and booking are pure functions; categorization is the AI step
+- **End-to-end workflow**: Chains all three tools with confidence routing to demonstrate the composable MCP architecture
+- **Multi-market scaling**: Adding a market = adding a policy config, not changing the pipeline
+
+### Why this matters
+
+Dmitry said "the whole platform is going to be stitched with MCP-based interfaces." This demo makes that architecture concrete. Each tool is stateless, independently testable, and composable. The orchestration lives in the client, not the tool server.
+
+### Run
+
+```bash
+bun run mcp-server
+```
+
+### Interview talking point
+
+"I built an MCP skill server with three accounting tools — categorization, VAT, and booking — across five EU markets. The key design decision was making VAT and booking deterministic while keeping categorization AI-powered. Adding a new market is just a policy config object — the workflow shape and tool contracts don't change. This maps directly to how Finom can scale from Germany to France without rewriting the pipeline."
+
+---
+
 ## Multi-Market Expansion Drill
 
 `multi-market-expansion-drill.ts` — A 15-minute drill demonstrating data-driven market configuration: adding new countries without code changes.

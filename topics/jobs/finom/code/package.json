@@ -6,9 +6,10 @@
   "scripts": {
     "demo": "bun run accounting-mas-pipeline.ts",
     "rehearsal": "bun run live-round-rehearsal.ts",
+    "eval": "bun run eval-harness.ts",
     "calibration": "bun run confidence-calibration.ts",
-    "multi-market": "bun run multi-market-expansion-drill.ts"
-    "eval": "bun run eval-harness.ts"
+    "multi-market": "bun run multi-market-expansion-drill.ts",
+    "mcp-server": "bun run mcp-accounting-server.ts"
   },
   "dependencies": {
     "zod": "^4.3.6"
