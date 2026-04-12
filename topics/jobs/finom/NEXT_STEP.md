@@ -2,21 +2,13 @@
 
 ## Interview Thesis
 
-- **Dmitry** tested engineering rigor and production readiness.
-- **Interview 3** is a technical round with a `Senior AI Engineer`: `30 min` technical questions, `60 min` live problem-solving with `Claude Code` or `Codex`.
-- The `2026-04-09` capture watchlog for the Ivo round remained stable through `2026-04-09T21:49:07Z` and still shows `no-whisper-processes-detected`, so the Ivo-derived signals below are safe to use as prep input.
-- The recruiter follow-up confirms the format, but the engineer name is still noisy / unconfirmed in the source record, so optimize for role shape rather than a guessed person.
+- **Interview 3** is the live technical round: `30 min` technical questions, `60 min` Claude Code / Codex problem-solving.
 - Best positioning: **product-minded AI engineer** who can decompose ambiguous workflows, keep controls explicit, and use coding agents without losing rigor.
+- Canonical sources: `README.md`, `interviews/3-lead-ai-engineer/README.md`, `prep/fresh-intel-april-2026.md`.
 
 ---
 
-## Dmitry — What To Carry Forward
-
-### Role
-
-- CTO at Finom
-
-### What he seems to care about
+## Carry-Forward Signals
 
 - Production AI, not demos
 - Evaluation, observability, latency, and failure modes
@@ -24,33 +16,17 @@
 - Agent orchestration in real workflows
 - AI embedded into product engineering, not treated as a novelty silo
 
-### Strongest signals from the first interview
-
-- Finom is serious about **agentic accounting workflows**
-- The role is closer to **product engineering with strong AI depth** than to pure research
-- Reliability, operational ownership, and shipping quality matter as much as model capability
-- Finom appears to want AI capabilities spread through product engineering, even if some central capability exists
-
-### What to prove if his lens comes back up
-
-- You can productionize AI systems cleanly
-- You think in terms of evaluation and observability, not just prompts and models
-- You understand approval flows, failure isolation, fallback behavior, and rollout discipline
-
 ---
 
 ## Interview 3 — What To Optimize For
 
 ### Safest profile
 
-- Senior or lead AI engineer working close to real implementation
-- Likely the `leading engineer` Ivo explicitly said would evaluate your technical side because he is `a little bit technical` but `not super technical`
-- Likely cares more about technical judgment, workflow design, and execution quality than company-level narrative
-- Safest framing: **hands-on evaluator of how you think, scope, work creatively, and turn AI tooling into real speed**
-- Likely operating inside the org shape Ivo described: `AI team` distinct from `ML team`, with some shared patterns and some domain embedding
-- Likely expects a `product engineer` profile: technical depth plus operational leverage plus enough influence to help adoption
-- Likely expects someone comfortable in a `small`, direct, low-ceremony engineering environment
-- Likely sits near a team that treats AI-tool usage as an operating capability, not just a personal preference
+- Senior or lead AI engineer close to implementation
+- Evaluates technical judgment, workflow design, and execution quality
+- Expects a `product engineer` profile: technical depth plus operational leverage plus enough influence to help adoption
+- Comfortable with a `small`, direct, low-ceremony engineering environment
+- Treats AI-tool usage as an operating capability, not a novelty
 
 ### What they likely care about
 
@@ -58,15 +34,9 @@
 - Workflow decomposition and failure handling
 - Confidence routing and human review
 - Observability, evals, and rollback paths
-- How well you use `Codex` / `Claude` under time pressure
-- Whether those tools make you faster instead of noisier
-- Whether you can design something `creative`, not just answer textbook system-design prompts
-- Engineering judgment over raw coding speed
-- Whether you can work inside a `small`, high-caliber, direct-feedback team without needing a lot of process scaffolding
-- Whether you connect design choices to business outcomes like less manual work, fewer support steps, or lower review burden
-- Whether your design actually completes work and returns a result, instead of stopping at a recommendation
-- Whether you can help adoption happen in practice through usable patterns instead of mandates
-- Whether you can reason about workflow compression with metrics like reduced manual touch or lower `FTE per active customer`
+- Whether your design actually completes work and returns a result
+- Whether you can help adoption happen in practice through usable patterns
+- Whether you connect design choices to business outcomes like less manual work, lower review burden
 
 ### What they are likely testing
 
@@ -80,32 +50,21 @@
 
 ---
 
-## Core Synthesis — Reconcile Dmitry And Interview 3
-
-This is the most important prep point:
-
-> Build AI where ambiguity is real, keep policy deterministic, and make the workflow observable enough that humans can trust and debug it.
-
-More precise after the Ivo source record:
+## Core Synthesis
 
 > Build proactive AI workflows that actually complete meaningful work, but earn autonomy stage by stage with deterministic controls, visible failure points, and approval gates where compliance risk is real.
 
-And more concretely from Ivo's framing:
+And from Ivo's framing:
 
 > The target UX is closer to `go do the task, then come back` than `here is the next thing you should click`.
 
 Finom-specific business read:
 
-> The company is not optimizing for "AI features" in the abstract. It is optimizing for operational compression, AI-native product behavior, and selective replacement of low-leverage human work.
-
-Concrete source record anchor:
-
-> Ivo pointed to tax workflow automation in `Germany` with movement toward `France`, so expect questions that start from a real shipped finance workflow and then expand to multi-market scaling.
+> Ivo pointed to tax workflow automation in `Germany` with movement toward `France`; treat the France part as interview-derived, not public intel.
 
 ### Good framing
 
 **Keep explicit:**
-
 - stage boundaries
 - typed inputs and outputs
 - confidence signals
@@ -114,7 +73,6 @@ Concrete source record anchor:
 - why a step is `proposal-only` versus allowed to act
 
 **Use AI selectively for:**
-
 - extraction from messy inputs
 - proposal generation
 - ambiguity resolution
@@ -131,18 +89,6 @@ Concrete source record anchor:
 
 ## Best Positioning
 
-Use this frame:
-
-- I build **production-grade AI systems**
-- I know how to turn ambiguous workflow steps into **observable staged systems**
-- I use coding agents as force multipliers, not as substitutes for engineering judgment
-- I care about correctness-sensitive workflows and trust
-- I can work across both `central AI` and `domain` contexts by translating reusable patterns into domain-specific delivery
-- I can help good patterns get adopted, not just implemented once
-- I can make AI-tool usage operationally useful for a small team, not just personally impressive
-
-### One-line version
-
 > I build production-grade AI systems by keeping policy deterministic, isolating AI to the ambiguous parts, and shipping with evals, routing, and clear failure controls.
 
 ---
@@ -158,7 +104,7 @@ Use this frame:
 7. How would you integrate this into an existing Python and C# stack?
 8. What would you implement first if given 60 minutes?
 9. How would you make an AI workflow genuinely proactive without making it unsafe?
-10. How do you make AI tooling increase engineering throughput instead of slowing people down?
+10. How do you decide when to widen automation from proposal mode to auto-book?
 
 ---
 
@@ -167,12 +113,8 @@ Use this frame:
 1. What kinds of AI systems is the team actually shipping today?
 2. Where do current workflows break down most often: extraction, reasoning, orchestration, or integration?
 3. How do you evaluate correctness for finance-sensitive automations?
-4. What does strong performance in this role look like after 3 to 6 months?
-5. How does the team divide responsibilities between shared AI infrastructure and product delivery?
-6. What do you wish candidates understood better about your stack or workflow design?
-7. In the live round, do you care more about completeness or reasoning quality?
-8. Where is the current friction: central AI discovering good patterns, or domain teams turning those patterns into durable product behavior?
-9. What have you seen separate engineers who get faster with `Codex` / `Claude` from those who get slower?
+4. What separates engineers who get faster with `Codex` / `Claude` from those who get slower?
+5. Where is the current friction: central AI discovering good patterns, or domain teams turning those patterns into durable product behavior?
 
 ---
 
@@ -182,54 +124,54 @@ Use this frame:
 
 - AI applied to operational workflows where correctness matters
 - Strong match for production AI rather than demo-driven AI
-- Interesting and important tension between embedded product work and shared AI leverage
+- Interesting tension between embedded product work and shared AI leverage
 
 ### Why you
 
 - You can build real systems, not just prototypes
 - You care about evaluation, observability, and reliability
 - You can think at both workflow level and platform/org level
-- You centralize selectively rather than ideologically
 
 ### Central AI philosophy
 
 - Keep deterministic control where failure cost is high
 - Use AI where the input is ambiguous or unstructured
 - Measure success by override rate, severe-error rate, review burden, and shipped workflow value
-- Add an operational lens: time saved, manual steps removed, and review load reduced
 - Treat `AI team` and `ML team` as different functions: LLM workflow design is closer to product/software architecture than classic predictive ML
 - Use central teams to create reusable patterns and adoption leverage, not to pull every domain decision away from product teams
-- Measure progress in real workflow terms: approvals avoided, review load reduced, cycle time shortened, and manual work actually removed
+- Measure progress in real workflow terms: approvals avoided, review load reduced, cycle time shortened
 
 ---
 
----
+## Prep Materials Index (Updated Apr 12 — Iteration 9)
 
-## Prep Materials Index (Updated Apr 11)
-
-### Day-Of
-- `prep/3-lead-ai-engineer-day-of-card.md` — **2-minute skim** with thesis, checklist, verbal checkpoints, key numbers, gap responses
-- `prep/fresh-intel-april-2026.md` — **latest public signals**: AI Accountant GA, 200K+ accounts, payroll/ZM roadmap
+### Day-Of (read in this order)
+1. `prep/proposals/3-pre-call-cheat-sheet.md` — **15 min before call**: key numbers, deterministic/AI splits, maturity ladder, GoBD one-liner, France delta, day-of checklist
+2. `prep/3-lead-ai-engineer-day-of-card.md` — 2-min skim: thesis, checklist, key numbers, gap responses
+3. `prep/fresh-intel-april-2026.md` — canonical public signals: AI Accountant GA, 200K+ accounts
 
 ### Technical Depth
 - `prep/3-lead-ai-engineer-prep-plan.md` — main 17-question prep plan
-- `prep/3-lead-ai-hostile-followups.md` — 18 hostile follow-up questions with target answers
-- `insights/live-coding-with-ai-agents-advanced-patterns.md` — scaffold/implement/debug modes for the 60-min live round
+- `prep/3-technical-answer-bank.md` — **12 full-depth answers** including maturity ladder, staged workflow, observability
+- `prep/3-lead-ai-hostile-followups.md` — hostile follow-up questions with target answers
+- `prep/live-round-scenarios.md` — scenario playbooks (A–E) for the 60-min live coding exercise
+- `prep/proposals/3-live-round-clock.md` — **minute-by-minute 60-min timer**: deliverables per gate, recovery pivots, clock recovery matrix
+- `prep/3-lead-ai-engineer-night-before.md` — night-before reading sequence + warm-up scripts
+- `insights/live-coding-with-ai-agents-advanced-patterns.md` — verbal anchors for live round
 - `insights/confidence-calibration-deep-dive.md` — ECE, Platt scaling, earned autonomy math
 
-### Code (All Verified Running)
-- `code/live-round-rehearsal.ts` — `bun run rehearsal` — the core 20-min drill
-- `code/confidence-calibration.ts` — `bun run calibration` — per-market calibration analysis
-- `code/multi-market-expansion-drill.ts` — `bun run multi-market` — DE/FR/IT/NL zero-code extension
-
-### Cross-Company
-- `../cross-company-system-design-template.md` — reusable 7-step system design framework
-- `../cross-company-production-feedback-loops.md` — correction routing and eval suite growth
-- `../cross-company-error-taxonomy-worked-examples.md` — Finom-specific error trees
+### Code (verified running)
+| Script | What it proves |
+|--------|---------------|
+| `bun run rehearsal` | Core pipeline: extract → categorize → VAT → route → book, DE+FR |
+| `bun run demo` | Multi-agent orchestration, circuit breaking, end-to-end trace |
+| `bun run eval` | Severity-weighted evaluation, calibration, regression detection |
+| `bun run calibration` | ECE, Platt scaling, per-market calibration curves |
+| `bun run autonomous-batch` | Month-end "go do the task, come back" — structured completion report |
+| `bun run resilience` | Circuit breaker, idempotency, lifecycle audit, anomaly detection |
 
 ---
 
 ## Final Reminder
 
-- For **Dmitry**, prove: **I can build this well.**
 - For **Interview 3**, prove: **I can reason clearly, scope fast, and use AI tools without losing control of the system.**
