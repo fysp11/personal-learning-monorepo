@@ -191,7 +191,7 @@ type CategorizeInput = z.infer<typeof CategorizeInput>;
 type CategorizeOutput = z.infer<typeof CategorizeOutput>;
 
 function categorizeTransaction(input: CategorizeInput): CategorizeOutput {
-  const policy = POLICIES[input.market];
+  const policy = POLICIES[input.market]!;
   const combined = `${input.merchant} ${input.description}`.toLowerCase();
 
   const rules: Array<{ keywords: string[]; category: string; confidence: number }> = [
@@ -236,7 +236,7 @@ type VatInput = z.infer<typeof VatInput>;
 type VatOutput = z.infer<typeof VatOutput>;
 
 function calculateVat(input: VatInput): VatOutput {
-  const policy = POLICIES[input.market];
+  const policy = POLICIES[input.market]!;
 
   // Reverse charge: B2B intra-EU with valid VAT ID
   if (input.isB2B && input.counterpartyVatId) {
@@ -273,7 +273,7 @@ type BookingOutput = z.infer<typeof BookingOutput>;
 let bookingCounter = 0;
 
 function createBooking(input: BookingInput): BookingOutput {
-  const policy = POLICIES[input.market];
+  const policy = POLICIES[input.market]!;
   bookingCounter++;
   const id = `BK-${String(bookingCounter).padStart(4, "0")}`;
 
@@ -437,7 +437,7 @@ function processTransactionE2E(tx: {
     input: {
       amount: tx.amount,
       market: tx.market,
-      category: Object.entries(POLICIES[tx.market].accounts)
+      category: Object.entries(POLICIES[tx.market]!.accounts)
         .find(([, v]) => v.code === category.accountCode)?.[0] ?? "consulting",
       isB2B: tx.isB2B ?? false,
       counterpartyVatId: tx.counterpartyVatId,

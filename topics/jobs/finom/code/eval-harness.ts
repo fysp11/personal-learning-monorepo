@@ -142,8 +142,8 @@ function computeCalibration(results: CaseResult[]): {
   const bins: CalibrationBin[] = [];
 
   for (let i = 0; i < binEdges.length - 1; i++) {
-    const low = binEdges[i];
-    const high = binEdges[i + 1];
+    const low = binEdges[i] as number;
+    const high = binEdges[i + 1] as number;
     const inBin = results.filter(
       (r) => r.confidence >= low && r.confidence < (i === binEdges.length - 2 ? high + 0.01 : high)
     );
@@ -525,7 +525,7 @@ function runEvaluation(): EvalReport {
     const output = simulatedAgent(tc);
     const fields = compareFields(tc.expected, output);
     const passed = fields.every((f) => f.correct);
-    const severityWeight = SEVERITY_WEIGHTS[tc.severity];
+    const severityWeight = SEVERITY_WEIGHTS[tc.severity] as number;
 
     results.push({
       testCaseId: tc.id,

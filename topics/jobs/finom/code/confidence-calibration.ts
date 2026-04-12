@@ -68,7 +68,7 @@ function generatePredictions(
   const predictions: Prediction[] = [];
 
   for (let i = 0; i < count; i++) {
-    const trueCategory = categories[Math.floor(Math.random() * categories.length)];
+    const trueCategory = categories[Math.floor(Math.random() * categories.length)] as string;
 
     // Generate a raw confidence score
     const rawConfidence = Math.min(1, Math.max(0.1, 0.5 + Math.random() * 0.5));
@@ -80,7 +80,7 @@ function generatePredictions(
     const isCorrect = Math.random() < rawConfidence;
     const predictedCategory = isCorrect
       ? trueCategory
-      : categories[Math.floor(Math.random() * categories.length)];
+      : categories[Math.floor(Math.random() * categories.length)] as string;
 
     predictions.push({
       id: `${market}-${String(i).padStart(4, "0")}`,
