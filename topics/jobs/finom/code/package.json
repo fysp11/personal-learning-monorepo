@@ -10,7 +10,8 @@
     "calibration": "bun run confidence-calibration.ts",
     "multi-market": "bun run multi-market-expansion-drill.ts",
     "mcp-server": "bun run mcp-accounting-server.ts",
-    "resilience": "bun run production-resilience-patterns.ts"
+    "resilience": "bun run production-resilience-patterns.ts",
+    "autonomous-batch": "bun run autonomous-batch-processor.ts"
   },
   "dependencies": {
     "zod": "^4.3.6"
