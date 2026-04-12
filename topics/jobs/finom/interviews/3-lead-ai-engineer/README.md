@@ -88,18 +88,16 @@ Short version:
 
 ## Recruiter Follow-Up Reflection
 
-- this call was mostly about **scheduling, urgency, and process alignment**
+<!-- - this call was mostly about **scheduling, urgency, and process alignment** -->
 - the strongest technical signal was that the live round uses **Claude Code or Codex**
 - Finom is **not** treating this as a manual coding interview
 
 ## Good Re-entry Order
 
-1. `../../prep/3-lead-ai-engineer-prep-plan.md` — main prep plan
-2. `../../prep/3-lead-ai-hostile-followups.md` — hostile follow-up question bank (added Apr 11)
-3. `../../NEXT_STEP.md`
-4. `../2-central-ai--ivo/README.md`
-5. `../../application/senior-ai-engineer-match-analysis.md`
-6. `../../code/README.md` — now includes calibration experiment and multi-market drill
-7. `../../insights/live-coding-with-ai-agents-advanced-patterns.md` — meta-patterns for the 60-min live round
-8. `../../insights/confidence-calibration-deep-dive.md` — the math behind confidence routing
-9. `../../../cross-company-system-design-template.md` — reusable 7-step system design answer framework
+1. `../../prep/3-lead-ai-engineer-day-of-card.md` — quick reference card with answer skeleton, vocabulary, and interviewer profile
+2. `../../prep/3-lead-ai-engineer-prep-plan.md` — full prep plan with drills
+3. `../../prep/3-live-round-scenarios.md` — scenario playbook for the 60-min live coding exercise
+4. `../../NEXT_STEP.md`
+5. `../2-central-ai--ivo/README.md`
+6. `../../application/senior-ai-engineer-match-analysis.md`
+7. `../../code/README.md` — three runnable demos: MAS pipeline, live rehearsal, eval harness

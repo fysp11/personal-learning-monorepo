@@ -8,6 +8,7 @@
     "rehearsal": "bun run live-round-rehearsal.ts",
     "calibration": "bun run confidence-calibration.ts",
     "multi-market": "bun run multi-market-expansion-drill.ts"
+    "eval": "bun run eval-harness.ts"
   },
   "dependencies": {
     "zod": "^4.3.6"
