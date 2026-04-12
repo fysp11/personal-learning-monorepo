@@ -203,6 +203,32 @@ Use this frame:
 
 ---
 
+---
+
+## Prep Materials Index (Updated Apr 11)
+
+### Day-Of
+- `prep/3-lead-ai-engineer-day-of-card.md` — **2-minute skim** with thesis, checklist, verbal checkpoints, key numbers, gap responses
+- `prep/fresh-intel-april-2026.md` — **latest public signals**: AI Accountant GA, 200K+ accounts, payroll/ZM roadmap
+
+### Technical Depth
+- `prep/3-lead-ai-engineer-prep-plan.md` — main 17-question prep plan
+- `prep/3-lead-ai-hostile-followups.md` — 18 hostile follow-up questions with target answers
+- `insights/live-coding-with-ai-agents-advanced-patterns.md` — scaffold/implement/debug modes for the 60-min live round
+- `insights/confidence-calibration-deep-dive.md` — ECE, Platt scaling, earned autonomy math
+
+### Code (All Verified Running)
+- `code/live-round-rehearsal.ts` — `bun run rehearsal` — the core 20-min drill
+- `code/confidence-calibration.ts` — `bun run calibration` — per-market calibration analysis
+- `code/multi-market-expansion-drill.ts` — `bun run multi-market` — DE/FR/IT/NL zero-code extension
+
+### Cross-Company
+- `../cross-company-system-design-template.md` — reusable 7-step system design framework
+- `../cross-company-production-feedback-loops.md` — correction routing and eval suite growth
+- `../cross-company-error-taxonomy-worked-examples.md` — Finom-specific error trees
+
+---
+
 ## Final Reminder
 
 - For **Dmitry**, prove: **I can build this well.**

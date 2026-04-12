@@ -1,136 +1,146 @@
-# Finom Interview 3 — Day-of Card
+# Interview 3 — Day-Of Quick Reference Card
 
-Saved: 2026-04-11
-Updated: 2026-04-11
+Date: Tuesday, April 14, 2026 (afternoon CET)
+Duration: 90 minutes (30 questions + 60 live coding)
+Interviewer: V. Adynets — Senior/Lead AI Engineer
+Format: Claude Code or Codex live exercise
 
-## Round Shape
-- 90 minutes total
-- 30 min technical questions
-- 60 min live problem-solving with Claude Code or Codex
-- Not a manual whiteboard round
-- **Interviewer:** V. Adynets — likely senior/lead AI engineer
-- **Interviewer signal:** possible competitive-programming background (Grodno State University ICPC teams 2019-2020) — expect precision, clean invariants, fast detection of hand-wavy logic
+---
 
-## Core Thesis (say in 30 seconds)
+## 2-Minute Skim
 
-> I build production-grade AI systems by keeping policy deterministic, isolating AI to the ambiguous parts, and shipping with evals, routing, and clear failure controls. Real leverage means the workflow gets faster and more autonomous without becoming opaque or unsafe.
+### My thesis
 
-Short version:
-> AI for ambiguity. Software for policy. Workflow quality over model cleverness.
+**Production AI engineer who builds observable workflow systems, keeps policy deterministic, uses AI for ambiguity, and earns autonomy step by step.**
 
-## What They Care About
-- Does AI make the team faster, not slower?
-- Can you decompose a workflow into controllable stages?
-- Can you separate judgment from deterministic policy?
-- Can you design proactive systems that actually complete work?
-- Can you use Codex / Claude well without losing rigor?
-- Can you tie design choices to operational leverage?
-- Can you work in a small, direct, high-judgment team?
-- Can you make patterns that domain teams will actually adopt?
+### My technical thesis
 
-## First 5 Minutes — DO NOT CODE
+**AI for ambiguity. Software for policy. Measurable leverage over demo energy.**
 
-Say something like:
-- Before I code, I want to define the workflow boundary, success condition, and what stays deterministic versus AI-driven.
-- If the task is open-ended, I also want to decide what should be proactive versus proposal-only.
+### Three things to prove
 
-Then lock down:
-- input
-- output
-- failure modes
-- confidence / fallback path
-- what can be mocked
-- what can act automatically
-- what must stay proposal-only in v1
-- what metric this should improve
+1. I think clearly about production AI systems
+2. I can decompose ambiguous workflows into controllable pieces
+3. I can use an AI coding agent well without losing rigor
 
-## Answer Skeleton (use for every technical question)
+### One-sentence positioning
 
-1. **Frame** the problem
-2. **State** the design choice
-3. **Explain** the tradeoff
-4. **Name** the failure mode
-5. **Describe** the control / metric
+> "I build AI systems where the model handles judgment, rules handle policy, confidence routing controls risk, and every decision is traceable."
 
-Example:
-> For transaction categorization, I would separate receipt matching, feature extraction, category proposal, VAT rules, and booking. The category proposal uses AI because merchant text is ambiguous. VAT logic stays deterministic because the failure cost is compliance-related. Low-confidence cases route to proposal mode, not auto-booking. I would measure approval rate, override rate, and severe-error rate by market.
+---
 
-## Default Design Moves
-- staged workflow over single opaque agent
-- proposal mode over full autonomy
-- typed outputs over raw text parsing
-- explicit stage boundaries over one giant prompt
-- AI behind an interface
-- confidence-aware routing
-- observability / trace object
-- one obvious verification path
-- earned autonomy by stage, not claimed upfront
-- measurable operational gain over impressive complexity
+### Fresh intel (April 11)
 
-## Questions To Expect
-- What should be deterministic vs LLM-based?
-- How would you design an expense categorization workflow?
-- How would you evaluate a financial AI workflow?
-- When do you use a staged workflow vs a single agent?
-- How do you handle low-confidence outputs?
-- What observability would you add first?
-- How would you integrate AI into a Python + C# system?
-- How would you make AI coding tools increase throughput instead of slowing people down?
-- How would you generalize Germany-first workflows toward France / other markets?
-- How should a central AI team help without becoming a bottleneck?
-- What is the difference between an AI team and an ML team?
-- When should you automate the work vs just assist the user?
-- How do you know workflow is reducing FTE / manual work vs just moving work around?
+- AI Accountant is now **GA for all German customers** (not beta)
+- **200K+ accounts** across Europe (up from 125K in earlier prep)
+- Roadmap: **Lohnsteueranmeldung** (payroll) and **Zusammenfassende Meldung** (intra-EU) coming soon
+- GmbH/UG support expanding (beyond freelancers)
+- **Invoice financing and credit lines** expected late 2026
+- Target: **€225B** SMB financial services market
 
-## Live Round Tactics
-- Give Codex / Claude small, precise steps
-- Inspect generated code before moving on
-- Keep policy and domain rules out of prompts when possible
-- Prefer mockable functions and typed contracts
-- Verify behavior before saying done
-- Avoid unnecessary frameworks and monolithic agent loops
-- The meta-signal: **you use AI as a force multiplier, not a substitute for engineering judgment**
+---
 
-## What To Say If Asked About Tradeoffs
-- AI is best for ambiguity: extraction, classification, proposal generation
-- Deterministic code should own policy, validation, routing, and rollback
-- Safety comes from visibility, not from hiding decisions in prompts
-- Good automation reduces manual steps and review load, not just demo time
-- Central AI centralizes the hard reusable parts — not every product decision
-- Adoption is a product, not a memo
+## Before the Call (15 min)
 
-## Key Vocabulary
+- [ ] Terminal open, font size large for screen share
+- [ ] `bun run rehearsal` verified working (Finom code folder)
+- [ ] Claude Code authenticated and responsive
+- [ ] Zod available (`import { z } from "zod"` works)
+- [ ] Second monitor or split screen ready
+- [ ] Water, notes, this card visible on side screen
 
-| Term | Meaning |
-|------|---------|
-| SKR03/SKR04 | German standard chart of accounts |
-| USt / UStVA | German VAT / VAT advance return |
-| PCG | French chart of accounts (Plan Comptable Général) |
-| Kleinunternehmer §19 | German small business VAT exemption |
-| Reverse charge | VAT mechanism for cross-border B2B |
-| MAS | Multi-Agent System (Finom's public architecture) |
-| MCP | Model Context Protocol — Finom is stitching platform with MCP interfaces |
-| FTE per active customer | Ivo's core efficiency metric |
-| AIC4 | Finom's AI platform for proactive agent experiences |
+---
 
-## Good Closing Questions (pick 1-2)
+## First 30 Minutes: Technical Questions
 
-1. In the live exercise, do you care more about a complete slice or the reasoning and verification path?
-2. Which AI workflows are closest to production pain today?
-3. Where do AI systems currently fail most: retrieval, tool use, orchestration, or integration?
-4. What separates engineers who get faster with Codex/Claude from those who create review burden?
-5. Where is the current friction: central AI discovering patterns, or domain teams adopting them?
+### If asked about system design
 
-## If You Blank
+Use the 7-step framework: scope → AI boundary → pipeline → confidence routing → observability → scale → failures
 
-> First define the workflow boundary. Then separate ambiguity from policy. Keep AI on messy judgment, keep deterministic systems on control and compliance, add confidence-aware routing, and verify with observable outputs before calling it done.
+**Start with:** "Before I design — the input is [X], the output is [Y], and a wrong output costs [Z]. The most important boundary is: categorization is AI, tax calculation is deterministic rules."
 
-## Success Condition
+### If asked about confidence routing
 
-They leave thinking:
+> "The threshold comes from calibration data. ECE under 0.05 means the scores are trustworthy. In a new market, start at 100% human review, calibrate on the first 1000 transactions, then widen."
 
-> He is not just good at AI. He is good at building AI systems that can survive production reality.
+### If asked about multi-market
 
-## One-line Reminder
+> "Market config is data, not code. Adding Italy means one config object, zero code changes. The exception is country-specific pipeline hooks — Italy needs SDI e-invoicing, which is an async post-processing step."
 
-Be the person who can make AI useful in production, not just interesting in a demo.
+### If asked about AI coding tools
+
+> "Three modes: scaffold mode for contracts (you drive, agent fills boilerplate), implementation mode one stage at a time (verify before proceeding), debug mode for targeted fixes. The discipline: 10-second pause after every agent generation to actually read it."
+
+### If asked about adoption
+
+> "Trust is earned, not declared. Start with proposal mode, track confirmation rate, and only move to auto-mode when the data supports it. The metric is confirmation rate, not enthusiasm."
+
+---
+
+## Live Coding Round: 60 Minutes
+
+### First 5 minutes: SCOPE before coding
+
+> "Let me make sure I understand the problem before I start. The input is... the output should be... the correctness bar is..."
+
+Do NOT start coding immediately. The interviewer watches whether you think first.
+
+### Architecture first, implementation second
+
+1. Define type contracts (Zod schemas) — 3 min
+2. Implement categorization (AI-powered stage) — 8 min
+3. Implement tax calculation (deterministic) — 5 min
+4. Add confidence router — 3 min
+5. Wire orchestrator with trace — 5 min
+6. Test cases (happy path + edge case) — 5 min
+7. Add market extensibility if time — 10 min
+
+### Things to say out loud
+
+| When | Say |
+|------|-----|
+| At start | "I'll define contracts first so we agree on the shape" |
+| At AI stage | "This is where the LLM adds value — categorization is judgment" |
+| At tax stage | "This is deterministic — tax law isn't a prediction" |
+| At router | "This is the most important 10 lines in the system" |
+| At trace | "Without this, debugging is archaeology" |
+| If stuck | "Let me step back and think about what we need next" |
+
+### Red flags to avoid
+
+- Generating 300 lines without reading them
+- Asking the agent to "design the architecture"
+- Coding in silence for more than 60 seconds
+- Over-engineering with factories, DI, abstract base classes
+- Adding things they didn't ask for instead of polishing what they did
+
+---
+
+## Key Numbers
+
+| Metric | Germany | France | Italy |
+|--------|---------|--------|-------|
+| Standard VAT | 19% | 20% | 22% |
+| Reduced VAT | 7% | 5.5% / 10% | 4% / 5% / 10% |
+| Chart standard | SKR03 | PCG | Piano dei Conti |
+| E-invoicing | No | Sept 2026 | Yes (SDI) |
+
+---
+
+## Gap Responses (if challenged)
+
+**"No fintech experience"** → "I ran an SMB — I've done UStVA filing from the user side. The engineering patterns are domain-agnostic; the domain knowledge is learnable."
+
+**"No C#/.NET"** → "AI work is Python. I'd interact with C# through APIs. Learning to read C# is weeks, not months."
+
+**"Biggest risk hiring you?"** → "Domain ramp time. Mitigation: real SMB context + fast learner + engineering patterns already there."
+
+---
+
+## Questions to Ask Them
+
+1. "What does the team's day-to-day look like — how do you balance central AI patterns with domain delivery?"
+2. "What's the hardest production bug you've had in the accounting pipeline?"
+3. "Where do you see AI coding tools creating the most leverage in your workflow?"
+4. "If I joined, what would I own in the first 90 days?"
+5. "How do you think about the boundary between what's centralized in the AI team vs embedded in product squads?"
