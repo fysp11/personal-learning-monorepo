@@ -11,6 +11,8 @@
 ## Start Here
 - `interviews/3-lead-ai-engineer/README.md` - round-specific dashboard for Interview 3
 - `prep/3-lead-ai-engineer-prep-plan.md` - main prep plan for the current technical round
+- `prep/3-lead-ai-engineer-day-of-card.md` - one-page day-of reference for Interview 3
+- `prep/3-live-round-scenarios.md` - scenario playbook for the 60-min live coding exercise
 - `application/senior-ai-engineer-match-analysis.md` - strongest fit and objection-handling summary
 - `interviews/1-introduction--dmitry/README.md` - first-round dashboard with raw assets and cleaned summary
 - `interviews/3-lead-ai-engineer/README.md` - recruiter-confirmed third-round format and grounded prep signals
@@ -22,7 +24,7 @@
 - `prep/finom-ai-competitive-landscape.md` - AI competitive landscape analysis
 - `prep/multi-agent-system-architecture-for-fintech.md` - MAS architecture prep (matches Finom's public AI Accountant design)
 - `prep/german-sme-accounting-domain-primer.md` - German tax forms and SME accounting domain vocabulary
-- `code/README.md` - MAS coordination pipeline code demo
+- `code/README.md` - MAS coordination pipeline, live rehearsal, and eval harness code demos
 - `../eu-ai-act-regulatory-prep.md` - EU AI Act awareness (shared with Delphyr)
 - `finom_cheatsheet.pdf` - compact company and role cheat sheet
 
@@ -64,7 +66,7 @@
 ## Current Status
 - The main next action is prep for Interview 3, the technical round with Finom's Senior AI Engineer / likely AI engineering lead.
 - Round dashboard: `interviews/3-lead-ai-engineer/README.md`
-- **Primary prep file:** `prep/3-lead-ai-engineer-prep-plan.md`
+- **Primary prep files:** `prep/3-lead-ai-engineer-prep-plan.md` and `prep/3-lead-ai-engineer-day-of-card.md`
 - The Ivo interview folder README is the grounded input for Interview 3 prep.
 - The recruiter follow-up for Interview 3 confirms the `30 + 60` structure and `Claude Code` / `Codex` live format, but does **not** reliably identify the engineer by name.
 - The first interview README is the distilled source for Dmitry's product, org, and stack signals.

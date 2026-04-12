@@ -88,14 +88,16 @@ Short version:
 
 ## Recruiter Follow-Up Reflection
 
-- this call was mostly about **scheduling, urgency, and process alignment**
+<!-- - this call was mostly about **scheduling, urgency, and process alignment** -->
 - the strongest technical signal was that the live round uses **Claude Code or Codex**
 - Finom is **not** treating this as a manual coding interview
 
 ## Good Re-entry Order
 
-1. `../../prep/3-lead-ai-engineer-prep-plan.md`
-2. `../../NEXT_STEP.md`
-3. `../2-central-ai--ivo/README.md`
-4. `../../application/senior-ai-engineer-match-analysis.md`
-5. `../../code/README.md`
+1. `../../prep/3-lead-ai-engineer-day-of-card.md` — quick reference card with answer skeleton, vocabulary, and interviewer profile
+2. `../../prep/3-lead-ai-engineer-prep-plan.md` — full prep plan with drills
+3. `../../prep/3-live-round-scenarios.md` — scenario playbook for the 60-min live coding exercise
+4. `../../NEXT_STEP.md`
+5. `../2-central-ai--ivo/README.md`
+6. `../../application/senior-ai-engineer-match-analysis.md`
+7. `../../code/README.md` — three runnable demos: MAS pipeline, live rehearsal, eval harness
