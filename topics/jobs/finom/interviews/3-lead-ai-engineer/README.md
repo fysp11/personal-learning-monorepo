@@ -19,14 +19,13 @@ Saved: 2026-04-09
 - The relevant Finom engineer was only available Tuesday, April 14, 2026.
 - Availability discussed was roughly Tuesday afternoon Central Europe time, with Sao Paulo five hours behind at that moment.
 - Samuel was trying to clarify what remains after this technical step, because the delay creates pressure against the competing offer timeline.
-- Michelle is mentioned as another conversation/process thread Samuel needs to manage, but the role or company context is not reliable enough to treat as a Finom signal.
-- A possible `Julia` lead was investigated during the call, but the safest read is that Julia was a recruiter / CC artifact, not the lead engineer interviewer.
+- The process had some noisy names/threads in the recruiter chain, but they are not useful interview signals.
 - Samuel treated a founder reaching out directly as a positive signal.
 - Samuel said he would send over the prep details he had been given.
 
 ## Grounded Signals From Interview 2
 
-- Ivo said the next step is with one of Finom's `leading engineer[s]`
+- Ivo said the next step is with one of Finom's `leading engineer[s]` (now user-confirmed as `Viktar Adynets`)
 - he said he is `a little bit technical` but `not super technical`, which implies this round is where deeper technical judgment gets checked
 - he wants the technical round to be `creative`, not a stock question set
 - he cares whether `Codex` / `Claude` make engineers faster or slower in reality
@@ -45,12 +44,12 @@ Saved: 2026-04-09
 
 ## Best Read On The Interviewer
 
-- updated 2026-04-10: user-provided interviewer signal is `V. Adynets`
+- updated 2026-04-11: user-confirmed interviewer is `Viktar Adynets`
 - full public profile remains unconfirmed; detailed note: `../../interviewers/V-Adynets.md`
-- the recruiter process created a likely false lead around `Julia`; safest read is that person was probably just a recruiter copied on email
 - safest assumption: this is a senior / lead AI engineer close to implementation, not a pure manager or recruiter
-- likely works inside the org shape Ivo described: `AI team` distinct from classic `ML team`, with some shared patterns and some domain-facing delivery
+- best org model to assume: `core > layers > product`, spanning `central > integration > embed(domain)`
 - likely treats AI-tool usage as a team operating capability, not just an individual preference
+- likely cares about owning relationships with teams to increase engagement, adoption, and vision around enterprise-grade novelty
 
 ## What This Round Is Probably Testing
 
@@ -63,6 +62,7 @@ Saved: 2026-04-09
 - can you work with low ceremony inside a small, opinionated engineering group
 - can you make AI-tool usage concretely useful for a small team instead of just sounding enthusiastic about it
 - can you tie architecture choices back to shipped workflow outcomes instead of abstract agent talk
+- can you influence the relationship layer between central, integration, and embedded teams so the system spreads well
 
 ## Strongest Positioning
 
@@ -86,9 +86,8 @@ Short version:
 - adoption mechanics for getting those patterns used by real teams
 - operational compression metrics such as steps removed, review load reduced, or lower human-touch cost
 
-## Recruiter Follow-Up Reflection
+## Recruiter Follow-Up Signal
 
-<!-- - this call was mostly about **scheduling, urgency, and process alignment** -->
 - the strongest technical signal was that the live round uses **Claude Code or Codex**
 - Finom is **not** treating this as a manual coding interview
 

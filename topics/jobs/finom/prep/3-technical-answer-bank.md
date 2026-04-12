@@ -6,6 +6,27 @@ Full-depth answers for the hardest likely questions. These go beyond the drill t
 
 ---
 
+## Viktar-specific answer posture
+
+### What to say
+- "I’d define the workflow boundary first, then separate ambiguity from policy."
+- "Central AI should own reusable core patterns; integration should bridge them; embedded domain teams should turn them into trusted product behavior."
+- "I’m optimizing for adoption and operational leverage, not just a clever architecture."
+- "The goal is to make the workflow complete meaningful work and come back with a traceable result."
+- "I’d keep the deterministic policy in code and use AI only where the input is genuinely ambiguous."
+
+### What not to say
+- "Let’s just centralize everything."
+- "The model can decide the policy."
+- "I’d throw Codex at the whole problem and see what comes back."
+- "If the system is good enough, adoption will happen automatically."
+- "We can make the rules prompt-based for faster iteration."
+
+### Default 20-second frame
+> I decompose the workflow into typed stages, keep policy deterministic, use AI for ambiguity, attach confidence and severity to every step, and verify with offline evals plus production monitoring. For Finom specifically, I’d treat adoption as part of the system: central patterns, integration as the bridge, and embedded teams as the place where the behavior becomes real.
+
+---
+
 ## Q1: "How would you design expense categorization for German SMBs?"
 
 ### Full answer

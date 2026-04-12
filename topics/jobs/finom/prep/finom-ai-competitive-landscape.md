@@ -49,7 +49,7 @@ Key differentiators in their approach:
 **AI approach:** Revolut has invested heavily in AI infrastructure:
 - **200+ NVIDIA H100 GPUs** powering FinCrime agents and support chatbot
 - Support chatbot resolves **75% of customer queries** autonomously
-- **767,000 business customers** (30% YoY growth) — significantly larger SMB base than Finom's 125K+
+- **767,000 business customers** (30% YoY growth) — significantly larger SMB base than Finom's 200K+
 - Planning business lending product launch in 2026
 - AI focus is more on fraud/support than accounting automation
 

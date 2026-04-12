@@ -4,7 +4,7 @@ Saved: 2026-04-10
 
 ## Confidence
 
-- Interviewer identity: `high` that the next-round interviewer is `V. Adynets`, based on the recruiter-provided address in current conversation context.
+- Interviewer identity: `confirmed` by user as `Viktar Adynets`.
 - Public full-name match: `medium-low`. The strongest public match for `v.adynets` is `Viktar Adynets`, but I did not find a public source tying that exact person to Finom / PNL Fintech.
 - Finom employment / role: `inferred from process`, not publicly verified.
 
@@ -32,6 +32,7 @@ Regardless of the personal match, the round itself points to a senior hands-on A
 - integration into real backend/product workflows
 - product-minded tradeoffs and measurable business impact
 - pragmatic AI adoption across teams
+- relationship ownership across central, integration, and embedded domain teams
 
 ## Likely Interview Lens
 
@@ -43,6 +44,7 @@ He is likely checking whether you can:
 - design meaningful evals and failure routing
 - use Codex / Claude in a way that increases speed while preserving ownership
 - ship an end-to-end slice in the live exercise without losing technical control
+- influence adoption through team relationships, not just architecture
 
 ## Best Prep Anchor
 
@@ -53,6 +55,10 @@ Use this frame:
 Add a sharper technical version:
 
 > I would decompose the workflow into typed stages, keep policy/rules deterministic, let AI propose or extract where inputs are messy, attach confidence and severity to every output, and verify with offline evals plus production monitoring.
+
+Add the org version:
+
+> I would treat central AI as the source of reusable core patterns, integration as the bridge, and embedded domain teams as the place where those patterns become trusted product behavior.
 
 ## Questions To Ask Him
 

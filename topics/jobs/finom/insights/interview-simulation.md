@@ -13,7 +13,7 @@ Practice questions for the technical deep-dive with Dmitry's colleague. Based on
 > **Requirements clarification:**
 > - Input: bank transaction (merchant, amount, date, description) + optional uploaded receipt
 > - Output: SKR03 account code, VAT rate, booking entry ready for approval
-> - Scale: ~100-500 transactions/month per SMB, 125K+ SMBs = tens of millions per month
+> - Scale: ~100-500 transactions/month per SMB, 200K+ accounts = tens of millions per month
 > - Latency: <5 seconds from transaction to suggested categorization
 > - Accuracy: >90% category accuracy, >97% VAT accuracy (compliance-critical)
 >

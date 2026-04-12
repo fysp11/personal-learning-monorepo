@@ -2,7 +2,7 @@
 
 Date: Tuesday, April 14, 2026 (afternoon CET)
 Duration: 90 minutes (30 questions + 60 live coding)
-Interviewer: V. Adynets — Senior/Lead AI Engineer
+Interviewer: Viktar Adynets — Senior/Lead AI Engineer
 Format: Claude Code or Codex live exercise
 
 ---
@@ -16,6 +16,10 @@ Format: Claude Code or Codex live exercise
 ### My technical thesis
 
 **AI for ambiguity. Software for policy. Measurable leverage over demo energy.**
+
+### Org thesis
+
+**Core > layers > product; central > integration > embed(domain).**
 
 ### Three things to prove
 
@@ -73,7 +77,7 @@ Use the 7-step framework: scope → AI boundary → pipeline → confidence rout
 
 ### If asked about adoption
 
-> "Trust is earned, not declared. Start with proposal mode, track confirmation rate, and only move to auto-mode when the data supports it. The metric is confirmation rate, not enthusiasm."
+> "Trust is earned, not declared. Start with proposal mode, track confirmation rate, and only move to auto-mode when the data supports it. The metric is confirmation rate, not enthusiasm. The relationship layer matters too: central AI sets reusable patterns, integration makes them usable, and embedded teams turn them into habits."
 
 ---
 
@@ -123,7 +127,9 @@ Do NOT start coding immediately. The interviewer watches whether you think first
 | Standard VAT | 19% | 20% | 22% |
 | Reduced VAT | 7% | 5.5% / 10% | 4% / 5% / 10% |
 | Chart standard | SKR03 | PCG | Piano dei Conti |
-| E-invoicing | No | Sept 2026 | Yes (SDI) |
+| E-invoicing | No | Interview-derived target / unconfirmed | Yes (SDI) |
+
+*France values here are interview-derived planning assumptions, not public-canonical intel.*
 
 ---
 
@@ -143,4 +149,4 @@ Do NOT start coding immediately. The interviewer watches whether you think first
 2. "What's the hardest production bug you've had in the accounting pipeline?"
 3. "Where do you see AI coding tools creating the most leverage in your workflow?"
 4. "If I joined, what would I own in the first 90 days?"
-5. "How do you think about the boundary between what's centralized in the AI team vs embedded in product squads?"
+5. "How do you think about the boundary between what's centralized in the AI team vs embedded in product squads, and how do you keep the relationship layer healthy?"

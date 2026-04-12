@@ -11,10 +11,10 @@ Prepare for the `90-minute technical interview` with the `Senior AI Engineer`:
 
 This is not a manual coding round. It is a `technical judgment + agentic execution` round.
 
-Refinement from the `2026-04-09` Ivo source record/watchlog:
+Refined from the `2026-04-09` source record and follow-up context:
 
 - the source record artifacts remained stable through `2026-04-09T21:49:07Z` with `no-whisper-processes-detected`, so they are safe to treat as grounded input
-- Ivo said the next interviewer is effectively the `leading engineer`
+- user-confirmed Interview 3 interviewer is `Viktar Adynets`
 - he wants the round to be `creative`, not a standard question drill
 - he explicitly cares whether `Codex` / `Claude` make people faster or slower in practice
 - he described the org as three streams: `operational excellence`, `AI-first product work`, and `adoption`
@@ -24,6 +24,7 @@ Refinement from the `2026-04-09` Ivo source record/watchlog:
 - he appears to prefer a `small`, high-caliber, direct team over heavier process
 - he described `adoption` as an explicit workstream with a dedicated owner, internal workshops, and practical AI-tool rollout across the company
 - he gave a concrete domain anchor: tax workflow automation already shipped in `Germany`, with movement toward `France`
+- use the mental model `core > layers > product`, or `central > integration > embed(domain)`
 
 ---
 
@@ -77,6 +78,7 @@ Add the org/interviewer read from Interview 2:
 - can you make the system complete meaningful work before handing a result back to the user
 - can you explain how a good pattern spreads across teams in a way engineers will actually use
 - can you tie the design back to measurable workflow compression instead of just elegance
+- can you manage the relationship layer across central, integration, and embedded teams so adoption scales
 
 ---
 

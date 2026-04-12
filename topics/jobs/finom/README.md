@@ -4,9 +4,9 @@
 - Company: Finom
 - Focus: SMB financial platform combining banking, invoicing, and AI accounting
 - Relevant role: Senior AI Engineer
-- Current next interview: Interview 3, a 90-minute technical round with Finom's Senior AI Engineer / likely lead in the AI engineering team
-- Current open org question: whether this role sits in the central AI team, a product squad, or spans both
-- New grounded signal from the April 8 Ivo conversation: Finom's AI org is effectively `both` central and embedded, with explicit adoption work on top
+- Current next interview: Interview 3, a 90-minute technical round with Viktar Adynets
+- Org model expectation: a normal `core > layers > product` structure, spanning `central > integration > embed(domain)`
+- Role expectation: own the relationships with teams to positively influence engagement, adoption, and vision around enterprise-grade novelty
 
 ## Start Here
 - `interviews/3-lead-ai-engineer/README.md` - round-specific dashboard for Interview 3
@@ -32,7 +32,7 @@
 
 ## Company Notes
 - Amsterdam-based SMB financial platform spanning banking, invoicing, and AI accounting.
-- Existing prep notes highlight 125K+ customers across multiple European markets, 500+ employees, and strong growth after the June 2025 Series C.
+- Existing prep notes now center on 200K+ accounts, AI Accountant GA for all German customers, 500+ employees, and strong growth after the June 2025 Series C.
 - Competitive set called out in existing materials: Qonto, Revolut Business, N26 Business, and Tide.
 
 ## AI and Product Direction
@@ -48,7 +48,7 @@
 - Interviewers in scope so far:
   - Dmitry Ivanov - CTO
   - Ivo Dimitrov - co-founder, **Chief AI Officer (CAIO)** per TheOrg; recruiter described him as running the central AI team
-  - Interview 3 interviewer not yet confirmed by name; recruiter follow-up suggests confusion around a `Julia` who appears to be a recruiter / CC artifact, so the safest grounded read is still Ivo's `leading engineer`
+  - Interview 3 interviewer: Viktar Adynets
 - Stack notes from current materials:
   - Python for LLM-heavy services and agent harnesses
   - .NET / C# across the broader backend platform
@@ -58,6 +58,7 @@
   - AI team focuses on LLM/product-pattern work rather than classic predictive ML
   - some people are embedded in domains, others move across projects
   - explicit `adoption` stream exists to spread AI-first behavior across the company
+  - useful mental model: `core > layers > product`, with `central > integration > embed(domain)`
 
 ## Interview Timeline
 - Monday, March 31, 2026 - first conversation with Dmitry Ivanov in `interviews/1-introduction--dmitry/`
@@ -66,11 +67,11 @@
 - Thursday, April 9, 2026 - recruiter moved you to Interview 3: 30 minutes of technical questions with a Senior AI Engineer, then 60 minutes of live problem-solving with Claude Code or Codex
 
 ## Current Status
-- The main next action is prep for Interview 3, the technical round with Finom's Senior AI Engineer / likely AI engineering lead.
+- The main next action is prep for Interview 3, the technical round with Viktar Adynets.
 - Round dashboard: `interviews/3-lead-ai-engineer/README.md`
 - **Primary prep files:** `prep/3-lead-ai-engineer-prep-plan.md` and `prep/3-lead-ai-engineer-day-of-card.md`
 - The Ivo interview folder README is the grounded input for Interview 3 prep.
-- The recruiter follow-up for Interview 3 confirms the `30 + 60` structure and `Claude Code` / `Codex` live format, but does **not** reliably identify the engineer by name.
+- The recruiter follow-up for Interview 3 confirms the `30 + 60` structure and `Claude Code` / `Codex` live format.
 - The first interview README is the distilled source for Dmitry's product, org, and stack signals.
 - The strongest prep path for the next round is: match analysis -> first-round summary -> interview 3 prep plan -> live-round drills.
 - Cross-company insights connecting Finom and Delphyr prep: `../cross-company-insights.md`
@@ -88,12 +89,10 @@
 - Ability to use `Codex` / `Claude` to accelerate delivery without losing rigor
 
 ## Open Questions For The Next Round
-- Who exactly is the Interview 3 interviewer, and how close are they to day-to-day AI engineering delivery?
-- What is the mandate of the central AI team today?
-- What should be centralized versus embedded in product squads?
 - What would this role own first if hired?
 - How does Finom evaluate quality and failure handling for accounting and financial workflows?
 - Where do they currently see AI coding tools increasing speed versus causing drag?
+- How should central, integration, and embedded domain teams share ownership without creating friction?
 
 ## Maintenance Notes
 - Keep this README as the one-minute dashboard for current stage, next action, and strongest support files.
