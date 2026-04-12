@@ -13,6 +13,8 @@
 - `prep/3-lead-ai-engineer-prep-plan.md` - main prep plan for the current technical round
 - `prep/3-lead-ai-engineer-day-of-card.md` - one-page day-of reference for Interview 3
 - `prep/3-live-round-scenarios.md` - scenario playbook for the 60-min live coding exercise
+- `prep/3-technical-answer-bank.md` - full-depth answers for the hardest likely technical questions
+- `prep/3-latest-finom-intel.md` - latest Finom product/AI updates for interview currency
 - `application/senior-ai-engineer-match-analysis.md` - strongest fit and objection-handling summary
 - `interviews/1-introduction--dmitry/README.md` - first-round dashboard with raw assets and cleaned summary
 - `interviews/3-lead-ai-engineer/README.md` - recruiter-confirmed third-round format and grounded prep signals

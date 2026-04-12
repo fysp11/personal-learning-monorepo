@@ -65,10 +65,12 @@ bun run rehearsal
 - **Per-market breakdown**: separate accuracy metrics for DE and FR
 - **Confidence calibration**: Expected Calibration Error (ECE) measuring whether confidence scores are trustworthy
 - **Realistic failure modes**: simulated agent that misses reverse charge and mixed-VAT cases
+- **Regression detection**: compares against a stored baseline to catch cases that were passing but now fail
+- **Threshold analysis**: sweeps auto-book confidence thresholds to find the optimal safety/automation tradeoff
 
 ### Why this matters
 
-Before any categorization agent goes to production, you need to know: Is it accurate enough? Are its confidence scores calibrated? Where does it fail? This harness answers all three.
+Before any categorization agent goes to production, you need to know: Is it accurate enough? Are its confidence scores calibrated? Where does it fail? Did we break anything that was working? What's the right auto-book threshold? This harness answers all five.
 
 ### Test cases cover
 

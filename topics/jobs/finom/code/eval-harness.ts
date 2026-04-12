@@ -169,6 +169,22 @@ function computeCalibration(results: CaseResult[]): {
 
 // ─── Report ──────────────────────────────────────────────────
 
+interface Regression {
+  testCaseId: string;
+  severity: string;
+  baselineResult: "pass" | "fail";
+  currentResult: "pass" | "fail";
+}
+
+interface ThresholdAnalysis {
+  threshold: number;
+  autoBookCount: number;
+  reviewCount: number;
+  rejectCount: number;
+  autoBookAccuracy: number;
+  criticalAutoBookErrors: number;
+}
+
 interface EvalReport {
   totalCases: number;
   overallAccuracy: number;
@@ -177,6 +193,8 @@ interface EvalReport {
   perField: Record<string, { accuracy: number; count: number }>;
   calibration: ReturnType<typeof computeCalibration>;
   failures: Array<{ testCaseId: string; failedFields: string[]; severity: string }>;
+  regressions: Regression[];
+  thresholdAnalysis: ThresholdAnalysis[];
 }
 
 function generateReport(results: CaseResult[]): EvalReport {
@@ -220,6 +238,12 @@ function generateReport(results: CaseResult[]): EvalReport {
       severity: r.severity,
     }));
 
+  // Regression detection against baseline
+  const regressions = detectRegressions(results);
+
+  // Threshold analysis
+  const thresholdAnalysis = analyzeThresholds(results);
+
   return {
     totalCases,
     overallAccuracy: passed / totalCases,
@@ -228,7 +252,72 @@ function generateReport(results: CaseResult[]): EvalReport {
     perField,
     calibration: computeCalibration(results),
     failures,
+    regressions,
+    thresholdAnalysis,
   };
+}
+
+// ─── Regression Detection ────────────────────────────────────
+
+// Simulated baseline from a previous eval run (e.g., stored in CI artifacts)
+const BASELINE_RESULTS: Record<string, "pass" | "fail"> = {
+  "TC-OFFICE-DE": "pass",
+  "TC-SOFTWARE-DE": "pass",
+  "TC-REVERSE-CHARGE": "pass", // Baseline had this passing — current agent broke it
+  "TC-TRAVEL-FR": "pass",
+  "TC-RESTAURANT-DE": "pass",
+  "TC-MIXED-VAT": "fail", // Known failure in baseline too
+  "TC-TELECOM-FR": "pass",
+  "TC-EXEMPT-DE": "pass",
+};
+
+function detectRegressions(results: CaseResult[]): Regression[] {
+  const regressions: Regression[] = [];
+
+  for (const r of results) {
+    const baselineResult = BASELINE_RESULTS[r.testCaseId];
+    if (!baselineResult) continue;
+
+    const currentResult = r.passed ? "pass" : "fail";
+    if (baselineResult === "pass" && currentResult === "fail") {
+      regressions.push({
+        testCaseId: r.testCaseId,
+        severity: r.severity,
+        baselineResult,
+        currentResult,
+      });
+    }
+  }
+
+  return regressions;
+}
+
+// ─── Threshold Analysis ──────────────────────────────────────
+
+function analyzeThresholds(results: CaseResult[]): ThresholdAnalysis[] {
+  // Sweep auto-book threshold to find the right tradeoff
+  const thresholds = [0.7, 0.75, 0.8, 0.85, 0.9, 0.95];
+  return thresholds.map((threshold) => {
+    const autoBook = results.filter((r) => r.confidence >= threshold);
+    const review = results.filter(
+      (r) => r.confidence >= 0.5 && r.confidence < threshold
+    );
+    const reject = results.filter((r) => r.confidence < 0.5);
+
+    const autoBookCorrect = autoBook.filter((r) => r.passed).length;
+    const criticalAutoBookErrors = autoBook.filter(
+      (r) => !r.passed && r.severity === "critical"
+    ).length;
+
+    return {
+      threshold,
+      autoBookCount: autoBook.length,
+      reviewCount: review.length,
+      rejectCount: reject.length,
+      autoBookAccuracy: autoBook.length > 0 ? autoBookCorrect / autoBook.length : 1,
+      criticalAutoBookErrors,
+    };
+  });
 }
 
 // ─── Simulated Agent Under Test ──────────────────────────────
@@ -489,6 +578,24 @@ if (report.failures.length > 0) {
   for (const f of report.failures) {
     console.log(`  ${f.testCaseId} [${f.severity}]: failed on ${f.failedFields.join(", ")}`);
   }
+}
+
+if (report.regressions.length > 0) {
+  console.log("\n--- REGRESSIONS (was passing, now failing) ---");
+  for (const r of report.regressions) {
+    console.log(`  ⚠ ${r.testCaseId} [${r.severity}]: ${r.baselineResult} → ${r.currentResult}`);
+  }
+} else {
+  console.log("\n--- Regressions: none detected ---");
+}
+
+console.log("\n--- Threshold Analysis (auto-book threshold sweep) ---");
+console.log("  threshold | auto-book | review | reject | auto-book acc | crit errors");
+console.log("  ----------|----------|--------|--------|--------------|------------");
+for (const t of report.thresholdAnalysis) {
+  console.log(
+    `  ${t.threshold.toFixed(2)}      | ${String(t.autoBookCount).padStart(8)} | ${String(t.reviewCount).padStart(6)} | ${String(t.rejectCount).padStart(6)} | ${(t.autoBookAccuracy * 100).toFixed(1).padStart(12)}% | ${String(t.criticalAutoBookErrors).padStart(10)}`
+  );
 }
 
 console.log("\n=== Evaluation Complete ===");
