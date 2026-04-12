@@ -228,4 +228,70 @@ A clear definition of which layer owns which concern. Specifically: does the AI 
 
 ### Gap response variant (if pressed on C# specifically):
 
+---
+
+## Q10: "Why does the accounting pipeline need an audit trail — isn't logging enough?"
+
+### Full answer
+
+It's a legal requirement, not just good engineering practice. In Germany, electronic accounting systems must comply with **GoBD** — *Grundsätze zur ordnungsmäßigen Führung und Aufbewahrung von Büchern* (Principles for the Proper Keeping and Storage of Books). GoBD requires:
+
+- Every booking must be traceable to its source document
+- Records must be **machine-readable and reproducible** — not just stored, but queryable
+- The audit trail must be **immutable** — corrections are new records, not overwrites
+- Retention period: **10 years** for accounting records
+- If the Finanzamt audits, they must be able to reconstruct any booking from source document to ledger entry
+
+This means the AI pipeline's trace isn't optional observability — it's a compliance artifact. Specifically:
+
+**What GoBD requires of each AI-processed booking:**
+1. Source document (the original invoice or receipt)
+2. Extraction result (what the AI read from it — amounts, dates, vendor)
+3. Classification decision (which SKR03 account, at what confidence)
+4. Whether human review was involved and what they decided
+5. Model version and timestamp at decision time
+6. Final booking entry (debit/credit/amounts)
+
+**How this shapes the pipeline design:**
+- The trace object isn't just for debugging — it's a GoBD record. Store it in append-only storage.
+- Every correction is a new event: "user overrode category from 4920 to 4210 at 14:32:07 on 2026-03-15." Never delete the original AI decision.
+- The system must support **decision replay**: given the same inputs, reproduce the same (or explainably different) outputs.
+- 10-year retention means the model version used in 2026 must still be accessible in 2036 for audit replay.
+
+**The engineering implication:**
+Event-sourcing pattern fits naturally: every stage decision is an immutable event appended to the transaction's history. The current "state" of a booking is derived from replaying events, not from a mutable record. Corrections become new events, not updates.
+
+**One-line answer if pressed:**
+> "GoBD — the German law for electronic accounting records — requires that every automated booking can be traced from source document to ledger entry, with an immutable log that can be queried 10 years later. That's why the audit trail is a legal requirement, not an engineering preference."
+
+---
+
+## Q11: "How do you decide when to widen automation from proposal mode to auto-book?"
+
+### Full answer
+
+There's a specific maturity ladder with measurable criteria at each level. You don't widen based on enthusiasm — you widen based on data.
+
+**The five levels:**
+
+| Level | Behavior | Advancement criteria |
+|-------|----------|---------------------|
+| 0 — Shadow | AI runs internally, output discarded, only metrics collected | >85% agreement with human decisions for 30 days |
+| 1 — Suggest | AI suggests, human decides | >90% acceptance rate for 14 days |
+| 2 — Draft | AI pre-fills, user confirms before execution | <5% correction rate for 14 days |
+| 3 — Auto with audit | AI executes, user reviews daily summary | <2% correction rate for 30 days; ECE < 0.05 |
+| 4 — Full auto | AI executes, user alerted on anomalies only | Continuous monitoring with no regressions for 60 days |
+
+**For a new market (e.g., France launch):** Start at Level 0 regardless of Germany's track record. Zero calibration data means the confidence scores are unvalidated. Collect the first 1000 reviewed transactions in France, measure agreement rate and ECE, then advance through the ladder.
+
+**For an existing market when model changes:** Regression test + shadow mode for 7 days. If agreement rate with the previous model's confirmed decisions is >95%, advance. If it drops, investigate before widening.
+
+**What not to do:** Don't advance based on aggregate accuracy. A model that's 95% accurate on easy cases but fails systematically on reverse charge won't show up in the aggregate number. Advance based on per-category agreement rate, not total accuracy.
+
+**Specific metric thresholds for Finom:**
+- Shadow → Suggest: 85% agreement with human-confirmed bookings, measured over 30 days
+- Suggest → Draft: 90% acceptance rate (user changes their mind <10% of the time)
+- Draft → Auto: <5% correction rate (users change the pre-filled result less than 5% of the time)
+- Auto → Full auto: <2% correction rate sustained for 30 days + ECE < 0.05 + no critical error in last 100 transactions
+
 > "The AI work is Python and TypeScript. For the C# boundary, I'd start by reading the OpenAPI contracts and existing integration tests — that's enough to design and implement clean API clients. I've worked across language boundaries before and the integration patterns (REST, gRPC, shared schemas) are language-agnostic. The domain ramp would take weeks; the language ramp is days."

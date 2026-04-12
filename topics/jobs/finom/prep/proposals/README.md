@@ -39,9 +39,20 @@ Run: `bun run autonomous-batch` in the `code/` directory.
 
 Run: `bun run resilience` in the `code/` directory.
 
+## Iteration 9 additions
+
+| Document | What it adds | When to use |
+|----------|-------------|-------------|
+| `3-live-round-clock.md` | Minute-by-minute 60-minute live coding timer: deliverables per gate (0–5, 5–12, 12–22, 22–32, 32–42, 42–50, 50–57, 57–60), recovery pivots if behind, phrases to avoid, clock recovery matrix | Read night before; use the recovery matrix if you fall behind during the live round |
+| `3-pre-call-cheat-sheet.md` | 2-page synthesis of every depth signal: key numbers table, deterministic vs AI splits, 8 named failure modes, 5-level maturity ladder with criteria, GoBD one-paragraph answer, France delta, FTE decomposition, day-of checklist | Read 15 minutes before the interview — this is the final recall document |
+
+## Iteration 9 answer bank additions
+
+- `../3-technical-answer-bank.md` — Q10 (GoBD compliance — why audit trail is legally required, 10-year retention, event-sourcing) and Q11 (staged rollout maturity ladder — Level 0–4 with specific advancement criteria)
+
 ## Related files
 
-- `../3-technical-answer-bank.md` — Q9 added: polyglot C#/.NET integration talking points
+- `../3-technical-answer-bank.md` — Q9: polyglot C#/.NET; Q10: GoBD compliance; Q11: maturity ladder
 - `../german-sme-accounting-domain-primer.md` — vocabulary reference (prerequisite to the UStVA walkthrough)
 - `../../code/mcp-accounting-server.ts` — live code demonstrating MarketPolicy interface and confidence routing
 - `../../code/eval-harness.ts` — severity-weighted evaluation framework referenced in FM-04, FM-10

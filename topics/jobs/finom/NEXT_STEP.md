@@ -208,16 +208,18 @@ Use this frame:
 ## Prep Materials Index (Updated Apr 12 — Iteration 8)
 
 ### Day-Of (read in this order)
-1. `prep/3-lead-ai-engineer-day-of-card.md` — 2-min skim: thesis, checklist, key numbers, gap responses
-2. `prep/fresh-intel-april-2026.md` — latest signals: GA, 200K+, payroll roadmap
-3. `prep/proposals/README.md` — 2-min scan: what each proposal doc adds
+1. `prep/proposals/3-pre-call-cheat-sheet.md` — **15 min before call**: numbers, failure modes, maturity ladder, GoBD, France delta, day-of checklist
+2. `prep/3-lead-ai-engineer-day-of-card.md` — 2-min skim: thesis, checklist, key numbers, gap responses
+3. `prep/fresh-intel-april-2026.md` — latest signals: GA, 200K+, payroll roadmap
+4. `prep/proposals/README.md` — 2-min scan: what each proposal doc adds
 
 ### Technical Depth
 - `prep/3-lead-ai-engineer-prep-plan.md` — 17-question prep plan, drills 1–9
 - `prep/3-lead-ai-hostile-followups.md` — **11 categories**, including iterations 4–7 topics
 - `prep/3-live-round-scenarios.md` — 5 scenario playbooks (A–E) for live coding
+- `prep/proposals/3-live-round-clock.md` — **minute-by-minute 60-min timer**: deliverables per gate, recovery pivots, clock recovery matrix
 - `prep/3-lead-ai-engineer-night-before.md` — night-before reading sequence + warm-up scripts
-- `prep/3-technical-answer-bank.md` — 9 full-depth answers (Q1–Q9 including C#/.NET)
+- `prep/3-technical-answer-bank.md` — **11 full-depth answers** (Q1–Q11: C#/.NET, GoBD, maturity ladder)
 - `insights/live-coding-with-ai-agents-advanced-patterns.md` — verbal anchors for live round
 - `insights/confidence-calibration-deep-dive.md` — ECE, Platt scaling, earned autonomy math
 
