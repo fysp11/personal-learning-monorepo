@@ -160,6 +160,8 @@ Finom-specific business read:
 - `insights/live-coding-with-ai-agents-advanced-patterns.md` — verbal anchors for live round
 - `insights/confidence-calibration-deep-dive.md` — ECE, Platt scaling, earned autonomy math
 
+
+
 ### Code (verified running)
 | Script | What it proves |
 |--------|---------------|
@@ -169,6 +171,8 @@ Finom-specific business read:
 | `bun run calibration` | ECE, Platt scaling, per-market calibration curves |
 | `bun run autonomous-batch` | Month-end "go do the task, come back" — structured completion report |
 | `bun run resilience` | Circuit breaker, idempotency, lifecycle audit, anomaly detection |
+| `bun run refactoring-exercise` | Scenario B: messy blob → clean staged pipeline |
+| `bun run observability` | Confidence drift, terminal state tracking, business KPI dashboard |
 
 ---
 

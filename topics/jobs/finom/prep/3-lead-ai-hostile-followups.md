@@ -40,7 +40,6 @@ The existing interview simulation targets Interview 2 signals. This document cov
 
 > "In the category-to-tax-treatment mapping. Is a 'business lunch' entertainment (fully deductible) or restaurant (partially deductible)? That's where the AI judgment meets the tax rule, and the answer can differ by country. The clean design: AI outputs a category with confidence, a deterministic mapper converts category to tax treatment, and the mapper has explicit edge-case rules for ambiguous categories."
 
----
 
 ## Category 3: Live Coding Pressure
 
@@ -122,3 +121,4 @@ Run through these 5 scenarios in 15 minutes:
 3. **Live coding recovery** — acknowledge a gap, pivot to the most valuable next action
 4. **Scale challenge** — merchant caching, batch processing, anomaly detection
 5. **Self-awareness** — fintech gap answer, delivered without defensiveness
+
