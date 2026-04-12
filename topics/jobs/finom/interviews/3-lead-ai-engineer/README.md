@@ -2,6 +2,8 @@
 
 Saved: 2026-04-09
 
+Canonical public intel: `../../prep/fresh-intel-april-2026.md`
+
 ## Format
 
 - `90 minutes` total

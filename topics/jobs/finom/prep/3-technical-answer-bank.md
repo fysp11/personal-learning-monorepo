@@ -213,3 +213,19 @@ Different core problems, different engineering patterns, different risk profiles
 - ML teams optimize metrics like AUC, precision/recall. AI teams optimize workflow completion rates, override rates, and severity-weighted accuracy.
 
 At Finom, this probably means: the ML team handles credit scoring and risk models, while the AI team handles the accounting workflow automation, document understanding, and agentic product experiences.
+
+---
+
+## Q9: "What production pain points do you expect in a system like this?"
+
+### Full answer
+
+Three pain points show up first: **latency, cost, and trust.**
+
+- **Latency:** multi-step workflows get slow when every transaction calls the model synchronously. I'd use batching, async processing where possible, and cache common merchants or repeated patterns.
+- **Cost:** the long tail is expensive if you run the LLM on every item. Cache known merchants, route easy cases through rules, and reserve model calls for genuinely ambiguous inputs.
+- **Trust:** confidence can drift over time. I'd monitor calibration, override rate, and severe-error rate per market, then tighten or relax thresholds based on observed behavior.
+
+The next layer is **debuggability**. Every decision needs a trace: raw input, extracted fields, model output, confidence, routing decision, and final booking. Without that, production support becomes guesswork.
+
+Finally, I expect **workflow-specific failures**, not just model failures: bad OCR, stale market config, missing VAT evidence, and support queues that grow because the proposal UX is unclear. So I would design the system to fail visibly and conservatively, then measure where humans are still getting pulled in.

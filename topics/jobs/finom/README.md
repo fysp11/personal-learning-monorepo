@@ -7,6 +7,7 @@
 - Current next interview: Interview 3, a 90-minute technical round with Viktar Adynets
 - Org model expectation: a normal `core > layers > product` structure, spanning `central > integration > embed(domain)`
 - Role expectation: own the relationships with teams to positively influence engagement, adoption, and vision around enterprise-grade novelty
+- Canonical interview-currency file: `prep/fresh-intel-april-2026.md`
 
 ## Start Here
 - `interviews/3-lead-ai-engineer/README.md` - round-specific dashboard for Interview 3
@@ -14,7 +15,8 @@
 - `prep/3-lead-ai-engineer-day-of-card.md` - one-page day-of reference for Interview 3
 - `prep/3-live-round-scenarios.md` - scenario playbook for the 60-min live coding exercise
 - `prep/3-technical-answer-bank.md` - full-depth answers for the hardest likely technical questions
-- `prep/3-latest-finom-intel.md` - latest Finom product/AI updates for interview currency
+- `prep/fresh-intel-april-2026.md` - canonical Finom product/AI updates for interview currency
+- `prep/3-latest-finom-intel.md` - archived pointer to the canonical intel file
 - `application/senior-ai-engineer-match-analysis.md` - strongest fit and objection-handling summary
 - `interviews/1-introduction--dmitry/README.md` - first-round dashboard with raw assets and cleaned summary
 - `interviews/3-lead-ai-engineer/README.md` - recruiter-confirmed third-round format and grounded prep signals
@@ -32,7 +34,8 @@
 
 ## Company Notes
 - Amsterdam-based SMB financial platform spanning banking, invoicing, and AI accounting.
-- Existing prep notes now center on 200K+ accounts, AI Accountant GA for all German customers, 500+ employees, and strong growth after the June 2025 Series C.
+- 200K+ accounts, AI Accountant GA for all German customers, 500+ employees, strong growth after the June 2025 Series C.
+- Publicly, the AI Accountant is still Germany-only; any France expansion read is interview-derived and should be treated as a hypothesis, not a confirmed launch plan.
 - Competitive set called out in existing materials: Qonto, Revolut Business, N26 Business, and Tide.
 
 ## AI and Product Direction
@@ -43,6 +46,7 @@
 - Example from the first interview summary: the system drafts a preliminary tax record, asks for approval, and then files it.
 - The broader platform vision includes proactive cash-flow monitoring, missing-item detection, and negative-trend alerts.
 - Target: 1 million business customers by end of 2026.
+- Next public AI-accounting steps: payroll tax filing and intra-EU reporting; any France read should be labeled interview-derived.
 
 ## Team and Stack Signals
 - Interviewers in scope so far:
@@ -70,6 +74,7 @@
 - The main next action is prep for Interview 3, the technical round with Viktar Adynets.
 - Round dashboard: `interviews/3-lead-ai-engineer/README.md`
 - **Primary prep files:** `prep/3-lead-ai-engineer-prep-plan.md` and `prep/3-lead-ai-engineer-day-of-card.md`
+- The canonical intel file is `prep/fresh-intel-april-2026.md`; use it for any live status numbers.
 - The Ivo interview folder README is the grounded input for Interview 3 prep.
 - The recruiter follow-up for Interview 3 confirms the `30 + 60` structure and `Claude Code` / `Codex` live format.
 - The first interview README is the distilled source for Dmitry's product, org, and stack signals.
