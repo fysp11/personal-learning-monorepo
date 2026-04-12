@@ -91,9 +91,13 @@ Before any categorization agent goes to production, you need to know: Is it accu
 bun run eval
 ```
 
+### Interview talking point
+
+"I always build severity-weighted evaluation before trusting any agent in production. Raw accuracy hides the difference between a wrong description and a wrong VAT rate — but in compliance, that difference is everything. Calibration tells us whether the confidence scores are actually useful for routing decisions."
+
 ---
 
-## Confidence Calibration Experiment
+## 4. Confidence Calibration Experiment
 
 `confidence-calibration.ts` — Demonstrates the math behind confidence-based routing: ECE calculation, Platt scaling, per-market calibration, and threshold analysis.
 
@@ -118,7 +122,31 @@ bun run calibration
 
 ---
 
-## 4. MCP Accounting Skills Server
+## 5. Multi-Market Expansion Drill
+
+`multi-market-expansion-drill.ts` — A 15-minute drill demonstrating data-driven market configuration: adding new countries without code changes.
+
+### What it shows
+
+- **Zod-validated market config**: Tax rates, chart of accounts, reduced rates, exemptions, invoice requirements
+- **Composable tax rules**: Standard → reduced → exempt → reverse charge cascade
+- **Same transaction across markets**: Shows how €100 software purchase is taxed differently in DE/FR/IT
+- **Italy SDI complexity**: Market-specific post-processing hooks for electronic invoicing
+- **Adding Netherlands**: Zero code changes — just one config object
+
+### Run
+
+```bash
+bun run multi-market
+```
+
+### Interview talking point
+
+> "Market config is data, not code. You shouldn't need a deploy to add Italy. The configuration schema validates the new market's data structure at startup — if a field is missing or a rule overlaps, validation catches it before any transaction is processed."
+
+---
+
+## 6. MCP Accounting Skills Server
 
 `mcp-accounting-server.ts` — A Model Context Protocol skill server exposing accounting tools across 5 EU markets.
 
@@ -143,33 +171,3 @@ bun run mcp-server
 ### Interview talking point
 
 "I built an MCP skill server with three accounting tools — categorization, VAT, and booking — across five EU markets. The key design decision was making VAT and booking deterministic while keeping categorization AI-powered. Adding a new market is just a policy config object — the workflow shape and tool contracts don't change. This maps directly to how Finom can scale from Germany to France without rewriting the pipeline."
-
----
-
-## Multi-Market Expansion Drill
-
-`multi-market-expansion-drill.ts` — A 15-minute drill demonstrating data-driven market configuration: adding new countries without code changes.
-
-### What it shows
-
-- **Zod-validated market config**: Tax rates, chart of accounts, reduced rates, exemptions, invoice requirements
-- **Composable tax rules**: Standard → reduced → exempt → reverse charge cascade
-- **Same transaction across markets**: Shows how €100 software purchase is taxed differently in DE/FR/IT
-- **Italy SDI complexity**: Market-specific post-processing hooks for electronic invoicing
-- **Adding Netherlands**: Zero code changes — just one config object
-
-### Run
-
-```bash
-bun run multi-market
-```
-
-### Interview talking point
-
-> "Market config is data, not code. You shouldn't need a deploy to add Italy. The configuration schema validates the new market's data structure at startup — if a field is missing or a rule overlaps, validation catches it before any transaction is processed."
-
----
-
-### Interview talking point (MAS Demo)
-
-"I've worked with production multi-agent pipelines that follow this exact pattern — typed boundaries between agents, confidence propagation for quality control, circuit breaking when upstream quality drops, and end-to-end trace observability. The key insight is that the coordination layer is where reliability lives, not inside any single agent."
