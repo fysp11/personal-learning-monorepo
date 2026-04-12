@@ -260,3 +260,61 @@ I'll wait for your signature.
 ### Interview talking point
 
 "This is the distinction Ivo drew between a passive copilot and a proactive workflow agent. The batch processor doesn't ask the user to do the work — it does the work and comes back with the results, surfacing only what genuinely requires human judgment. The reverse-charge items always surface, and filing always requires explicit approval — the earned autonomy is selective, not blanket."
+
+---
+
+## 9. Refactoring Exercise
+
+`refactoring-exercise.ts` — Scenario B practice: "Here's a messy agent — refactor it into controllable stages."
+
+### What it shows
+
+- **Part 1: The messy version** — single opaque function with anti-patterns: tax rules in prompt, no confidence score, auto-book everything, no trace, hard-coded Germany, AI handles both categorization and tax
+- **Part 2: The clean version** — decomposed into typed stages (extract → categorize → VAT → route → book) with confidence routing, market parameterization, and full audit trace
+- **Comparison output**: side-by-side showing how the same input flows through both pipelines, with the clean version surfacing reverse-charge and providing a complete decision trace
+
+### Run
+
+```bash
+bun run refactoring-exercise
+```
+
+### Interview talking point
+
+> "The first thing I look for in a live coding exercise is: where does policy live vs. where does AI live? If tax rules are in the prompt, that's anti-pattern A. I pull them out into a deterministic mapper. If there's no confidence score, that's anti-pattern B — I add confidence-based routing. The refactoring isn't about making the code pretty; it's about making the system debuggable and auditable."
+
+---
+
+## 10. Observability Patterns
+
+`observability-patterns.ts` — Three-layer observability for financial AI workflows.
+
+### What it shows
+
+- **Layer 1: Confidence distribution monitoring** — tracks P10/P50/P90 per market, detects drift before accuracy degrades, alerts on 2σ drops. This is the leading indicator.
+- **Layer 2: Terminal state tracking** — every transaction must reach `auto_booked`, `proposal_sent`, `rejected`, or `requires_review`. Stranded transactions (past SLA) trigger dead-letter alerts. Catches FM-15 (silent reject).
+- **Layer 3: Business KPI dashboard** — auto-book rate, override rate, proposal acceptance rate, review queue depth, severe error rate. Connects AI health to Ivo's FTE-per-customer metric.
+- **Demo scenario**: runs a 30-transaction batch across two simulated weeks, introduces calibration drift in week 2 to show what the alerts look like.
+
+### Run
+
+```bash
+bun run observability
+```
+
+### Key output to recognize
+
+```
+── Week 1 (baseline) ──
+  DE: auto_book=73%, proposal=20%, rejected=7%, stranded=0
+  FR: auto_book=65%, proposal=25%, rejected=10%, stranded=0
+
+── Week 2 (drift introduced) ──
+  ⚠ DE categorization P50 dropped from 0.82 → 0.69 (2.6σ below baseline)
+  ⚠ FR: 3 transactions past SLA in non-terminal state
+  📊 Override rate: DE 2.1% (target <5%) · FR 11.8% (⚠ above 5% threshold)
+```
+
+### Interview talking point
+
+> "I add confidence distribution monitoring on day one because it's the leading indicator — by the time accuracy metrics degrade, you've already misbooked real transactions. Terminal state tracking catches the silent failures metrics don't see. Business KPIs connect it to what the team actually cares about."
