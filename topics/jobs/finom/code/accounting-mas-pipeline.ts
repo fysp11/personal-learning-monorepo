@@ -200,8 +200,9 @@ class ExtractionAgent extends BaseAgent<Document, ExtractedData> {
     const confidence: ConfidenceLevel = hasAmount && hasDate ? 'high' : hasAmount ? 'medium' : 'low';
 
     // Parse amount: European format (1.250,00 → 1250.00 or 47,80 → 47.80)
-    const parsedAmount = amountMatch
-      ? parseFloat(amountMatch[1].replace(/\./g, '').replace(',', '.'))
+    const firstFind = amountMatch?.[1]
+    const parsedAmount = firstFind
+      ? parseFloat(firstFind.replace(/\./g, '').replace(',', '.'))
       : undefined;
 
     const extracted: ExtractedData = {

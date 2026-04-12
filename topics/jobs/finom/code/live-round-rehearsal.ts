@@ -118,7 +118,7 @@ function categorize(tx: TransactionInput): CategoryProposal {
 
   const merchantLower = tx.merchant.toLowerCase();
   const descLower = tx.description.toLowerCase();
-  const market = MARKET_CONFIG[tx.market];
+  const market = MARKET_CONFIG[tx.market]! as MarketConfig;
 
   const rules: Array<{
     keywords: string[];
@@ -161,7 +161,7 @@ function categorize(tx: TransactionInput): CategoryProposal {
 
   for (const rule of rules) {
     if (rule.keywords.some((kw) => combined.includes(kw))) {
-      const entry = market.chartOfAccounts[rule.category];
+      const entry = market.chartOfAccounts[rule.category]!;
       return {
         accountCode: entry.code,
         accountName: entry.name,
@@ -173,7 +173,7 @@ function categorize(tx: TransactionInput): CategoryProposal {
 
   // Fallback: low confidence, will route to review
   return {
-    accountCode: market.chartOfAccounts.office.code,
+    accountCode: market.chartOfAccounts.office!.code,
     accountName: "Unknown — needs review",
     confidence: 0.3,
     reasoning: "No keyword match. Defaulting to review queue.",
@@ -186,7 +186,7 @@ function calculateVat(
   tx: TransactionInput,
   _category: CategoryProposal
 ): VatCalculation {
-  const market = MARKET_CONFIG[tx.market];
+  const market = MARKET_CONFIG[tx.market]!;
 
   // Reverse charge: B2B intra-EU with valid VAT ID
   if (tx.isB2B && tx.counterpartyVatId) {
@@ -233,7 +233,7 @@ function createBooking(
   category: CategoryProposal,
   vat: VatCalculation
 ): BookingEntry {
-  const market = MARKET_CONFIG[tx.market];
+  const market = MARKET_CONFIG[tx.market]!;
   return {
     debitAccount: category.accountCode,
     creditAccount: "1200", // Bank account (simplified)
