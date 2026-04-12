@@ -213,3 +213,139 @@ Different core problems, different engineering patterns, different risk profiles
 - ML teams optimize metrics like AUC, precision/recall. AI teams optimize workflow completion rates, override rates, and severity-weighted accuracy.
 
 At Finom, this probably means: the ML team handles credit scoring and risk models, while the AI team handles the accounting workflow automation, document understanding, and agentic product experiences.
+
+## Q10: "How do you decide when to widen automation from proposal mode to auto-book?"
+
+### Full answer
+
+There's a specific maturity ladder with measurable criteria at each level. You don't widen based on enthusiasm — you widen based on data.
+
+**The five levels:**
+
+| Level | Behavior | Advancement criteria |
+|-------|----------|---------------------|
+| 0 — Shadow | AI runs internally, output discarded, only metrics collected | >85% agreement with human decisions for 30 days |
+| 1 — Suggest | AI suggests, human decides | >90% acceptance rate for 14 days |
+| 2 — Draft | AI pre-fills, user confirms before execution | <5% correction rate for 14 days |
+| 3 — Auto with audit | AI executes, user reviews daily summary | <2% correction rate for 30 days; ECE < 0.05 |
+| 4 — Full auto | AI executes, user alerted on anomalies only | Continuous monitoring with no regressions for 60 days |
+
+**For a new market (e.g., France launch):** Start at Level 0 regardless of Germany's track record. Zero calibration data means the confidence scores are unvalidated. Collect the first 1000 reviewed transactions in France, measure agreement rate and ECE, then advance through the ladder.
+
+**For an existing market when model changes:** Regression test + shadow mode for 7 days. If agreement rate with the previous model's confirmed decisions is >95%, advance. If it drops, investigate before widening.
+
+**What not to do:** Don't advance based on aggregate accuracy. A model that's 95% accurate on easy cases but fails systematically on reverse charge won't show up in the aggregate number. Advance based on per-category agreement rate, not total accuracy.
+
+**Specific metric thresholds for Finom:**
+- Shadow → Suggest: 85% agreement with human-confirmed bookings, measured over 30 days
+- Suggest → Draft: 90% acceptance rate (user changes their mind <10% of the time)
+- Draft → Auto: <5% correction rate (users change the pre-filled result less than 5% of the time)
+- Auto → Full auto: <2% correction rate sustained for 30 days + ECE < 0.05 + no critical error in last 100 transactions
+
+> "The AI work is Python and TypeScript. For the C# boundary, I'd start by reading the OpenAPI contracts and existing integration tests — that's enough to design and implement clean API clients. I've worked across language boundaries before and the integration patterns (REST, gRPC, shared schemas) are language-agnostic. The domain ramp would take weeks; the language ramp is days."
+
+---
+
+---
+
+## Q11: "When would you use a staged workflow versus a single agent?"
+
+### One-line answer
+
+> A single agent is right when the problem fits in one context window and tolerates graceful degradation. A staged workflow is right when failure modes are heterogeneous, steps have different trust levels, or you need independent testability per stage.
+
+### Full answer
+
+The decision comes down to three questions:
+
+**1. Are the failure modes the same across the task?**
+
+If a task can fail in only one way (e.g., "classify this text into one of ten categories"), a single agent is fine. If different sub-tasks can fail differently — OCR degrades, VAT rules change, confidence calibration drifts per market — then a staged workflow is required. You need to fail, alert, and fix each stage independently, not debug a combined blob.
+
+For Finom: extraction fails when document quality degrades (FM-01), categorization fails when the model is overconfident (FM-04), VAT fails when B2B flags are missing (FM-07). These require independent monitoring and independent improvement loops — that alone mandates staged architecture.
+
+**2. Do steps have different trust levels or authorization requirements?**
+
+A single agent cannot have one part that auto-executes and one part that requires human approval. In a staged workflow, you can insert an approval gate between the proposal stage and the booking stage. The agent that generates proposals has no access to the booking ledger. The booking step only runs after explicit confirmation.
+
+This is why financial workflows can't be a single agent: the LLM that categorizes should not have write access to the accounting ledger. Separation is a security control, not just a style preference.
+
+**3. Can you test the steps independently?**
+
+With a single agent, you can only test the end-to-end output. With staged workflows, you can run the VAT calculation against 1000 labeled transactions without touching the LLM. You can regression-test the router against a saved confidence distribution. You can calibrate the categorizer on new market data without changing the booking step.
+
+This is the operational argument: independent testability means you can improve one component without revalidating the whole system.
+
+### When a single agent is actually right
+
+- Exploration or prototype: you don't know the right stage boundaries yet
+- Advisory output only: the agent recommends, a human acts — no approval gate needed
+- The entire task is unstructured input → structured summary (no compliance-sensitive action)
+- Short-lived script: one-off data cleaning, not a production workflow
+
+### The key phrase
+
+> "I use a single agent to explore and a staged workflow to ship. Once I know what can go wrong, I formalize the stages — because each named failure mode deserves its own circuit breaker."
+
+---
+
+---
+
+## Q12: "What observability would you add first to a financial AI workflow?"
+
+### One-line answer
+
+> Three layers in priority order: confidence distribution (is the model drifting?), terminal state tracking (is every transaction resolving?), and business KPI deltas (is the automation actually helping?).
+
+### Full answer
+
+Most engineers start with request logs. That's the wrong first layer for financial AI — it tells you what happened, not whether the system is healthy.
+
+**Layer 1: Confidence distribution (add first, day one)**
+
+Track the rolling P10/P50/P90 of confidence scores per stage, per market. If the P50 for categorization in Germany drops from 0.82 to 0.71 over a week, you have a signal before any transaction is misbooked. Compare each batch's distribution against the 30-day historical baseline. Alert if P50 drops more than 2σ below historical.
+
+Why first: confidence drift is the leading indicator for accuracy degradation. Accuracy metrics are lagging — you need corrections to accumulate before you see them. Confidence distribution is real-time.
+
+**Layer 2: Terminal state tracking (add second)**
+
+Every transaction must reach one of: `auto_booked`, `proposal_sent`, `rejected`, `requires_review`, `error_logged`. Track the time-in-state for every transaction. Alert if any transaction has been in a non-terminal state for more than the SLA window (e.g., 2 hours for batch jobs).
+
+Why second: silent rejects (FM-15) are invisible without this. A transaction that was ingested and then dropped due to an unhandled exception has no representation in accuracy metrics — it just disappears.
+
+**Layer 3: Business KPI deltas (add by end of week one)**
+
+Track per-week:
+- Auto-book rate (target: >70% at steady state, <30% at new market launch)
+- Override rate on auto-booked transactions (target: <2%, alert at >5%)
+- Proposal acceptance rate (target: >85%, drop signals the model is proposing wrong accounts)
+- Review queue depth (alert if growing week-over-week — indicates escalation storm FM-14)
+- Severe error rate (wrong VAT or wrong account code — target: zero, any occurrence is a P1)
+
+Why: these are the metrics Ivo will look at. Connecting technical health to business impact is how the AI team demonstrates that their work reduces FTE per customer.
+
+**What NOT to add first**
+
+- Raw request/response logs: useful for debugging but creates a privacy/compliance surface for customer financial data. Add with field-level PII scrubbing after the health metrics.
+- Model latency percentiles: important eventually, but latency degradation is visible before it affects SLA. Confidence drift and silent rejects are not.
+- Token counts: developer-facing cost metric, not operational health.
+
+### Instrumentation pattern
+
+```
+SpanTrace (per transaction):
+  → correlation_id, market, transaction_id
+  → per_stage: { name, duration_ms, confidence, decision }
+  → terminal_state, total_duration_ms
+  → batch_id (for anomaly detection)
+
+BatchHealthSummary (per batch run):
+  → confidence P10/P50/P90 vs 30d baseline
+  → stranded_count (non-terminal past SLA)
+  → auto_book_rate, override_rate, severe_error_count
+  → alert_fired: boolean, alert_reason
+```
+
+### The key phrase
+
+> "I add confidence distribution monitoring on day one because it's the leading indicator — by the time accuracy metrics degrade, you've already misboked real transactions. Terminal state tracking catches the silent failures metrics don't see. Business KPIs connect it to what the team actually cares about."
