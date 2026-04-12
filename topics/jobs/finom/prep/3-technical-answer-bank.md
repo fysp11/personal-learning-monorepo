@@ -192,3 +192,40 @@ Different core problems, different engineering patterns, different risk profiles
 - ML teams optimize metrics like AUC, precision/recall. AI teams optimize workflow completion rates, override rates, and severity-weighted accuracy.
 
 At Finom, this probably means: the ML team handles credit scoring and risk models, while the AI team handles the accounting workflow automation, document understanding, and agentic product experiences.
+
+---
+
+## Q9: "Our core platform is in C#/.NET — how do you work in a polyglot stack?"
+
+### Full answer
+
+I'd design the boundary deliberately, not apologetically.
+
+**The boundary is the asset, not the problem.** If the core banking ledger, double-entry engine, and ELSTER filing are in C#, that's exactly right — those need deterministic behavior, type safety, and high test coverage. The AI orchestration layer on top (categorization, extraction, confidence routing) can be TypeScript or Python without any tension, because the two layers communicate through a well-defined API boundary.
+
+**How I'd structure the integration:**
+
+The C# core exposes a thin API surface for what the AI layer needs:
+- `POST /bookings` — create a double-entry booking entry (input: confirmed category, amount, VAT breakdown)
+- `GET /chart-of-accounts?market=DE` — retrieve valid account codes for routing validation
+- `POST /ustava/draft` — submit a VAT return draft for review
+
+The AI orchestration layer calls these APIs after the AI work is done. It never directly writes to the accounting ledger — it only submits confirmed, validated results through the C# service boundary.
+
+**Why this is cleaner than a monolith:**
+
+If the categorization model changes (new LLM, new prompt), I redeploy the AI layer. The C# core doesn't change. If a tax rule changes (new VAT rate in France), the C# core is updated deterministically and the AI layer picks it up via the config API. No shared state, no coordinated deploys.
+
+**What I'd own vs what I'd consume:**
+
+I own: the TypeScript/Python orchestration pipeline, MCP skill servers, prompt management, eval harness, confidence routing, observability. I consume: the C# booking API, market config API, filing API.
+
+I'd read the C# service contracts (OpenAPI spec or proto) rather than the implementation. I don't need to write C# to design a clean integration — I need to understand the contract. On a practical level: reading C# service code is feasible for someone with TypeScript experience in a few days. The syntax patterns are similar enough that I can review, understand, and even propose changes to C# interfaces.
+
+**What I'd want to establish early:**
+
+A clear definition of which layer owns which concern. Specifically: does the AI layer validate the category against the chart of accounts before calling the C# API, or does the C# API validate on receipt? I'd push for validation on both sides — the AI layer runs a local check (market config downloaded via API) and the C# API enforces it as a contract. Defense in depth for a compliance-critical operation.
+
+### Gap response variant (if pressed on C# specifically):
+
+> "The AI work is Python and TypeScript. For the C# boundary, I'd start by reading the OpenAPI contracts and existing integration tests — that's enough to design and implement clean API clients. I've worked across language boundaries before and the integration patterns (REST, gRPC, shared schemas) are language-agnostic. The domain ramp would take weeks; the language ramp is days."
