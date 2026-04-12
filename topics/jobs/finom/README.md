@@ -76,9 +76,14 @@
 - The strongest prep path for the next round is: match analysis -> first-round summary -> interview 3 prep plan -> live-round drills.
 - Cross-company insights connecting Finom and Delphyr prep: `../cross-company-insights.md`
 
-## New Insights (Apr 11)
+## New Insights (Apr 11-12)
 - `insights/live-coding-with-ai-agents-advanced-patterns.md` — three modes of agent-assisted coding, verbal checkpoints, common pitfalls for live rounds
 - `insights/confidence-calibration-deep-dive.md` — ECE, Platt scaling, per-market calibration, calibration drift monitoring, earned autonomy as a measurable ratchet
+- `insights/agent-safety-transaction-semantics.md` — commit/rollback architecture, autonomy ladder, compensation chains, HITL taxonomy
+- `insights/design-patterns-correctness-sensitive-ai.md` — 7 patterns: confidence threshold cascade, HITL selection, market config schema, error taxonomy, staging/commit, MCP tool boundary, evasion detection
+- `insights/mental-models-interview-discussions.md` — 7 mental models for explaining architecture choices: earned trust, separation of concerns, market config as data, calibration, compensation chains, agent as contract, observability
+- `insights/observability-production-agents.md` — production tracing, confidence histograms, correction feedback loops, canary routing, A/B testing agents, alert taxonomy
+- `insights/mas-coordination-patterns.md` — MAS coordination: orchestrator-worker, fan-out/fan-in, saga pattern, circuit breaker, shared state, MAS testing pyramid
 
 ## Best Angles
 - Production AI systems with end-to-end ownership
