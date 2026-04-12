@@ -113,6 +113,97 @@ The existing interview simulation targets Interview 2 signals. This document cov
 
 ---
 
+---
+
+## Category 7: France Expansion (Iterations 6 Topics)
+
+### Q: "You said market config is data, not code. What actually has to change to support France?"
+
+**Target answer:**
+> "More than just config — but less than a rewrite. The pipeline shape, orchestrator, confidence routing, and observability all transfer unchanged. What's genuinely new: a PCG account mapping (different codes from SKR03), a 4-rate VAT policy (France has 20/10/5.5/2.1% vs Germany's 19/7%), and a filing integration against DGFiP's CA3 instead of ELSTER. That's real engineering work — not just a config change. And France has a September 2026 e-invoicing mandate via Chorus Pro that adds a new pre-categorization stage for structured XML invoices."
+
+**Hostile follow-up:** "That sounds like a lot. Is multi-market actually a solved problem?"
+
+> "The workflow is solved. The per-market compliance surface is genuinely hard and always will be. The value of the abstraction isn't that adding a market is trivial — it's that the hard parts are isolated. Changing a VAT rate doesn't touch the confidence router. Adding Chorus Pro support doesn't touch the eval harness. You can work on each piece without disturbing the others."
+
+### Q: "France has four VAT rates. How does your categorization model handle that?"
+
+> "The model doesn't. The model outputs a category label — 'restaurant', 'food delivery', 'cultural event'. The deterministic VAT layer looks up the category in the French policy config and finds the applicable rate. A restaurant is 10% for sit-in, 5.5% for takeaway. That distinction might need an extra feature (has a table service flag, or the transaction description contains 'emporter'). The AI proposes the category; the rules apply the rate. Same pattern as Germany — just more rules."
+
+**Hostile follow-up:** "What about the cold start? No French training data at launch."
+
+> "That's the France-specific calibration problem. At launch: 100% proposal mode regardless of confidence score. Collect the first 1000 reviewed transactions. Fit per-market calibration curves. Then, and only then, widen the auto-book threshold. The Germany model gives a warm start — most SaaS vendors, travel expenses, and coworking are the same — but French merchant names and categories need validation before we trust the scores."
+
+---
+
+## Category 8: Failure Modes and Production Reliability
+
+### Q: "What failure mode actually woke you up at night in a production AI system?"
+
+**Target answer (use a pattern from the failure modes encyclopedia):**
+> "The silent reject pattern. A transaction was ingested but never reached a terminal state — not booked, not in review, not flagged. The user's money moved but their accounting didn't reflect it. We only caught it because a daily balance reconciliation noticed the count mismatch: 47 transactions ingested, 46 in terminal state. That one stranded transaction had been sitting in the pipeline for 6 hours. The fix: every transaction must have an explicit lifecycle state machine with an SLA clock on non-terminal states. If a transaction hasn't advanced in 30 minutes, it goes to a dead letter queue with an alert."
+
+**If pushed:** "What was the root cause?"
+
+> "A message queue consumer crashed mid-processing — wrote the first stage result to the database but didn't acknowledge the message. The retry policy requeued it, but by then the circuit breaker had tripped and the retry sat unprocessed. Multiple failure modes compounding. The lesson: idempotency isn't just about duplicate prevention — it's about making the recovery path observable."
+
+### Q: "Your confidence calibration sounds good in theory. What does ECE of 0.08 actually mean operationally?"
+
+> "It means when the model says it's 85% confident, it's actually right about 77% of the time. That 8% gap means if you set your auto-book threshold at 0.85, you're silently auto-booking things that fail roughly 1-in-8 times instead of 1-in-6.6. In accounting, a 15% error rate on auto-booked transactions is going to generate a lot of correction work. Practically: you'd tighten the threshold to 0.93 to get the same actual accuracy as the calibrated-0.85 case, or you'd run Platt scaling to recalibrate the raw scores."
+
+### Q: "You described a circuit breaker for escalation storms. Isn't that just hiding failures?"
+
+> "Only if the circuit breaker opens silently. The circuit must emit an alert when it opens: ops gets a notification, the batch is paused, and the queue holds new work without dropping it. The circuit isn't hiding the failure — it's preventing the failure from cascading into a queue flood. Hidden failures are the anti-pattern; the circuit breaker makes the failure visible and controlled. The difference between 'the pipeline is struggling' (circuit closed, high error rate) and 'we know the pipeline is struggling, we've stopped auto-processing, and ops is investigating' (circuit open, alert sent) is the entire point."
+
+---
+
+## Category 9: FTE Metric and Business Impact
+
+### Q: "FTE per active customer is a finance metric. Why do you care about it as an engineer?"
+
+**Target answer:**
+> "Because it's the only honest measure of whether the AI is actually doing work or just generating noise. An AI system that auto-books 90% of transactions but drives a 10% correction rate might have the same FTE cost as a 50% auto-book system with a 1% correction rate — the corrections from the first system are expensive. The FTE metric integrates all of that: human time for review + correction + support tickets + error remediation. If FTE per customer is going down as customer count grows, the AI is reducing real work. If it's flat, the AI savings are being eaten by the overhead it creates."
+
+**Hostile follow-up:** "But you can't measure FTE per customer in a sprint. What do you actually track?"
+
+> "Leading indicators: override rate (monthly), proposal confirmation rate (weekly), support ticket rate per customer (weekly). These move faster than FTE and predict it. If override rate climbs from 1% to 3%, FTE per customer will climb in the next quarter. That's the signal to act before the lagging metric worsens."
+
+### Q: "You claim 85% auto-book rate. How do you know it's sustainable, not just correct on easy cases?"
+
+> "That's exactly the severity weighting question. Raw auto-book rate is meaningless if all the auto-booked cases are the easy ones. I'd split the auto-book rate by case difficulty: known vendors (should be 95%+), first-time vendors (might be 50%), B2B EU transactions (deliberately 0% — always surfaces for reverse-charge review). If the 95%+ auto-book rate is driven by Amazon and Adobe subscriptions while all the hard cases hit the review queue, you're not really at 85% — you're at 85% on the easy 70% of transactions. The meaningful number is auto-book rate on transactions the model hasn't seen before."
+
+---
+
+## Category 10: The 90-Day Plan Under Pressure
+
+### Q: "You said 30 days learning before contributing. We move fast — that feels slow."
+
+**Target answer:**
+> "I said learning *before proposing architecture changes*. I'd be writing code in the first week — tests, eval cases, instrumenting existing pipelines. The learning period is about not proposing rewrites I don't understand yet. There's a real cost to an engineer who joins and immediately suggests redesigning the system they haven't seen fail in production. The 30-day snapshot is about earning the credibility to propose, not about waiting to be useful."
+
+**Hostile follow-up:** "What would you actually ship in week 2?"
+
+> "An eval test case for a failure mode I found in the first week's production audit. If I trace a live transaction and notice the eval harness doesn't cover the error pattern I just saw, adding that test case is immediately valuable, low-risk, and signals that I'm reading the actual failure data rather than the documentation."
+
+### Q: "Your 90-day plan ends with 'share a pattern'. What if the team doesn't want a pattern from a 90-day engineer?"
+
+> "Then I read the signal right. If the team isn't ready to adopt the pattern, forcing it out at 90 days is exactly the wrong move. The goal isn't to ship a pattern in 90 days — it's to *identify* one worth shipping. If the timing isn't right, the contribution might be a focused PR or a well-scoped addition to the eval harness. The output of 90 days is trust and one concrete useful thing — not necessarily a reusable abstraction."
+
+---
+
+## Category 11: Autonomous Workflow Design
+
+### Q: "Your batch processor auto-books revenue transactions at 95% confidence. What if a client payment is misidentified as a transfer?"
+
+**Target answer:**
+> "That's why inbound transactions get their own routing rule. Revenue recognition is higher stakes than expense categorization — a misidentified client payment could mean we report revenue in the wrong period or to the wrong counterparty. In my demo, inbound items with high confidence auto-book as revenue, but in a production system I'd surface all inbound items above a threshold amount — say €1000 — for confirmation regardless of confidence. The FTE cost of reviewing 3 inbound payments per month is negligible compared to the risk of misattributing revenue."
+
+### Q: "The 'go do the task, come back' UX sounds great. But users won't check the results. They'll just assume it's right."
+
+> "That's a real UX risk and the reason proposal mode exists. 'Come back' doesn't mean the user rubber-stamps everything — it means the system has already made the easy decisions so the user's attention is focused on the few things that actually need it. In the batch demo: 8 auto-booked silently, 3 require 30 seconds of confirmation each, 2 require the user to understand reverse charge. The cognitive load shifts from 'process 15 transactions' to 'check 5 things the system flagged.' If users are rubber-stamping without reading, the proposal UX is failing — and that's a product problem, not an AI problem. The signal is override rate near zero *with* low error rate in subsequent audits."
+
+---
+
 ## Pre-Interview Drill
 
 Run through these 5 scenarios in 15 minutes:
@@ -122,3 +213,11 @@ Run through these 5 scenarios in 15 minutes:
 3. **Live coding recovery** — acknowledge a gap, pivot to the most valuable next action
 4. **Scale challenge** — merchant caching, batch processing, anomaly detection
 5. **Self-awareness** — fintech gap answer, delivered without defensiveness
+
+**Add for April 14 (iterations 4–6 topics):**
+
+6. **France expansion** — "What actually has to change?" (don't undersell the work)
+7. **Failure modes** — name one that happened, root cause, what you'd do differently
+8. **FTE metric** — explain as a leading indicator framework, not just a number
+9. **90-day plan under speed pressure** — "30 days learning feels slow"
+10. **Autonomous workflow** — defend the "come back" UX against "users won't check"

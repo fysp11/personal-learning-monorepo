@@ -43,18 +43,37 @@ A single reading sequence for the evening before the April 14 interview. Each it
 7. Open terminal, navigate to `code/`:
    ```bash
    cd topics/jobs/finom/code
-   bun run rehearsal       # 20 seconds — verify it works
-   bun run calibration     # 10 seconds — see the calibration curves
-   bun run multi-market    # 10 seconds — see DE/FR/IT/NL tax differences
+   bun run rehearsal         # 20s — DE/FR pipeline, confidence routing
+   bun run autonomous-batch  # 10s — month-end "go do, come back" pattern
+   bun run resilience        # 15s — circuit breaker, idempotency, anomaly detection
+   bun run calibration       # 10s — ECE, Platt scaling, per-market curves
    ```
    
-   Don't analyze — just confirm everything runs and glance at the output patterns. The muscle memory of having *just seen* this output helps during the interview.
+   Don't analyze — just confirm everything runs and glance at the output patterns. The muscle memory of having *just seen* this output (especially the autonomous-batch summary line and the circuit breaker trip in resilience) helps during the interview.
+   
+   **Key outputs to recognize:**
+   - `autonomous-batch`: "I processed 15 transactions... I'll wait for your signature."
+   - `resilience`: "[circuit:categorization] → OPEN (failure rate 60% > threshold 40%)"
+   - `calibration`: per-market ECE table showing IT worst-calibrated
+
+---
+
+## Phase 4b: Skim New Proposals (5 min)
+
+8. **`prep/proposals/README.md`** — 2 minutes to scan the index. Know what's in each document so you can reference it verbally without having to look it up.
+
+   What to remember from iterations 4–6:
+   - **Failure modes**: name 3 from memory — silent reject (FM-15), confidence inflation (FM-10), reverse charge miss (FM-07)
+   - **France**: September 2026 Chorus Pro mandate, 4 VAT rates, PCG not SKR03, cold-start calibration problem
+   - **FTE metric**: 5 components, override rate as leading indicator, threshold-as-dial framing
+   - **90-day plan**: 30 days diagnostic, 60 days one focused PR, 90 days pattern + adoption
+   - **Story bank**: know which story fits which question type (see table at bottom of `3-interview3-story-bank.md`)
 
 ---
 
 ## Phase 5: Self-Awareness (5 min)
 
-8. **`prep/3-lead-ai-hostile-followups.md`** — Read Category 6 (Self-Awareness and Gaps). Practice the "no fintech experience" answer aloud:
+9. **`prep/3-lead-ai-hostile-followups.md`** — Read Category 6 (Self-Awareness and Gaps) **and** the new Categories 7–11 pre-interview drill list at the bottom. Practice the "no fintech experience" answer aloud:
    > "I ran an SMB — I've done UStVA filing from the user side."
 
 9. **`interviewers/V-Adynets.md`** — Skim the "Useful Interview Read" section. Expect someone who values precise decomposition and fast detection of hand-wavy logic.
@@ -63,7 +82,7 @@ A single reading sequence for the evening before the April 14 interview. Each it
 
 ## Phase 6: Questions to Ask (2 min)
 
-10. **`prep/3-lead-ai-engineer-day-of-card.md`** — Read the "Questions to Ask Them" section. Pick your top 3 (don't ask all 5 — it looks rehearsed). My recommendations:
+10. **`prep/3-lead-ai-engineer-day-of-card.md`** — Read the "Questions to Ask Them" section. My top pick: "What's the hardest production bug you've had in the accounting pipeline?" — it signals you think about production reality, not just design elegance. Pick your top 3 (don't ask all 5 — it looks rehearsed). My recommendations:
     - "What does the team's day-to-day look like?"
     - "What's the hardest production bug you've had in the accounting pipeline?"
     - "If I joined, what would I own in the first 90 days?"
