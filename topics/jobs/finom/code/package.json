@@ -11,7 +11,8 @@
     "multi-market": "bun run multi-market-expansion-drill.ts",
     "mcp-server": "bun run mcp-accounting-server.ts",
     "resilience": "bun run production-resilience-patterns.ts",
-    "autonomous-batch": "bun run autonomous-batch-processor.ts"
+    "autonomous-batch": "bun run autonomous-batch-processor.ts",
+    "refactoring-exercise": "bun run refactoring-exercise.ts"
   },
   "dependencies": {
     "zod": "^4.3.6"

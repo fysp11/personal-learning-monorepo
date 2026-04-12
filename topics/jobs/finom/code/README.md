@@ -171,3 +171,92 @@ bun run mcp-server
 ### Interview talking point
 
 "I built an MCP skill server with three accounting tools — categorization, VAT, and booking — across five EU markets. The key design decision was making VAT and booking deterministic while keeping categorization AI-powered. Adding a new market is just a policy config object — the workflow shape and tool contracts don't change. This maps directly to how Finom can scale from Germany to France without rewriting the pipeline."
+
+---
+
+## 7. Production Resilience Patterns
+
+`production-resilience-patterns.ts` — Five production reliability patterns directly mapped to the failure modes catalog (`prep/proposals/3-financial-ai-failure-modes.md`).
+
+### What it shows
+
+- **CircuitBreaker**: Opens at configurable failure rate threshold, prevents FM-14 (Escalation Storm). Transitions CLOSED → OPEN → HALF_OPEN → CLOSED. Demo: three FAILING_VENDOR transactions trip the breaker at 60%, subsequent healthy transactions are blocked until recovery.
+- **IdempotencyRegistry**: Input-hashed key per (txId, stageName). Prevents FM-16 (Stage Leak) and FM-18 (ELSTER double-submission). Demo: re-processing the same two transactions returns cached results with `[idempotency] HIT` log.
+- **RetryWithBackoff**: Exponential backoff wrapper for transient LLM/API failures. Prevents silent drops from one-time network errors.
+- **TransactionLifecycleRegistry**: Every transaction must reach an explicit terminal state (`auto_booked` / `proposal_sent` / `rejected_notified` / `error_logged`). `findStrandedTransactions()` queries for non-terminal transactions past SLA window. Prevents FM-15 (Silent Reject).
+- **BatchAnomalyDetector**: Tracks rolling confidence distribution per batch (P10/P50/P90). Emits anomaly if current P50 is >2σ below historical — signals OCR drift (FM-01) or confidence inflation (FM-10) early.
+
+### What it does NOT show
+
+- LLM integration — categorization is simulated with deterministic responses
+- Persistence — registry is in-memory for demo purposes
+- Production retry budgets — backoff is simplified
+
+### Run
+
+```bash
+bun run resilience
+```
+
+### Key output to recognize
+
+```
+[circuit:categorization] → OPEN (failure rate 60% > threshold 40%)
+Found 1 stranded transaction(s): tx_stranded
+Action: send to dead letter queue + alert ops (FM-15 prevention)
+```
+
+### Interview talking point
+
+"Each pattern in this demo is named after a specific failure mode from the production failure catalog I maintain. The circuit breaker prevents escalation storms where a bad document batch floods the human review queue. The transaction lifecycle prevents silent rejects — transactions that were ingested but never reached a terminal state. These aren't abstract patterns; they're responses to specific failure modes I've thought through for financial AI workflows."
+
+---
+
+## 8. Autonomous Batch Processor
+
+`autonomous-batch-processor.ts` — The "go do the task, then come back" agentic pattern Ivo Dimitrov described as the product goal.
+
+### What it shows
+
+- **Month-end autonomous close**: Processes a 15-transaction batch (Anna's March 2026) and returns a structured `MonthCloseReport` — not just a list of results
+- **Three-tier output**: `autoProcessed` (no user action needed), `proposalsForApproval` (confirm or override), `requiresAttention` (genuinely ambiguous + all reverse-charge items)
+- **Earned autonomy by category**: Known SaaS/travel/coworking → auto-book. Restaurants, new vendors → propose. Reverse charge (AWS Ireland, Google Ireland) → always surfaces regardless of confidence. Filing → always requires explicit user signature.
+- **Draft UStVA**: Aggregates Zahllast from confirmed bookings only (conservative). Shows Kz 81, Kz 63 line items.
+- **Natural-language summary**: "I processed 15 transactions… I'll wait for your signature." — the "come back" message.
+- **Audit log**: Every routing decision with confidence, category, and reason.
+
+### The architectural distinction
+
+All other code demos process transactions one at a time. This demo takes a batch and owns the entire month-end close:
+
+```
+Input:  15 raw transactions for a user's accounting period
+Output: {
+  autoProcessed: 8 items,      → silent
+  proposalsForApproval: 3,     → 30 seconds of user time
+  requiresAttention: 4,        → includes 2 reverse-charge items
+  draftUStVA: { zahllast: 1301.44, requiresUserSignature: true },
+  summary: "I processed 15 transactions..."
+}
+```
+
+### Run
+
+```bash
+bun run autonomous-batch
+```
+
+### Key output to recognize
+
+```
+── Summary ──
+I processed 15 transactions for 2026-03. 8 were categorized and booked
+automatically. 3 need your confirmation... 4 require your attention,
+including 2 reverse-charge item(s)... Zahllast of €1301.44.
+Review the flagged items and draft before I submit to ELSTER —
+I'll wait for your signature.
+```
+
+### Interview talking point
+
+"This is the distinction Ivo drew between a passive copilot and a proactive workflow agent. The batch processor doesn't ask the user to do the work — it does the work and comes back with the results, surfacing only what genuinely requires human judgment. The reverse-charge items always surface, and filing always requires explicit approval — the earned autonomy is selective, not blanket."

@@ -205,26 +205,62 @@ Use this frame:
 
 ---
 
-## Prep Materials Index (Updated Apr 11)
+## Prep Materials Index (Updated Apr 12 — Iteration 8)
 
-### Day-Of
-- `prep/3-lead-ai-engineer-day-of-card.md` — **2-minute skim** with thesis, checklist, verbal checkpoints, key numbers, gap responses
-- `prep/fresh-intel-april-2026.md` — **latest public signals**: AI Accountant GA, 200K+ accounts, payroll/ZM roadmap
+### Day-Of (read in this order)
+1. `prep/3-lead-ai-engineer-day-of-card.md` — 2-min skim: thesis, checklist, key numbers, gap responses
+2. `prep/fresh-intel-april-2026.md` — latest signals: GA, 200K+, payroll roadmap
+3. `prep/proposals/README.md` — 2-min scan: what each proposal doc adds
 
 ### Technical Depth
-- `prep/3-lead-ai-engineer-prep-plan.md` — main 17-question prep plan
-- `prep/3-lead-ai-hostile-followups.md` — 18 hostile follow-up questions with target answers
-- `insights/live-coding-with-ai-agents-advanced-patterns.md` — scaffold/implement/debug modes for the 60-min live round
+- `prep/3-lead-ai-engineer-prep-plan.md` — 17-question prep plan, drills 1–9
+- `prep/3-lead-ai-hostile-followups.md` — **11 categories**, including iterations 4–7 topics
+- `prep/3-live-round-scenarios.md` — 5 scenario playbooks (A–E) for live coding
+- `prep/3-lead-ai-engineer-night-before.md` — night-before reading sequence + warm-up scripts
+- `prep/3-technical-answer-bank.md` — 9 full-depth answers (Q1–Q9 including C#/.NET)
+- `insights/live-coding-with-ai-agents-advanced-patterns.md` — verbal anchors for live round
 - `insights/confidence-calibration-deep-dive.md` — ECE, Platt scaling, earned autonomy math
 
-### Code (All Verified Running)
-- `code/live-round-rehearsal.ts` — `bun run rehearsal` — the core 20-min drill
-- `code/confidence-calibration.ts` — `bun run calibration` — per-market calibration analysis
-- `code/multi-market-expansion-drill.ts` — `bun run multi-market` — DE/FR/IT/NL zero-code extension
+### Domain Knowledge
+- `prep/german-sme-accounting-domain-primer.md` — vocabulary reference
+- `prep/proposals/3-ustava-walkthrough.md` — procedural month-end close narrative
+- `prep/proposals/3-france-expansion-technical.md` — PCG, CA3, Sept 2026 Chorus Pro mandate
+
+### Business Impact
+- `prep/proposals/3-fte-metric-analysis.md` — FTE/customer decomposition + interview answers
+- `prep/proposals/3-90-day-plan.md` — first-90-days answer mapped to Ivo's three workstreams
+- `prep/proposals/3-adoption-mechanics.md` — what makes AI adoption actually work
+
+### Failure Modes
+- `prep/proposals/3-financial-ai-failure-modes.md` — 20 named failure modes across 7 categories
+
+### Behavioral
+- `prep/proposals/3-interview3-story-bank.md` — 6 stories with story→question mapping table
+- `prep/gap-mitigation.md` — fintech gap, C#/.NET gap, other objections
+
+### Code (9 demos — all verified running)
+
+| Script | What it proves |
+|--------|---------------|
+| `bun run rehearsal` | Core pipeline: extract → categorize → VAT → route → book, DE+FR |
+| `bun run demo` | Multi-agent orchestration, circuit breaking, end-to-end trace |
+| `bun run eval` | Severity-weighted evaluation, calibration, regression detection |
+| `bun run calibration` | ECE, Platt scaling, per-market calibration curves |
+| `bun run multi-market` | Zero-code market addition, Zod-validated config, Italy SDI |
+| `bun run mcp-server` | MCP skill server, 5 markets, composable tools |
+| `bun run resilience` | Circuit breaker, idempotency, lifecycle audit, anomaly detection |
+| `bun run autonomous-batch` | Month-end "go do the task, come back" — structured completion report |
+| `bun run refactoring-exercise` | Scenario B: messy blob → clean stages, all anti-patterns labeled |
+
+**Night-before warm-up** (5 scripts, ~60 seconds):
+```bash
+cd topics/jobs/finom/code
+bun run rehearsal && bun run autonomous-batch && bun run resilience && bun run refactoring-exercise && bun run calibration
+```
 
 ### Cross-Company
-- `../cross-company-system-design-template.md` — reusable 7-step system design framework
-- `../cross-company-production-feedback-loops.md` — correction routing and eval suite growth
+- `../cross-company-system-design-template.md` — 7-step system design skeleton
+- `../cross-company-production-feedback-loops.md` — correction routing, eval suite growth
 - `../cross-company-error-taxonomy-worked-examples.md` — Finom-specific error trees
 
 ---
@@ -233,3 +269,16 @@ Use this frame:
 
 - For **Dmitry**, prove: **I can build this well.**
 - For **Interview 3**, prove: **I can reason clearly, scope fast, and use AI tools without losing control of the system.**
+
+### Key numbers to know cold
+
+| Number | What it is |
+|--------|-----------|
+| 19% / 7% | German VAT rates (standard / reduced) |
+| 20% / 10% / 5.5% / 2.1% | French VAT rates |
+| 0.85 / 0.5 | Auto-book / proposal confidence thresholds |
+| ECE < 0.05 | Calibration bar before trusting confidence for routing |
+| Sept 1, 2026 | French B2B e-invoicing mandate (Chorus Pro) |
+| 200K+ | Finom active accounts (Apr 2026) |
+| FTE/customer | Ivo's business metric for AI impact |
+| SKR03 / PCG | German / French chart of accounts standard |
