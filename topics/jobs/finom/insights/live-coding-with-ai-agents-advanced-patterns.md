@@ -92,6 +92,85 @@ This is the "earned autonomy" pattern Ivo described — start conservative, wide
 
 ---
 
+## Execution-Model Refactor Pattern
+
+One especially strong live-round move is to improve throughput **without** changing the public interface. This shows mature engineering judgment because you protect downstream integrations while still fixing the bottleneck.
+
+### Contract parity rule
+
+Say this explicitly:
+
+> "I want shared request and response contracts first. Then I can change execution underneath them without making every caller pay for my refactor."
+
+### The concrete pattern
+
+```
+Frozen API contract
+  → shared models
+  → same endpoint paths
+  → same response ordering and error shape
+
+Changed execution layer
+  → sequential sync loop
+  → bounded async fan-out
+  → semaphore-capped concurrency
+```
+
+### Why this scores well
+
+- It proves you understand that interfaces are product surface area.
+- It shows you can make `Codex` / `Claude` faster by giving them a narrow, local refactor target.
+- It demonstrates measurable leverage: lower batch latency without hand-wavy redesign.
+- It maps cleanly to Finom's environment, where internal improvement is useful only if domain teams can adopt it without integration churn.
+
+### Good live-round phrasing
+
+> "I'm not going to redesign the world here. I'll keep the contract fixed, isolate the slow execution path, and swap sequential waiting for bounded concurrency so the gain is measurable and low-risk."
+
+> "The control point is the semaphore. Unbounded async looks clever in a demo and unstable in production."
+
+---
+
+## Python Async Discipline — Named Pitfalls for Live Round
+
+When narrating the batch refactor (Scenario F), use specific Python vocabulary. These are the pitfalls senior engineers name; naming them signals depth that "async is faster" does not.
+
+### The three failure modes to name out loud
+
+**1. Blocking the event loop**
+> "If I put a CPU-heavy operation inside the async handler — say, synchronous PDF parsing or heavy JSON schema validation — it freezes the entire event loop. Everything queued behind it waits. The fix is `loop.run_in_executor` for CPU work, keeping the async path clean for I/O."
+
+**2. Synchronous library inside async context**
+> "Using `requests` or `time.sleep` inside an async function defeats the concurrency entirely. The thread blocks, and Python can't switch to pending coroutines. I'd use `httpx` or `aiohttp` for outbound calls and `asyncio.sleep` for delays."
+
+**3. Unawaited coroutines — silent failures**
+> "If you schedule a coroutine with `asyncio.create_task` but don't handle the result or await it, exceptions disappear silently. The task fails, nothing surfaces, and the transaction is in a non-terminal state with no alert. I always attach `.add_done_callback` or gather results explicitly so failures are never silent."
+
+### GIL — one sentence when relevant
+> "Python's GIL means true CPU parallelism requires multiprocessing, not threading. But for this batch problem, the bottleneck is I/O-bound — waiting for LLM responses — so async with bounded concurrency is exactly right. No need for multiprocessing here."
+
+### The semaphore as a production control
+```python
+# This is the one control point for provider stability
+sem = asyncio.Semaphore(MAX_CONCURRENT)
+
+async def bounded_categorize(item):
+    async with sem:
+        return await categorization_service.categorize(item)
+
+results = await asyncio.gather(
+    *[bounded_categorize(item) for item in batch],
+    return_exceptions=True  # don't let one failure kill the batch
+)
+```
+
+> "The semaphore isn't just about latency. It's about not hammering the LLM provider into rate-limiting. Unbounded `gather` on a 1000-item batch looks like a DDoS from the provider's perspective."
+
+### Measurable claim for the live round
+The latency gain is concrete: a 20-item batch with 40ms/item LLM latency runs in ~864ms sequentially. Bounded async (concurrency=5) runs in ~164ms. The claim is measurable; state the numbers, not just "faster."
+
+---
+
 ## Live Round Strategy: What to Say Out Loud
 
 The interviewer evaluates your thinking, not just your code. These are the **verbal checkpoints** that demonstrate product engineering judgment:

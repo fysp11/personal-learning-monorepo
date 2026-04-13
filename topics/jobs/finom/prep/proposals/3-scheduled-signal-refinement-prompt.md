@@ -40,6 +40,51 @@ On each run:
 - Keep the workspace easy to re-enter.
 - When in doubt, make the prep **more technical**, **more operational**, and **more testable**.
 
+## Local retrieval default: use `qmd` first
+
+Before broad manual scanning, use `qmd` as the default local retrieval layer.
+
+Collections available for this repo:
+
+- `proj-personal-learning-docs` — docs, notes, interview prep, entities, architecture notes, decisions
+- `proj-personal-learning-code` — code, scripts, runnable examples, AST-aware code retrieval
+- `proj-personal-learning` — mixed fallback collection across docs + code
+- `personal-learning` — markdown-only broad fallback
+
+Use `qmd` efficiently:
+
+- Start with `qmd search`, not `qmd query`
+- Use `qmd query` only if keyword retrieval is clearly insufficient and you need better semantic recall
+- Prefer collection-scoped searches over repo-wide unscoped searches
+- Prefer 2-4 focused searches over one huge vague search
+- Search docs and code separately when the signal might come from both
+
+Recommended search pattern:
+
+1. `qmd search "<topic>" -c proj-personal-learning-docs`
+2. `qmd search "<topic>" -c proj-personal-learning-code`
+3. `qmd search "<topic>" -c proj-personal-learning`
+4. only then open files directly with shell reads if needed
+
+Good query targets:
+
+- `Interview 3`
+- `Viktar` / `Adynets`
+- `async`
+- `contract parity`
+- `confidence routing`
+- `earned autonomy`
+- `Germany France`
+- `adoption`
+- `FTE per active customer`
+- `Claude Code`
+- `Codex`
+- `observability`
+- `eval harness`
+- `market config`
+
+If `qmd` finds the relevant file, open that file directly rather than continuing to search blindly.
+
 ## North star
 
 Every run should make the candidate more credible as:
@@ -58,6 +103,21 @@ Translate that into prep that is harder to shake on:
 ## Step 0: Locate relevant signal
 
 Search broadly. Transcripts are only one source class.
+
+### Step 0A: `qmd`-first retrieval pass
+
+Before walking directories manually, run a `qmd` pass against the highest-probability concepts for this round.
+
+Minimum pass:
+
+- `qmd search "Interview 3" -c proj-personal-learning-docs`
+- `qmd search "Viktar OR Adynets OR lead AI engineer" -c proj-personal-learning-docs`
+- `qmd search "confidence routing OR earned autonomy OR market config" -c proj-personal-learning-docs`
+- `qmd search "Claude Code OR Codex OR live coding" -c proj-personal-learning-docs`
+- `qmd search "async OR latency OR contract parity OR batch" -c proj-personal-learning-code`
+
+Use this pass to identify the most likely changed files before reading them.
+Do not waste time manually opening many files that `qmd` could have narrowed quickly.
 
 Look for new or newly relevant signal in this priority order:
 
@@ -109,6 +169,16 @@ Do not use older web material as "new signal" unless it is only serving as stabl
 Prefer primary or high-signal sources over generic commentary.
 
 If there is no meaningful delta since the last refinement, stop after producing the no-op summary.
+
+### Step 0B: Manual reads after `qmd`
+
+After the `qmd` pass, manually open only:
+
+- the top `qmd` hits that look new or newly relevant
+- the canonical high-priority files from the list above
+- supporting code/docs needed to verify whether the delta is real
+
+If `qmd` and the filesystem disagree, trust the live file contents, not the search snippet.
 
 ## Step 1: Extract only the delta
 
@@ -273,6 +343,22 @@ Examples of acceptable reuse:
 
 Do **not** inject unrelated material just because it is new.
 
+## Step 6.5: `qmd` post-task sync
+
+If you changed files, refresh the local retrieval index before finishing.
+
+Required post-task commands:
+
+1. `qmd update`
+2. `qmd embed`
+
+Purpose:
+
+- future scheduled runs should immediately see the newly edited docs
+- semantic retrieval should remain current for new entities, notes, code, and proposal docs
+
+If nothing changed, you may skip the post-task sync.
+
 ## Step 7: What good edits look like
 
 Good edits:
@@ -326,6 +412,11 @@ Always finish with a concise run summary containing:
 ### Files changed
 - list only changed files
 - one short reason per file
+
+### Retrieval status
+- whether `qmd` was used
+- which collection(s) produced the winning source
+- whether post-task `qmd update` / `qmd embed` was run
 
 ### Interview steering gains
 - what new discussion terrain became easier to steer toward

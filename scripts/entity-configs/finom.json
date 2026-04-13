@@ -1,0 +1,90 @@
+{
+  "name": "finom-entities",
+  "sourceRoots": [
+    "/Users/fysp/personal/learning/topics/jobs/finom",
+    "/Users/fysp/personal/learning/topics/ai-engineering"
+  ],
+  "includeExtensions": [".md", ".txt"],
+  "excludePathSubstrings": [
+    "/node_modules/",
+    "/.git/",
+    "/.venv/",
+    "/__pycache__/",
+    "/.pytest_cache/"
+  ],
+  "outputRoot": "/Users/fysp/personal/learning/entities",
+  "entities": [
+    {
+      "slug": "ai-accountant",
+      "name": "AI Accountant",
+      "type": "products",
+      "aliases": ["AI accounting", "AI Accountant product"],
+      "tags": ["finom", "product", "automation"],
+      "relationships": ["finom", "confidence-routing", "market-config-as-data"],
+      "confidence": "high"
+    },
+    {
+      "slug": "confidence-routing",
+      "name": "Confidence Routing",
+      "type": "concepts",
+      "aliases": ["confidence router", "confidence routing"],
+      "tags": ["ai-engineering", "reliability", "finom"],
+      "relationships": ["earned-autonomy", "ai-accountant"],
+      "confidence": "high"
+    },
+    {
+      "slug": "earned-autonomy",
+      "name": "Earned Autonomy",
+      "type": "concepts",
+      "aliases": ["earned autonomy"],
+      "tags": ["ai-engineering", "automation", "finom"],
+      "relationships": ["confidence-routing", "proposal-mode-vs-action-mode"],
+      "confidence": "high"
+    },
+    {
+      "slug": "market-config-as-data",
+      "name": "Market Config as Data",
+      "type": "concepts",
+      "aliases": ["market config as data", "market rules in config"],
+      "tags": ["ai-engineering", "architecture", "finom"],
+      "relationships": ["germany-france-rollout", "ai-accountant"],
+      "confidence": "high"
+    },
+    {
+      "slug": "central-vs-embedded-ai",
+      "name": "Central vs Embedded AI",
+      "type": "concepts",
+      "aliases": ["central AI", "embedded teams", "central > integration > embed(domain)"],
+      "tags": ["org-design", "adoption", "finom"],
+      "relationships": ["finom"],
+      "confidence": "high"
+    },
+    {
+      "slug": "mcp",
+      "name": "Model Context Protocol",
+      "type": "systems",
+      "aliases": ["MCP", "MCP-based"],
+      "tags": ["ai-engineering", "tools", "architecture"],
+      "relationships": ["finom", "claude-code", "codex"],
+      "confidence": "medium"
+    },
+    {
+      "slug": "claude-code",
+      "name": "Claude Code",
+      "type": "systems",
+      "aliases": ["Claude Code"],
+      "tags": ["coding-agents", "interview", "tooling"],
+      "relationships": ["codex", "finom"],
+      "confidence": "high"
+    },
+    {
+      "slug": "codex",
+      "name": "Codex",
+      "type": "systems",
+      "aliases": ["Codex"],
+      "tags": ["coding-agents", "interview", "tooling"],
+      "relationships": ["claude-code", "finom"],
+      "confidence": "high"
+    }
+  ]
+}

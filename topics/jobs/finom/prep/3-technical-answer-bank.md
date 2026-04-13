@@ -218,15 +218,17 @@ At Finom, this probably means: the ML team handles credit scoring and risk model
 
 ### Full answer
 
-Three pain points show up first: **latency, cost, and trust.**
+I think about this as the "Triple Dipper" — every production AI system fights three tensions simultaneously: **latency, cost, and accuracy.** Optimizing one directly stresses the others. In a financial AI workflow, there's a fourth: **trust.** Getting that wrong doesn't just degrade UX; it creates compliance risk.
 
-- **Latency:** multi-step workflows get slow when every transaction calls the model synchronously. I'd use batching, async processing where possible, and cache common merchants or repeated patterns.
-- **Cost:** the long tail is expensive if you run the LLM on every item. Cache known merchants, route easy cases through rules, and reserve model calls for genuinely ambiguous inputs.
-- **Trust:** confidence can drift over time. I'd monitor calibration, override rate, and severe-error rate per market, then tighten or relax thresholds based on observed behavior.
+**Latency:** Multi-step workflows get slow when every transaction calls the model synchronously. I'd use batching, async processing where possible, and cache common merchants or repeated patterns. Concretely, I preserve the same `GET /health`, `POST /categorize`, and `POST /categorize/batch` API contract, but change the batch path from sequential sync calls to bounded async concurrency with a semaphore. On a 20-item mock batch with 40ms/item latency, that cuts elapsed time from ~864ms to ~164ms — measurable execution leverage, not just "async sounds better." The control point is the semaphore; unbounded `asyncio.gather` looks clever and destabilizes the provider.
 
-The next layer is **debuggability**. Every decision needs a trace: raw input, extracted fields, model output, confidence, routing decision, and final booking. Without that, production support becomes guesswork.
+**Cost:** The long tail is expensive if the model runs on every item. Three levers: (1) semantic caching — cache embeddings of common merchant patterns, so repeated queries hit cache, not the model; (2) model cascading — route straightforward, high-pattern transactions through a smaller, cheaper model, and only escalate ambiguous or novel inputs to the larger model; (3) re-ranker before LLM — if categorization uses retrieval over prior transaction history, a lightweight re-ranker can filter irrelevant context before it reaches the model, cutting token cost without touching accuracy. This also reduces latency.
 
-Finally, I expect **workflow-specific failures**, not just model failures: bad OCR, stale market config, missing VAT evidence, and support queues that grow because the proposal UX is unclear. So I would design the system to fail visibly and conservatively, then measure where humans are still getting pulled in.
+**Trust:** Confidence scores drift over time. I'd monitor calibration per market, override rate, and severe-error rate. If calibration worsens (ECE climbs above 0.05), I tighten the routing threshold before accuracy metrics degrade — because accuracy is a lagging indicator, calibration is leading.
+
+The next layer is **debuggability**. Every decision needs a trace: raw input, extracted fields, model output, confidence, routing decision, and final booking. Without that, production support becomes archaeology.
+
+Finally, I expect **workflow-specific failures**, not just model failures: bad OCR from scanned documents, stale market config, missing VAT evidence, unawaited coroutines that silently drop transactions, and support queues that grow because the proposal UX is unclear. I'd design the system to fail visibly and conservatively, then measure where humans are still getting pulled in.
 
 ---
 

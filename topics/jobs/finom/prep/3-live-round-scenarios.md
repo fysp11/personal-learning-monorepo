@@ -160,6 +160,54 @@ MCP Server
 
 ---
 
+## Scenario F: "Refactor a sync batch endpoint to async without breaking clients"
+
+**High-value variation.** This lets you show execution discipline, interface ownership, and measurable performance improvement without hiding behind architecture slides.
+
+### Scoping phase (3-4 min)
+
+Ask/clarify:
+- Which public endpoints or payloads are contractually frozen?
+- Is the pain point latency, worker starvation, timeout rate, or all three?
+- Can I change internals only, or also introduce a queue/job model?
+- Do you want a code refactor, a design sketch, or both?
+
+### Architecture sketch (3-4 min)
+
+```
+HTTP Contract (unchanged)
+  → Request Validation (Deterministic)
+  → Categorization Service Boundary (unchanged port)
+  → Execution Model (changed)
+      sync sequential loop
+      → bounded async fan-out with semaphore
+  → Structured Per-Item Outcome
+  → Response Contract (unchanged)
+```
+
+### Key design decisions to state out loud
+
+1. "I'm changing execution strategy, not API shape."
+2. "Shared contracts come first so client integrations do not drift."
+3. "Concurrency is bounded, not unbounded, because latency wins are useless if they create provider instability."
+4. "I want explicit per-item errors so batch behavior is observable and debuggable."
+
+### Implementation order (50 min)
+
+1. Freeze the request/response models and endpoint paths (5 min)
+2. Extract the categorization dependency behind a shared interface / port (10 min)
+3. Replace the sequential batch loop with `asyncio.gather` plus semaphore-limited concurrency (15 min)
+4. Preserve ordering and error shape in the batch response (10 min)
+5. Add one contract-parity test and one latency/behavior test (10 min)
+
+### What to say if they probe further
+
+- "This is the same control principle as Finom workflows: keep the public contract deterministic, move ambiguity or waiting into a controlled execution layer."
+- "I'd only move to queue-backed background processing if request-time SLA still fails after bounded concurrency."
+- "The metric is not just p95 latency; it's p95 latency while preserving contract parity and keeping failure semantics explicit."
+
+---
+
 ## Universal Moves (use in any scenario)
 
 ### Always do first

@@ -3,6 +3,12 @@
   "module": "index.ts",
   "type": "module",
   "private": true,
+  "scripts": {
+    "entities:finom": "bun run scripts/extract-entities.ts --config scripts/entity-configs/finom.json",
+    "entities:finom:sync": "bun run scripts/extract-entities.ts --config scripts/entity-configs/finom.json --sync-qmd",
+    "entities:discover:finom": "bun run scripts/extract-entities.ts --config scripts/entity-configs/finom.json --discover",
+    "entities:discover:finom:sync": "bun run scripts/extract-entities.ts --config scripts/entity-configs/finom.json --discover --sync-qmd"
+  },
   "devDependencies": {
     "@types/bun": "latest"
   },

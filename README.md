@@ -47,6 +47,55 @@ topics/jobs/
   finom/            # Research, cheatsheets
 ```
 
+## Knowledge Layout
+
+For insights you want `qmd` to retrieve well, prefer a few stable file shapes over ad hoc notes:
+
+```text
+learning/
+  entities/         # durable people/systems/concepts
+  topics/           # topic-specific notes, code, experiments
+```
+
+Within a topic or shared area, these patterns work best:
+
+- `entities/` - one file per person, team, system, concept, or vendor
+- `architecture/` - invariants, boundaries, tradeoffs, system diagrams
+- `decisions/` - ADR-style choices and why they were made
+- `experiments/` - hypothesis, setup, result, takeaway
+- `code-notes/` - why code exists, not just what it does
+- `maps/` - cross-links such as system -> owners -> risks -> workflows
+
+Entity files should be explicit and compact. Prefer frontmatter or labeled fields for:
+
+- `type`
+- `aliases`
+- `tags`
+- `relationships`
+- `confidence`
+
+This keeps the repo easy to search with both keyword and semantic retrieval.
+
+## QMD Collections
+
+This repo is now indexed for `qmd` in three useful ways:
+
+- `personal-learning` - markdown-focused broad docs collection
+- `proj-personal-learning` - mixed docs + code collection
+- recommended next split:
+  - `proj-personal-learning-docs`
+  - `proj-personal-learning-code`
+
+Useful commands:
+
+```bash
+qmd search "query" -c proj-personal-learning
+qmd search "query" -c proj-personal-learning-docs
+qmd search "query" -c proj-personal-learning-code
+qmd ls proj-personal-learning
+qmd embed
+```
+
 ## Suggested Workflow
 
 - Use issues/projects in GitHub when a topic grows in scope
