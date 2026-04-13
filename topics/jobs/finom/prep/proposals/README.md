@@ -8,6 +8,7 @@ Deep-dive documents created during iteration cycles. Organized by relevance to t
 |----------|-------------|-------------|
 | `3-live-round-clock.md` | Minute-by-minute 60-min live coding timer: deliverables per gate, recovery pivots, clock recovery matrix | Read night before; use recovery matrix if you fall behind |
 | `3-pre-call-cheat-sheet.md` | 2-page synthesis: key numbers table, deterministic vs AI splits, named failure modes, maturity ladder, GoBD one-liner, France delta, day-of checklist | Read 15 minutes before the interview — final recall document |
+| `3-sync-async-python-refactor-pack.md` | Python technical drill: bad sync AI REST API refactored to async with same contract, plus interview talk-track anchors | Read before live coding rehearsal focused on latency/cost/trust questions |
 
 ## Related files
 

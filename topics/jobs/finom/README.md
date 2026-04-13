@@ -27,6 +27,7 @@
 - `prep/multi-agent-system-architecture-for-fintech.md` - MAS architecture prep (matches Finom's public AI Accountant design)
 - `prep/german-sme-accounting-domain-primer.md` - German tax forms and SME accounting domain vocabulary
 - `code/README.md` - MAS coordination pipeline, live rehearsal, and eval harness code demos
+- `code/python-sync-async-refactor/README.md` - Python drill: bad sync AI REST API to async refactor with contract parity
 - `../eu-ai-act-regulatory-prep.md` - EU AI Act awareness (shared with Delphyr)
 - `finom_cheatsheet.pdf` - compact company and role cheat sheet
 
@@ -84,6 +85,7 @@
 - `insights/mental-models-interview-discussions.md` — 7 mental models for explaining architecture choices: earned trust, separation of concerns, market config as data, calibration, compensation chains, agent as contract, observability
 - `insights/observability-production-agents.md` — production tracing, confidence histograms, correction feedback loops, canary routing, A/B testing agents, alert taxonomy
 - `insights/mas-coordination-patterns.md` — MAS coordination: orchestrator-worker, fan-out/fan-in, saga pattern, circuit breaker, shared state, MAS testing pyramid
+- `prep/proposals/3-sync-async-python-refactor-pack.md` — persisted implementation spec for Python sync→async interview drill
 
 ## Best Angles
 - Production AI systems with end-to-end ownership
