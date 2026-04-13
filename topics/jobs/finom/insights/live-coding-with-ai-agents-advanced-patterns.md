@@ -183,9 +183,17 @@ The interviewer evaluates your thinking, not just your code. These are the **ver
 
 > "This is the most important 10 lines in the system. Everything upstream produces a confidence score; everything downstream depends on this routing decision. In production, I'd want this to be configurable per market because risk tolerance differs."
 
+> "I also want to tie this to operator economics immediately: if this lowers automation errors but raises review minutes per 100 transactions, we didn't really improve the workflow."
+
 ### At Observability
 
 > "I'm adding a trace because in production, when a transaction is mis-categorized, the first question is always: what did each stage decide, and what was the confidence? Without the trace, debugging is archaeology."
+
+### At Adoption Surface
+
+> "I'm keeping the public contract small and obvious so a product team could adopt this without rewriting their service boundary. If the reusable path is heavier than the local workaround, teams will bypass it."
+
+> "I want the agent to generate one bounded slice at a time because that keeps review burden low and makes the pattern easier for other engineers to trust."
 
 ### At Multi-Market Extension
 
@@ -200,6 +208,7 @@ The interviewer evaluates your thinking, not just your code. These are the **ver
 | **Volume trap** | Generating 300 lines in first 5 minutes | Scope small, verify often |
 | **Delegation fallacy** | "Claude, design the architecture" | You design; agent implements |
 | **Review skip** | Accepting agent output without reading | 10-second pause after each generation |
+| **Speed theater** | More generated code, same or worse operator/review load | Name the metric you are improving, not just the code you are writing |
 | **Over-engineering** | Adding DI, factories, abstract base classes | Keep it concrete and flat |
 | **Under-explaining** | Coding in silence | Narrate decisions, especially trade-offs |
 | **Tool wrestling** | Spending 5 minutes on agent config | Know your setup cold before the interview |

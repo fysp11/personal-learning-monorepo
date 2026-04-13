@@ -174,11 +174,14 @@ Centralize the **hard reusable parts** — not every product decision.
 - Ship working templates, not white papers. If the accounting team can use your orchestration template and be productive in a day, they will. If they need a three-week onboarding, they'll work around you.
 - Make the reusable path faster than the local workaround. Good defaults, observability out of the box, clear interfaces.
 - Measure adoption, not just creation. A pattern that three teams use is worth more than ten patterns nobody uses.
+- Package the pattern at the integration seam teams already touch: shared contracts, one orchestration template, trace hooks, and a minimal eval harness. If adoption requires a rewrite, it is not a reusable pattern.
 
 **How to avoid becoming a bottleneck:**
 - Domain teams own their outcomes. The central team provides leverage, not approval gates.
 - If a team wants to deviate from the pattern, ask why — it might reveal a real limitation. Don't block them.
 - Rotate people between central and domain work so knowledge flows both ways.
+
+**What I'd measure:** time-to-first-shipped workflow on the shared pattern, percent of AI workflows using the common trace format, review-rate reduction after adoption, and whether teams keep the pattern six weeks later instead of forking around it.
 
 ---
 
@@ -267,13 +270,47 @@ There's a specific maturity ladder with measurable criteria at each level. You d
 - Draft → Auto: <5% correction rate (users change the pre-filled result less than 5% of the time)
 - Auto → Full auto: <2% correction rate sustained for 30 days + ECE < 0.05 + no critical error in last 100 transactions
 
+## Q11: "How do you prove the system reduced work instead of just moving it around?"
+
+### Full answer
+
+I'd separate **workflow completion metrics** from **operator-load metrics**, because a lot of AI systems look good on the first and fail on the second.
+
+**Workflow completion metrics:**
+- percent of transactions reaching a terminal state without manual intervention
+- cycle time from ingestion to booked entry
+- percent of tax filings assembled as draft-complete without operator repair
+
+**Operator-load metrics:**
+- review rate per 100 transactions
+- average review minutes per escalated case
+- correction rate after auto-book
+- support tickets created per 1000 automated decisions
+- FTE per active customer
+
+The key question is whether the human work went away or just moved later in the process. If auto-book rate improves but support tickets spike, we didn't compress work; we relocated it from accounting ops to support and reconciliation.
+
+So the production dashboard I care about is:
+- automation rate
+- review rate
+- correction severity
+- support burden
+- net cycle time
+- FTE per active customer
+
+If Ivo asks for business language, I'd say: "I only count this as success if the workflow reduces review load and exception handling enough to improve FTE per active customer. Faster model calls without lower operator load are not business leverage."
+
+## Q12: "How would you integrate AI into an existing C# / Python system?"
+
+### One-line answer
+
 > "The AI work is Python and TypeScript. For the C# boundary, I'd start by reading the OpenAPI contracts and existing integration tests — that's enough to design and implement clean API clients. I've worked across language boundaries before and the integration patterns (REST, gRPC, shared schemas) are language-agnostic. The domain ramp would take weeks; the language ramp is days."
 
 ---
 
 ---
 
-## Q11: "When would you use a staged workflow versus a single agent?"
+## Q13: "When would you use a staged workflow versus a single agent?"
 
 ### One-line answer
 
@@ -316,7 +353,7 @@ This is the operational argument: independent testability means you can improve 
 
 ---
 
-## Q12: "What observability would you add first to a financial AI workflow?"
+## Q14: "What observability would you add first to a financial AI workflow?"
 
 ### One-line answer
 

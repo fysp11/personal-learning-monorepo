@@ -35,6 +35,7 @@ Transaction Event
 2. "Category proposal is the AI step — merchant text is genuinely ambiguous"
 3. "Confidence routing gives us earned autonomy — high confidence auto-books, medium proposes for approval, low rejects"
 4. "The trace captures every stage decision for auditability"
+5. "I want one operator metric from the start — review rate or minutes of review per 100 transactions — so we can prove this compresses work instead of moving it around"
 
 ### Implementation order (50 min)
 
@@ -214,16 +215,19 @@ HTTP Contract (unchanged)
 - State the workflow boundary before coding
 - Separate AI-powered steps from deterministic steps
 - Define typed contracts between stages
+- Name the business/operator metric the slice is supposed to improve
 
 ### Always build
 - Confidence propagation
 - Trace/observability object
 - At least one test case that escalates to human review
+- One explicit terminal state for low-confidence or failed items
 
 ### Always say
 - "This is where the AI adds value — the input is genuinely ambiguous"
 - "This part stays deterministic — the failure cost is compliance-related"
 - "I would measure [specific metric] to know this is actually reducing manual work"
+- "I'm optimizing for a slice a domain team could actually adopt next week, not a demo-only architecture"
 
 ### Never do
 - Start coding without scoping
