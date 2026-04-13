@@ -23,7 +23,14 @@ Full-depth answers for the hardest likely questions. These go beyond the drill t
 - "We can make the rules prompt-based for faster iteration."
 
 ### Default 20-second frame
-> I decompose the workflow into typed stages, keep policy deterministic, use AI for ambiguity, attach confidence and severity to every step, and verify with offline evals plus production monitoring. For Finom specifically, I’d treat adoption as part of the system: central patterns, integration as the bridge, and embedded teams as the place where the behavior becomes real.
+> I decompose the workflow into typed stages, keep policy deterministic, use AI for ambiguity, attach confidence and severity to every step, and verify with offline evals plus production monitoring. For Finom specifically, I'd treat adoption as part of the system: central patterns, integration as the bridge, embedded teams as the place where the behavior becomes real, and operator metrics like review rate and FTE per active customer as the proof that the workflow is actually compressing work.
+
+### Key invariants to name if probed
+If the interviewer asks "what must always be true?" — this is invariant thinking. Name these explicitly:
+- **Auto-book invariant**: Every auto-booked transaction has calibrated confidence ≥ threshold, is not a reverse-charge case, and has a valid VAT mechanism.
+- **Terminal state invariant**: Every ingested transaction reaches exactly one terminal state within SLA — no silent drops.
+- **Idempotency invariant**: Processing the same transaction twice produces the same booking — no double-counting.
+- **Auditability invariant**: Every routing decision is logged with input, confidence, threshold, and outcome — replayable for GoBD.
 
 ---
 

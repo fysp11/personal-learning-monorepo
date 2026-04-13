@@ -88,7 +88,8 @@ A single reading sequence for the evening before the April 14 interview. Each it
 
 11. **`../cross-company-system-design-template.md`** — Skim the 7 steps. If they ask "design X", this is your skeleton:
     - Scope → AI boundary → Pipeline → Confidence routing → Observability → Scale → Failures
-    - Know the Finom instantiation table by heart.
+    - Know the Finom instantiation table (bottom of the doc) by heart.
+    - Know the multi-market extension pattern for France (last section).
 
 ---
 

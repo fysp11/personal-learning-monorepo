@@ -55,6 +55,15 @@
 
 ---
 
+## System Invariants (If Asked "What Must Always Be True?")
+
+- **Auto-book**: calibrated confidence ≥ threshold, not reverse-charge, valid VAT mechanism
+- **Terminal state**: every ingested transaction reaches exactly one terminal state within SLA
+- **Idempotency**: same transaction processed twice → same booking
+- **Auditability**: every routing decision logged with input, confidence, threshold, outcome — replayable for GoBD
+
+---
+
 ## Staged Rollout Maturity Ladder (Level Numbers + Criteria)
 
 | Level | Name | Advancement criteria |

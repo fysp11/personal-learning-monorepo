@@ -109,6 +109,7 @@ Do NOT start coding immediately. The interviewer watches whether you think first
 | At router | "This is the most important 10 lines in the system" |
 | At trace | "Without this, debugging is archaeology" |
 | If stuck | "Let me step back and think about what we need next" |
+| At verification | "I'm the project owner here — I set the rules, the agent fills in, and I verify every output" |
 
 ### Red flags to avoid
 
@@ -135,7 +136,7 @@ Do NOT start coding immediately. The interviewer watches whether you think first
 
 ## Gap Responses (if challenged)
 
-**"No fintech experience"** → "I ran an SMB — I've done UStVA filing from the user side. The engineering patterns are domain-agnostic; the domain knowledge is learnable."
+**"No fintech experience"** → "Domain arbitrage — industry knowledge is the #1 differentiator in AI engineering right now, and I have it from the user side. I ran an SMB, I've done UStVA filing, I know what the accounting workflows feel like when they're broken. The engineering patterns — confidence routing, evals, observability — are domain-agnostic. The domain knowledge I already have; the German tax specifics are learnable and deterministic."
 
 **"No C#/.NET"** → "AI work is Python. I'd interact with C# through APIs. Learning to read C# is weeks, not months."
 
