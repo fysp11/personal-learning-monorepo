@@ -1,6 +1,6 @@
 # Entity: Model Context Protocol
 
-type: systems
+type: protocols
 aliases:
   - MCP
   - MCP-based
@@ -14,7 +14,7 @@ relationships:
   - codex
 confidence: medium
 generated_by: scripts/extract-entities.ts
-generated_at: 2026-04-13T03:14:54.581Z
+generated_at: 2026-04-13T03:25:20.506Z
 
 ## Evidence
 - [topics/jobs/finom/code/README.md](/Users/fysp/personal/learning/topics/jobs/finom/code/README.md:149) — matched `MCP`: ## 6. MCP Accounting Skills Server

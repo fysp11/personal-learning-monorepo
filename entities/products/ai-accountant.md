@@ -14,7 +14,7 @@ relationships:
   - market-config-as-data
 confidence: high
 generated_by: scripts/extract-entities.ts
-generated_at: 2026-04-13T02:43:52.783Z
+generated_at: 2026-04-13T03:25:20.481Z
 
 ## Evidence
 - [topics/jobs/finom/application/senior-ai-engineer-job-posting.md](/Users/fysp/personal/learning/topics/jobs/finom/application/senior-ai-engineer-job-posting.md:21) — matched `AI accounting`: The role is explicitly framed as a production engineering role rather than a pure research role. The scope includes onboarding, customer support, AI accounting, fraud and risk workflows, document understanding, internal automation, and agentic systems used by multiple teams.

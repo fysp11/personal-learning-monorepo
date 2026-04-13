@@ -62,7 +62,7 @@
     {
       "slug": "mcp",
       "name": "Model Context Protocol",
-      "type": "systems",
+      "type": "protocols",
       "aliases": ["MCP", "MCP-based"],
       "tags": ["ai-engineering", "tools", "architecture"],
       "relationships": ["finom", "claude-code", "codex"],
@@ -84,6 +84,42 @@
       "aliases": ["Codex"],
       "tags": ["coding-agents", "interview", "tooling"],
       "relationships": ["claude-code", "finom"],
+      "confidence": "high"
+    },
+    {
+      "slug": "notebooklm",
+      "name": "NotebookLM",
+      "type": "tools",
+      "aliases": ["NotebookLM Studio"],
+      "tags": ["research", "interview-prep", "tooling"],
+      "relationships": ["finom", "claude-code", "codex"],
+      "confidence": "high"
+    },
+    {
+      "slug": "proposal-mode-vs-action-mode",
+      "name": "Proposal Mode vs Action Mode",
+      "type": "patterns",
+      "aliases": ["proposal mode", "action mode"],
+      "tags": ["automation", "risk-control", "ai-product"],
+      "relationships": ["earned-autonomy", "confidence-routing"],
+      "confidence": "high"
+    },
+    {
+      "slug": "expected-calibration-error",
+      "name": "Expected Calibration Error",
+      "type": "methodologies",
+      "aliases": ["ECE", "Expected Calibration Error (ECE)"],
+      "tags": ["evaluation", "confidence", "model-reliability"],
+      "relationships": ["confidence-routing", "proposal-mode-vs-action-mode"],
+      "confidence": "high"
+    },
+    {
+      "slug": "staged-workflow-architecture",
+      "name": "Staged Workflow Architecture",
+      "type": "architectures",
+      "aliases": ["staged workflow", "staged workflow vs single opaque agent"],
+      "tags": ["system-design", "orchestration", "reliability"],
+      "relationships": ["confidence-routing", "market-config-as-data", "mcp"],
       "confidence": "high"
     }
   ]

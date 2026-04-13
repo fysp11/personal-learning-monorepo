@@ -13,7 +13,7 @@ relationships:
   - ai-accountant
 confidence: high
 generated_by: scripts/extract-entities.ts
-generated_at: 2026-04-13T02:43:52.786Z
+generated_at: 2026-04-13T03:25:20.487Z
 
 ## Evidence
 - [topics/jobs/finom/code/README.md](/Users/fysp/personal/learning/topics/jobs/finom/code/README.md:158) — matched `Confidence Routing`: - **End-to-end workflow**: Chains all three tools with confidence routing to demonstrate the composable MCP architecture

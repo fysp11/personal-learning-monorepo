@@ -12,7 +12,7 @@ relationships:
   - finom
 confidence: high
 generated_by: scripts/extract-entities.ts
-generated_at: 2026-04-13T02:43:52.804Z
+generated_at: 2026-04-13T03:25:20.513Z
 
 ## Evidence
 - [topics/jobs/finom/insights/live-coding-with-ai-agents-advanced-patterns.md](/Users/fysp/personal/learning/topics/jobs/finom/insights/live-coding-with-ai-agents-advanced-patterns.md:7) — matched `Codex`: Interview 3 is a 60-minute live coding round with Claude Code / Codex. Ivo explicitly cares whether these tools make engineers faster or slower. This insight goes beyond the rehearsal code to document **meta-patterns** — how to operate during the live round itself.

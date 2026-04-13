@@ -1,18 +1,7 @@
 import { mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import { dirname, extname, join, relative, resolve } from "node:path";
 
-type EntityType =
-  | "products"
-  | "systems"
-  | "concepts"
-  | "vendors"
-  | "patterns"
-  | "tools"
-  | "frameworks"
-  | "protocols"
-  | "methodologies"
-  | "libraries"
-  | "architectures";
+type EntityType = string;
 
 type EntityConfig = {
   slug: string;
@@ -49,8 +38,33 @@ type DiscoverCandidate = {
   evidence: Evidence[];
 };
 
+type DiscoverEngineKind = "lexical" | "qmd";
+
+type QmdSearchResult = {
+  docid?: string;
+  score?: number;
+  file?: string;
+  title?: string;
+  snippet?: string;
+};
+
+type DiscoverInput = {
+  config: ExtractionConfig;
+  files: string[];
+  repoRoot: string;
+  knownPatterns: RegExp[];
+  maxEvidence: number;
+};
+
 const DEFAULT_MAX_EVIDENCE = 12;
 const DEFAULT_DISCOVER_LIMIT = 30;
+const DEFAULT_DISCOVER_ENGINE: DiscoverEngineKind = "qmd";
+const DEFAULT_QMD_TOP_K = 5;
+const DEFAULT_QMD_SEED_LIMIT = 40;
+const DEFAULT_EXPAND_FROM_DISCOVER = true;
+const DEFAULT_EXPAND_LIMIT = 12;
+const DEFAULT_EXPAND_MIN_COUNT = 2;
+const EXCLUDED_TYPES = new Set(["people", "companies"]);
 const DISCOVER_MIN_COUNT = 2;
 const DISCOVER_MIN_SCORE = 6;
 const DISCOVER_MAX_WORDS = 5;
@@ -109,12 +123,25 @@ function parseArgs(argv: string[]) {
     syncQmd: boolean;
     discover: boolean;
     discoverLimit: number;
+    discoverEngine: DiscoverEngineKind;
+    qmdCollection?: string;
+    qmdTopK: number;
+    qmdSeedLimit: number;
+    expandFromDiscover: boolean;
+    expandLimit: number;
+    expandMinCount: number;
   } = {
     maxEvidence: DEFAULT_MAX_EVIDENCE,
     dryRun: false,
     syncQmd: false,
     discover: false,
     discoverLimit: DEFAULT_DISCOVER_LIMIT,
+    discoverEngine: DEFAULT_DISCOVER_ENGINE,
+    qmdTopK: DEFAULT_QMD_TOP_K,
+    qmdSeedLimit: DEFAULT_QMD_SEED_LIMIT,
+    expandFromDiscover: DEFAULT_EXPAND_FROM_DISCOVER,
+    expandLimit: DEFAULT_EXPAND_LIMIT,
+    expandMinCount: DEFAULT_EXPAND_MIN_COUNT,
   };
 
   for (let i = 0; i < argv.length; i += 1) {
@@ -133,6 +160,32 @@ function parseArgs(argv: string[]) {
       result.discover = true;
     } else if (arg === "--discover-limit") {
       result.discoverLimit = Number(argv[i + 1] ?? DEFAULT_DISCOVER_LIMIT);
+      i += 1;
+    } else if (arg === "--discover-engine") {
+      const engine = (argv[i + 1] ?? DEFAULT_DISCOVER_ENGINE) as DiscoverEngineKind;
+      if (engine !== "lexical" && engine !== "qmd") {
+        throw new Error(`Invalid --discover-engine value: ${engine}`);
+      }
+      result.discoverEngine = engine;
+      i += 1;
+    } else if (arg === "--qmd-collection") {
+      result.qmdCollection = argv[i + 1];
+      i += 1;
+    } else if (arg === "--qmd-top-k") {
+      result.qmdTopK = Number(argv[i + 1] ?? DEFAULT_QMD_TOP_K);
+      i += 1;
+    } else if (arg === "--qmd-seed-limit") {
+      result.qmdSeedLimit = Number(argv[i + 1] ?? DEFAULT_QMD_SEED_LIMIT);
+      i += 1;
+    } else if (arg === "--expand-from-discover") {
+      result.expandFromDiscover = true;
+    } else if (arg === "--no-expand-from-discover") {
+      result.expandFromDiscover = false;
+    } else if (arg === "--expand-limit") {
+      result.expandLimit = Number(argv[i + 1] ?? DEFAULT_EXPAND_LIMIT);
+      i += 1;
+    } else if (arg === "--expand-min-count") {
+      result.expandMinCount = Number(argv[i + 1] ?? DEFAULT_EXPAND_MIN_COUNT);
       i += 1;
     }
   }
@@ -250,57 +303,7 @@ function scoreCandidate(text: string) {
   return Number((lengthScore + wordScore + shapeScore).toFixed(2));
 }
 
-function collectDiscoverCandidates(
-  files: string[],
-  repoRoot: string,
-  knownPatterns: RegExp[],
-  maxEvidence: number,
-) {
-  const candidates = new Map<string, DiscoverCandidate>();
-
-  for (const file of files) {
-    const lines = readFileSync(file, "utf8").split(/\r?\n/);
-    for (let index = 0; index < lines.length; index += 1) {
-      const line = lines[index]?.trim() ?? "";
-      if (!line || line.length < 4) {
-        continue;
-      }
-
-      if (knownPatterns.some((pattern) => pattern.test(line))) {
-        continue;
-      }
-
-      for (const candidateText of extractCandidatesFromLine(line)) {
-        if (knownPatterns.some((pattern) => pattern.test(candidateText))) {
-          continue;
-        }
-
-        const existing = candidates.get(candidateText) ?? {
-          text: candidateText,
-          score: 0,
-          count: 0,
-          files: new Set<string>(),
-          evidence: [],
-        };
-
-        existing.count += 1;
-        existing.files.add(relative(repoRoot, file));
-        existing.score = Math.max(existing.score, scoreCandidate(candidateText));
-
-        if (existing.evidence.length < maxEvidence) {
-          existing.evidence.push({
-            file: relative(repoRoot, file),
-            line: index + 1,
-            text: line,
-            alias: candidateText,
-          });
-        }
-
-        candidates.set(candidateText, existing);
-      }
-    }
-  }
-
+function finalizeCandidates(candidates: Map<string, DiscoverCandidate>) {
   return Array.from(candidates.values())
     .filter(
       (candidate) =>
@@ -310,6 +313,227 @@ function collectDiscoverCandidates(
           candidate.score >= DISCOVER_MIN_SCORE),
     )
     .sort((a, b) => b.score - a.score || b.count - a.count || a.text.localeCompare(b.text));
+}
+
+function upsertCandidate(
+  candidates: Map<string, DiscoverCandidate>,
+  candidateText: string,
+  file: string,
+  line: number,
+  rawText: string,
+  maxEvidence: number,
+  extraScore = 0,
+) {
+  const existing = candidates.get(candidateText) ?? {
+    text: candidateText,
+    score: 0,
+    count: 0,
+    files: new Set<string>(),
+    evidence: [],
+  };
+
+  existing.count += 1;
+  existing.files.add(file);
+  existing.score = Math.max(existing.score, scoreCandidate(candidateText), extraScore);
+
+  if (existing.evidence.length < maxEvidence) {
+    existing.evidence.push({
+      file,
+      line,
+      text: rawText,
+      alias: candidateText,
+    });
+  }
+
+  candidates.set(candidateText, existing);
+}
+
+abstract class DiscoverEngine {
+  abstract readonly id: DiscoverEngineKind;
+
+  abstract collectCandidates(input: DiscoverInput): Promise<DiscoverCandidate[]>;
+}
+
+class LexicalDiscoverEngine extends DiscoverEngine {
+  readonly id = "lexical" as const;
+
+  async collectCandidates(input: DiscoverInput): Promise<DiscoverCandidate[]> {
+    const candidates = new Map<string, DiscoverCandidate>();
+
+    for (const file of input.files) {
+      const lines = readFileSync(file, "utf8").split(/\r?\n/);
+      for (let index = 0; index < lines.length; index += 1) {
+        const line = lines[index]?.trim() ?? "";
+        if (!line || line.length < 4) {
+          continue;
+        }
+
+        if (input.knownPatterns.some((pattern) => pattern.test(line))) {
+          continue;
+        }
+
+        for (const candidateText of extractCandidatesFromLine(line)) {
+          if (input.knownPatterns.some((pattern) => pattern.test(candidateText))) {
+            continue;
+          }
+          upsertCandidate(
+            candidates,
+            candidateText,
+            relative(input.repoRoot, file),
+            index + 1,
+            line,
+            input.maxEvidence,
+          );
+        }
+      }
+    }
+
+    return finalizeCandidates(candidates);
+  }
+}
+
+class QmdDiscoverEngine extends DiscoverEngine {
+  readonly id = "qmd" as const;
+
+  constructor(
+    private readonly qmdCollection: string | undefined,
+    private readonly topK: number,
+    private readonly seedLimit: number,
+  ) {
+    super();
+  }
+
+  async collectCandidates(input: DiscoverInput): Promise<DiscoverCandidate[]> {
+    const candidates = new Map<string, DiscoverCandidate>();
+    const seedQueries = this.buildSeedQueries(input.config);
+    const allowedFiles = new Set(
+      input.files.map((file) => relative(input.repoRoot, file).replace(/\\/g, "/")),
+    );
+
+    for (const query of seedQueries) {
+      const results = await this.fetchResults(query);
+      for (const result of results) {
+        const file = this.normalizeFilePath(result.file, input.repoRoot) ?? "unknown";
+        if (!allowedFiles.has(file)) {
+          continue;
+        }
+        const retrievalScore = Math.max(0, Number(result.score ?? 0) * 10);
+        const lines = [result.title ?? "", ...(result.snippet ?? "").split(/\r?\n/)];
+
+        for (const rawLine of lines) {
+          const line = rawLine.trim();
+          if (!line || line.startsWith("@@")) {
+            continue;
+          }
+          if (input.knownPatterns.some((pattern) => pattern.test(line))) {
+            continue;
+          }
+          for (const candidateText of extractCandidatesFromLine(line)) {
+            if (input.knownPatterns.some((pattern) => pattern.test(candidateText))) {
+              continue;
+            }
+            upsertCandidate(candidates, candidateText, file, 1, line, input.maxEvidence, retrievalScore);
+          }
+        }
+      }
+    }
+
+    return finalizeCandidates(candidates);
+  }
+
+  private buildSeedQueries(config: ExtractionConfig) {
+    const seeds = new Set<string>();
+    for (const entity of config.entities) {
+      seeds.add(entity.name);
+      for (const alias of entity.aliases ?? []) {
+        seeds.add(alias);
+      }
+      for (const tag of entity.tags ?? []) {
+        if (tag.trim().length >= 4) {
+          seeds.add(tag);
+        }
+      }
+    }
+    return Array.from(seeds).filter(Boolean).slice(0, this.seedLimit);
+  }
+
+  private normalizeFilePath(value: string | undefined, repoRoot: string) {
+    if (!value) {
+      return undefined;
+    }
+    const qmdMatch = value.match(/^qmd:\/\/[^/]+\/(.+)$/);
+    if (qmdMatch?.[1]) {
+      return qmdMatch[1];
+    }
+    if (value.startsWith(repoRoot)) {
+      return relative(repoRoot, value);
+    }
+    if (!value.startsWith("/")) {
+      return value;
+    }
+    return undefined;
+  }
+
+  private parseQmdResults(output: string): QmdSearchResult[] {
+    const start = output.indexOf("[");
+    const end = output.lastIndexOf("]");
+    if (start < 0 || end <= start) {
+      return [];
+    }
+
+    const jsonSlice = output.slice(start, end + 1);
+    try {
+      const parsed = JSON.parse(jsonSlice) as unknown;
+      return Array.isArray(parsed) ? (parsed as QmdSearchResult[]) : [];
+    } catch {
+      return [];
+    }
+  }
+
+  private async runQmd(args: string[]) {
+    const process = Bun.spawn(["qmd", ...args], {
+      stdout: "pipe",
+      stderr: "pipe",
+    });
+    const [stdout, stderr, code] = await Promise.all([
+      new Response(process.stdout).text(),
+      new Response(process.stderr).text(),
+      process.exited,
+    ]);
+    return { stdout, stderr, code };
+  }
+
+  private async fetchResults(query: string) {
+    const queryArgs = ["query", `lex: ${query}`, "--json", "--no-rerank", "-n", String(this.topK)];
+    if (this.qmdCollection) {
+      queryArgs.push("-c", this.qmdCollection);
+    }
+
+    const queryRun = await this.runQmd(queryArgs);
+    const queryResults = this.parseQmdResults(`${queryRun.stdout}\n${queryRun.stderr}`);
+    if (queryResults.length > 0) {
+      return queryResults;
+    }
+
+    const searchArgs = ["search", query, "--json", "-n", String(this.topK)];
+    if (this.qmdCollection) {
+      searchArgs.push("-c", this.qmdCollection);
+    }
+    const searchRun = await this.runQmd(searchArgs);
+    return this.parseQmdResults(`${searchRun.stdout}\n${searchRun.stderr}`);
+  }
+}
+
+function createDiscoverEngine(
+  kind: DiscoverEngineKind,
+  qmdCollection: string | undefined,
+  qmdTopK: number,
+  qmdSeedLimit: number,
+) {
+  if (kind === "qmd") {
+    return new QmdDiscoverEngine(qmdCollection, qmdTopK, qmdSeedLimit);
+  }
+  return new LexicalDiscoverEngine();
 }
 
 function collectEvidence(
@@ -387,6 +611,82 @@ ${formatList(tags)}
 relationships:
 ${formatList(relationships)}
 confidence: ${confidence}
+generated_by: scripts/extract-entities.ts
+generated_at: ${generatedAt}
+
+## Evidence
+${evidenceLines}
+`;
+}
+
+function slugify(value: string) {
+  return value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 80);
+}
+
+function inferTypeFromCandidate(candidate: DiscoverCandidate): EntityType | undefined {
+  const text = candidate.text.toLowerCase();
+  const evidenceText = candidate.evidence.map((item) => item.text.toLowerCase()).join(" ");
+  const corpus = `${text} ${evidenceText}`;
+
+  if (/pattern|mode|playbook|ladder|loop/.test(corpus)) {
+    return "patterns";
+  }
+  if (/protocol|mcp|interface/.test(corpus)) {
+    return "protocols";
+  }
+  if (/architecture|topology|workflow|orchestrator|orchestration/.test(corpus)) {
+    return "architectures";
+  }
+  if (/method|methodology|calibration|error|evaluation|benchmark|metric/.test(corpus)) {
+    return "methodologies";
+  }
+  if (/tool|notebooklm|codex|claude code|cli|sdk/.test(corpus)) {
+    return "tools";
+  }
+  if (/framework|langchain|dspy/.test(corpus)) {
+    return "frameworks";
+  }
+  if (/library|numpy|pandas|zod/.test(corpus)) {
+    return "libraries";
+  }
+  if (/product|agent|assistant/.test(corpus)) {
+    return "products";
+  }
+  if (/system|platform|service/.test(corpus)) {
+    return "systems";
+  }
+  if (/concept|trust|confidence|autonomy|config|routing/.test(corpus)) {
+    return "concepts";
+  }
+  return undefined;
+}
+
+function renderDiscoveredEntity(type: EntityType, candidate: DiscoverCandidate) {
+  const generatedAt = new Date().toISOString();
+  const evidenceLines =
+    candidate.evidence.length === 0
+      ? "- No retrieval evidence found."
+      : candidate.evidence
+          .map(
+            (item) =>
+              `- [${item.file}](/Users/fysp/personal/learning/${item.file}:${item.line}) — ${item.text}`,
+          )
+          .join("\n");
+
+  return `# Entity: ${candidate.text}
+
+type: ${type}
+aliases:
+[]
+tags:
+  - discovered
+relationships:
+[]
+confidence: medium
 generated_by: scripts/extract-entities.ts
 generated_at: ${generatedAt}
 
@@ -481,15 +781,30 @@ async function main() {
 
   const files = config.sourceRoots.flatMap((root) => walkFiles(resolve(root), exts, excludes));
   const knownPatterns = buildKnownPatterns(config.entities);
+  const configuredTypes = Array.from(new Set(config.entities.map((entity) => entity.type))).sort();
 
   console.log(`Config: ${config.name}`);
   console.log(`Files scanned: ${files.length}`);
+  console.log(`Configured entity types: ${configuredTypes.join(", ") || "(none)"}`);
 
   if (args.discover) {
-    const candidates = collectDiscoverCandidates(files, repoRoot, knownPatterns, args.maxEvidence);
+    const engine = createDiscoverEngine(
+      args.discoverEngine,
+      args.qmdCollection,
+      args.qmdTopK,
+      args.qmdSeedLimit,
+    );
+    const candidates = await engine.collectCandidates({
+      config,
+      files,
+      repoRoot,
+      knownPatterns,
+      maxEvidence: args.maxEvidence,
+    });
     const outputPath = resolve(config.outputRoot, "_discover", `${config.name}.md`);
     const content = renderDiscoverReport(config, candidates, args.discoverLimit);
 
+    console.log(`discover engine: ${engine.id}`);
     console.log(`discover candidates: ${candidates.length}`);
 
     if (!args.dryRun) {
@@ -515,6 +830,73 @@ async function main() {
 
     ensureDir(dirname(outputPath));
     writeFileSync(outputPath, content, "utf8");
+  }
+
+  if (args.expandFromDiscover) {
+    const engine = createDiscoverEngine(
+      args.discoverEngine,
+      args.qmdCollection,
+      args.qmdTopK,
+      args.qmdSeedLimit,
+    );
+    const discovered = await engine.collectCandidates({
+      config,
+      files,
+      repoRoot,
+      knownPatterns,
+      maxEvidence: args.maxEvidence,
+    });
+
+    const existingSlugs = new Set(config.entities.map((entity) => entity.slug));
+    const existingEntityFiles = walkFiles(
+      resolve(config.outputRoot),
+      new Set([".md"]),
+      [...excludes, "/_discover/"],
+    );
+    for (const file of existingEntityFiles) {
+      const name = file.split("/").pop() ?? "";
+      if (!name.endsWith(".md")) {
+        continue;
+      }
+      const slug = name.slice(0, -3);
+      if (slug) {
+        existingSlugs.add(slug);
+      }
+    }
+    const promoted: Array<{ type: string; slug: string }> = [];
+    let considered = 0;
+
+    for (const candidate of discovered) {
+      if (candidate.count < args.expandMinCount) {
+        continue;
+      }
+      const type = inferTypeFromCandidate(candidate);
+      if (!type || EXCLUDED_TYPES.has(type)) {
+        continue;
+      }
+      const slug = slugify(candidate.text);
+      if (!slug || existingSlugs.has(slug)) {
+        continue;
+      }
+      considered += 1;
+      if (considered > args.expandLimit) {
+        break;
+      }
+
+      const outputPath = resolve(config.outputRoot, type, `${slug}.md`);
+      if (!args.dryRun) {
+        ensureDir(dirname(outputPath));
+        writeFileSync(outputPath, renderDiscoveredEntity(type, candidate), "utf8");
+      }
+      promoted.push({ type, slug });
+      existingSlugs.add(slug);
+    }
+
+    console.log(`expand engine: ${engine.id}`);
+    console.log(`expanded entities: ${promoted.length}`);
+    for (const item of promoted) {
+      console.log(`${item.type}/${item.slug}: discovered`);
+    }
   }
 
   if (!args.dryRun && args.syncQmd) {

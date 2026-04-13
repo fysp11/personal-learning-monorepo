@@ -4,10 +4,12 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "entities:finom": "bun run scripts/extract-entities.ts --config scripts/entity-configs/finom.json",
-    "entities:finom:sync": "bun run scripts/extract-entities.ts --config scripts/entity-configs/finom.json --sync-qmd",
-    "entities:discover:finom": "bun run scripts/extract-entities.ts --config scripts/entity-configs/finom.json --discover",
-    "entities:discover:finom:sync": "bun run scripts/extract-entities.ts --config scripts/entity-configs/finom.json --discover --sync-qmd"
+    "entities:finom": "bun run scripts/extract-entities.ts --config scripts/entity-configs/finom.json --discover-engine qmd --qmd-collection proj-personal-learning-docs",
+    "entities:finom:sync": "bun run scripts/extract-entities.ts --config scripts/entity-configs/finom.json --discover-engine qmd --qmd-collection proj-personal-learning-docs --sync-qmd",
+    "entities:finom:strict": "bun run scripts/extract-entities.ts --config scripts/entity-configs/finom.json --no-expand-from-discover",
+    "entities:discover:finom": "bun run scripts/extract-entities.ts --config scripts/entity-configs/finom.json --discover --discover-engine qmd --qmd-collection proj-personal-learning-docs",
+    "entities:discover:finom:sync": "bun run scripts/extract-entities.ts --config scripts/entity-configs/finom.json --discover --discover-engine qmd --qmd-collection proj-personal-learning-docs --sync-qmd",
+    "entities:discover:finom:lexical": "bun run scripts/extract-entities.ts --config scripts/entity-configs/finom.json --discover --discover-engine lexical"
   },
   "devDependencies": {
     "@types/bun": "latest"

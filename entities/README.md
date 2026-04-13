@@ -74,8 +74,10 @@ For backfills from any dataset, use the checked-in extractor instead of ad hoc m
 ```bash
 bun run entities:finom
 bun run entities:finom:sync
+bun run entities:finom:strict
 bun run entities:discover:finom
 bun run entities:discover:finom:sync
+bun run entities:discover:finom:lexical
 ```
 
 What it does:
@@ -83,6 +85,8 @@ What it does:
 - scans the configured source files
 - matches checked-in entity aliases deterministically
 - writes entity files under `entities/<type>/<slug>.md`
+- supports any `type` string present in the checked-in config (no hardcoded type enum in code)
+- can auto-expand with qmd-discovered candidates during `entities:finom` runs
 - promotes useful discovered items into `entities/<type>/<slug>.md` when they are durable enough to keep
 - optionally runs `qmd update` and `qmd embed`
 - in `--discover` mode, proposes candidate entities into `entities/_discover/<config>.md`
@@ -98,7 +102,9 @@ Note:
 
 - the extraction step is the important deterministic part
 - the `:sync` variant will warn, not fail, if `qmd` cannot write its home-directory index in the current environment
-- `--discover` stays deterministic and only proposes candidates from file evidence
+- discover supports pluggable engines via `--discover-engine` (`qmd` default, `lexical` fallback)
+- qmd discover can be scoped with `--qmd-collection`, `--qmd-top-k`, and `--qmd-seed-limit`
+- auto-expansion can be toggled with `--expand-from-discover` / `--no-expand-from-discover`
 
 The extractor config lives in the checked-in config directory:
 

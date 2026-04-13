@@ -12,7 +12,7 @@ relationships:
   - proposal-mode-vs-action-mode
 confidence: high
 generated_by: scripts/extract-entities.ts
-generated_at: 2026-04-13T02:43:52.790Z
+generated_at: 2026-04-13T03:25:20.493Z
 
 ## Evidence
 - [topics/jobs/finom/code/README.md](/Users/fysp/personal/learning/topics/jobs/finom/code/README.md:121) — matched `Earned Autonomy`: > "Confidence is just a number until you calibrate it. In a new market, the model may say 90% but only be right 70% of the time — that's over-confidence. Platt scaling fixes the mapping without retraining. The earned autonomy ratchet: start conservative, calibrate, then widen thresholds as trust is measured."

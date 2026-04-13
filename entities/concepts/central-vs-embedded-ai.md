@@ -13,7 +13,7 @@ relationships:
   - finom
 confidence: high
 generated_by: scripts/extract-entities.ts
-generated_at: 2026-04-13T02:43:52.797Z
+generated_at: 2026-04-13T03:25:20.502Z
 
 ## Evidence
 - [topics/jobs/finom/artifacts/notebooklm/_outputs/Finom_s_blueprint_for_autonomous_AI_teams.txt](/Users/fysp/personal/learning/topics/jobs/finom/artifacts/notebooklm/_outputs/Finom_s_blueprint_for_autonomous_AI_teams.txt:45) — matched `central AI`: So we're tailoring this briefing for you specifically to extract the concrete organizational design tradeoffs of implementing a central AI mandate inside a rapidly scaling company.
