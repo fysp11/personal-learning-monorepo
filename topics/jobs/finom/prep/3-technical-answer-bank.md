@@ -42,11 +42,11 @@ I'd decompose this into five explicit stages with typed contracts between them.
 
 **Stage 1 — Feature Extraction (AI-powered).** Take the raw bank transaction — merchant name, amount, description, maybe a linked receipt — and extract structured fields. This is where AI adds value because merchant names are messy, abbreviations vary, and receipt text is noisy. I'd use an LLM with structured output (JSON schema or Zod) to produce a normalized `ExtractedTransaction` object.
 
-**Stage 2 — Category Proposal (AI-powered).** Given the extracted features, propose an SKR03 account code. This is the core classification step. I'd use either a fine-tuned classifier for common categories or an LLM with retrieval over the user's transaction history — because the same merchant might map to different accounts for different businesses. The key output is the proposed account code plus a confidence score.
+**Stage 2 — Category Proposal (AI-powered).** Given the extracted features, propose an SKR03 account code. This is the core classification step. I'd use either a fine-tuned classifier for common categories or an LLM with retrieval over the user's transaction history — because the same merchant might map to different accounts for different businesses. The key output is the proposed account code plus a confidence score and the evidence used to justify it, like matching receipt fields, prior similar bookings, or policy references.
 
 **Stage 3 — VAT Calculation (Deterministic).** Once we have a category, VAT rules are policy — 19% standard, 7% reduced, reverse charge for B2B intra-EU. This must not be LLM-powered. A wrong VAT rate is a compliance violation, not a UX annoyance. I'd build this as a pure function that takes category + market + B2B flags and returns the exact VAT breakdown.
 
-**Stage 4 — Confidence Routing (Deterministic).** Route based on the category confidence score. Above 0.85 → auto-book. Between 0.5 and 0.85 → create a structured proposal for the user showing what the system would do and why. Below 0.5 → reject and queue for manual categorization.
+**Stage 4 — Confidence Routing (Deterministic).** Route based on the category confidence score and evidence completeness. Above 0.85 with valid VAT evidence and no policy contradictions → auto-book. Between 0.5 and 0.85 or with partial evidence → create a structured proposal for the user showing what the system would do, why, and what evidence is still missing. Below 0.5 → reject and queue for manual categorization.
 
 **Stage 5 — Booking Entry (Deterministic).** Create the double-entry accounting record: debit the expense account, credit the bank account, split out the Vorsteuer. This is mechanical once the inputs are confirmed.
 
@@ -93,11 +93,13 @@ I'd build a **severity-weighted evaluation framework** with four layers.
 
 **Layer 3 — Confidence calibration.** Measure Expected Calibration Error (ECE). When the model says 0.9 confidence, is it actually correct 90% of the time? Poor calibration means the routing thresholds are meaningless — you'll auto-book things you shouldn't, or escalate things that are fine.
 
-**Layer 4 — Regression detection.** Compare every eval run against a baseline. If a prompt or model change makes reverse-charge detection worse, catch it before it ships. Store historical results and flag any case that changed from pass to fail.
+**Layer 4 — Evidence support quality.** Measure whether each material claim is backed by the expected evidence. Did the categorizer cite the receipt, merchant history, or market rule it relied on? Missing evidence should block auto-book even if raw confidence is high, because unsupported certainty is exactly how finance workflows become un-auditable.
 
-I'd run this in CI against every model, prompt, or pipeline change. Production monitoring adds: override rate tracking, confidence distribution shifts, and per-market accuracy over time.
+**Layer 5 — Regression detection.** Compare every eval run against a baseline. If a prompt or model change makes reverse-charge detection worse, catch it before it ships. Store historical results and flag any case that changed from pass to fail.
 
-**Finom-specific hook:** I saw you use Confident AI for eval infrastructure — going from 10-day improvement cycles to 3-hour iterations is exactly the velocity gain that makes eval-first development practical. That kind of eval velocity is what lets you move from shadow mode to auto-book with confidence in the data, not just confidence in the model. The evaluation framework I described is the thing you'd run inside those faster iteration cycles.
+I'd run this in CI against every model, prompt, or pipeline change. Production monitoring adds: override rate tracking, confidence distribution shifts, evidence-missing rate, and per-market accuracy over time.
+
+**Finom-specific hook:** I saw you use Confident AI for eval infrastructure — going from 10-day improvement cycles to 3-hour iterations is exactly the velocity gain that makes eval-first development practical. That kind of eval velocity is what lets you move from shadow mode to auto-book with confidence in the data, not just confidence in the model. The evaluation framework I described is the thing you'd run inside those faster iteration cycles. And the key insight from your own setup: the bottleneck wasn't engineer time — it was that product managers were locked out of the eval loop. Unblocking them is what turned 10 days into 3 hours.
 
 ---
 
@@ -128,7 +130,9 @@ Germany uses SKR03/SKR04, 19%/7% VAT, UStVA monthly/quarterly filing. France use
 
 **How I'd implement it:** Each market gets a policy module that implements a `MarketPolicy` interface. The orchestrator doesn't know about SKR03 or PCG — it calls `policy.getAccountCode(category)` and `policy.calculateVat(amount, category)`. Adding Spain means writing one new policy module and test suite, not changing the core pipeline.
 
-**The trap to avoid:** encoding market-specific rules in prompts. If VAT rates live in the LLM's system prompt, you can't test them deterministically, you can't version them, and you can't guarantee they're correct. Market policy must be code, not prompts.
+**Finom-specific color:** Three markets are already live for tax filing — Germany (UStVA), Italy (F24 Ordinario on mobile), and France is the expansion target. The ZM report (EC Sales List) just shipped for Germany. Each new market adds a policy module and one test suite; the orchestrator stays the same.
+
+**The trap to avoid:** Encoding market-specific rules in prompts. If VAT rates live in the LLM's system prompt, you can't test them deterministically, you can't version them, and you can't guarantee they're correct. Market policy must be code, not prompts.
 
 ---
 
@@ -179,6 +183,8 @@ Centralize the **hard reusable parts** — not every product decision.
 - Make the reusable path faster than the local workaround. Good defaults, observability out of the box, clear interfaces.
 - Measure adoption, not just creation. A pattern that three teams use is worth more than ten patterns nobody uses.
 - Package the pattern at the integration seam teams already touch: shared contracts, one orchestration template, trace hooks, and a minimal eval harness. If adoption requires a rewrite, it is not a reusable pattern.
+
+**Finom-specific color:** Finom is running 5-10 active AI products right now — not just the AI Accountant. Each product has sub-agents connected to dedicated MCP servers and backend microservices. The central AI team's leverage comes from shared eval infrastructure (they went from 10-day improvement cycles to 3-hour cycles by unblocking product managers), shared tool interfaces, and shared observability patterns. The question is always: does the next product team start from scratch, or do they inherit a tested spine?
 
 **How to avoid becoming a bottleneck:**
 - Domain teams own their outcomes. The central team provides leverage, not approval gates.

@@ -39,10 +39,14 @@
 ## AI and Product Direction
 - Finom is pushing beyond "AI sprinkled on top" toward agentic workflows that proactively complete work.
 - **The AI Accountant is a distributed multi-agent system (MAS)** — multiple autonomous AI agents collaborating within a shared environment. This is publicly stated.
+- **5-10 active AI products** with sub-agents connected to dedicated MCP servers and backend microservices (confirmed from Confident AI case study).
 - Auto-reconciliation engine matches invoices to payments with ~99% accuracy.
 - Accounting appears to be the first major workflow area rebuilt around this model.
 - Example from the first interview summary: the system drafts a preliminary tax record, asks for approval, and then files it.
 - The broader platform vision includes proactive cash-flow monitoring, missing-item detection, and negative-trend alerts.
+- **DATEV export now live** — AI Accounting output flows directly to the German accountant's professional workflow.
+- **ZM reports (EC Sales List) shipped for Germany** — roadmap items becoming production features.
+- **F24 tax payments live for Italy** — Italy is now a live tax-filing market (third after Germany).
 - Target: 1 million business customers by end of 2026.
 
 ## Team and Stack Signals

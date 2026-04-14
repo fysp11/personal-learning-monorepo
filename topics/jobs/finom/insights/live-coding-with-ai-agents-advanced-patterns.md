@@ -92,6 +92,33 @@ This is the "earned autonomy" pattern Ivo described — start conservative, wide
 
 ---
 
+## Evidence Gate as the Second Control Point
+
+Confidence alone is not enough for finance-sensitive workflows. The second control point is evidence completeness.
+
+### The pattern
+
+```typescript
+const canAutoBook =
+  result.confidence >= thresholds.autoBook &&
+  result.evidence.isComplete &&
+  !result.evidence.hasPolicyConflict;
+```
+
+### Why this matters in the interview
+
+- It shows you understand that unsupported certainty is not real trust.
+- It upgrades observability from "we logged the answer" to "we know why the answer was allowed to act."
+- It gives you a cleaner deterministic boundary: the model can propose, but code decides whether the proposal is sufficiently supported.
+
+### Good live-round phrasing
+
+> "I don't want to auto-book off confidence alone. I want confidence plus evidence completeness, otherwise the system is confident and un-auditable."
+
+> "This keeps proposal mode useful: the model can still move work forward, but unsupported claims stay reviewable instead of silently becoming ledger entries."
+
+---
+
 ## Execution-Model Refactor Pattern
 
 One especially strong live-round move is to improve throughput **without** changing the public interface. This shows mature engineering judgment because you protect downstream integrations while still fixing the bottleneck.
@@ -188,6 +215,8 @@ The interviewer evaluates your thinking, not just your code. These are the **ver
 ### At Observability
 
 > "I'm adding a trace because in production, when a transaction is mis-categorized, the first question is always: what did each stage decide, and what was the confidence? Without the trace, debugging is archaeology."
+
+> "I also want the trace to record the evidence bundle or missing-evidence reason, because 'the model felt good about it' is not an audit trail."
 
 ### At Adoption Surface
 

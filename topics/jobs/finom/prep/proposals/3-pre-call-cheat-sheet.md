@@ -20,9 +20,10 @@
 | **ECE < 0.05** | Calibration bar | Must pass before using confidence for routing |
 | **19% / 7%** | German VAT (standard / reduced) | Deterministic — never LLM |
 | **20% / 10% / 5.5% / 2.1%** | French VAT rates | PCG chart of accounts |
-| **Sept 1, 2026** | French B2B e-invoicing mandate | Chorus Pro / Factur-X format |
+| **22% / 10% / 4%** | Italian VAT rates | F24 tax filing live on mobile |
 | **200K+** | Finom active accounts (Apr 2026) | Scale of the problem |
-| **FTE / active customer** | Ivo's business metric | How AI impact is measured |
+| **5-10** | Active AI products | Not just AI Accountant |
+| **10-day → 3-hour** | Eval cycle improvement (Confident AI) | Unblocking PMs was the bottleneck |
 | **10 years** | GoBD retention requirement | Makes audit trail legally required |
 | **§13b UStG** | Reverse charge law | Always surfaces for review, never auto-books |
 
@@ -158,9 +159,11 @@ Before touching the keyboard:
 ## Day-Of Checklist
 
 - [ ] Run warm-up scripts: `bun run rehearsal && bun run autonomous-batch && bun run resilience`
+- [ ] If Python round: `cd code/python-sync-async-refactor && uv run pytest -q` (6 tests)
 - [ ] Key numbers reviewed (table above)
 - [ ] Story bank skimmed — Story 1 (calibration failure), Story 6 (scoping under pressure)
 - [ ] One failure mode per category ready to name
 - [ ] France delta answer ready
 - [ ] GoBD one-paragraph answer ready
 - [ ] Questions for them chosen
+- [ ] Python type mappings in head: `z.object` → `BaseModel`, `z.enum` → `str Enum`, `async function` → `async def`

@@ -145,9 +145,18 @@ Do NOT start coding immediately. The interviewer watches whether you think first
 | Standard VAT | 19% | 20% | 22% |
 | Reduced VAT | 7% | 5.5% / 10% | 4% / 5% / 10% |
 | Chart standard | SKR03 | PCG | Piano dei Conti |
-| E-invoicing | No | Interview-derived target / unconfirmed | Yes (SDI) |
+| Tax filing | UStVA | CA3 | F24 (mobile) |
+| E-invoicing | No | Target/unconfirmed | Yes (SDI) |
+| Amt export | DATEV | — | — |
+| ZM reports | ✓ (shipped) | — | — |
 
-*France values here are interview-derived planning assumptions, not public-canonical intel.*
+*France values are interview-derived planning assumptions, not public-canonical intel. Italy F24 is confirmed live.*
+
+### Products in play
+- **5-10 active AI products** (not just AI Accountant)
+- Sub-agents per domain → MCP servers → backend microservices
+- Confident AI for eval: **10-day → 3-hour** iteration cycles, **€250K+** projected savings
+- DATEV export: AI Accounting output flows directly to German accountant workflow
 
 ---
 

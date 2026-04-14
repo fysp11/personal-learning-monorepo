@@ -94,6 +94,9 @@ Finom explicitly targets the **€225 billion small business financial services 
 |--------|----------|---------|
 | Customer accounts | 125K+ | **200K+** |
 | AI Accountant status | Beta/limited | **GA for all German customers** |
+| Active markets (tax filing) | Germany only | **Germany + Italy (F24 mobile)** |
+| ZM reports | Upcoming roadmap | **Shipped for Germany** |
+| DATEV export | Not documented | **Live (direct accountant workflow)** |
 | Employees | 500+ | 505+ |
 | Series C | €115M (June 2025) | Same |
 | Total funding | ~€300M | ~€300M+ |
@@ -101,6 +104,44 @@ Finom explicitly targets the **€225 billion small business financial services 
 | Credit lines | Netherlands only | **Germany (Nov 2025)** |
 | Business cards | Not available | **Finom Prime (Nov 2025)** |
 | Eval infrastructure | Not documented | **Confident AI (27x faster)** |
+| Active AI products | Not documented | **5-10 products** |
+
+---
+
+## Updated Key Numbers for Day-Of Card
+
+---
+
+## Confident AI Case Study — Architecture Signals (March 2026)
+
+Source: https://www.confident-ai.com/case-study/finom
+
+Key grounded facts for Interview 3:
+
+1. **5-10 active AI products** inside Finom — not just the AI Accountant. Each has sub-agents mapped to domains (cards, invoicing, etc.).
+2. **Sub-agents → MCP servers → backend microservices** is the confirmed architecture pattern. The agent layer connects through MCP to product-specific services.
+3. **The eval bottleneck was not engineer time** — a single iteration took 10 days with only 0.5 engineer-days of actual work. The bottleneck was organizational: product managers were locked out of the eval loop.
+4. **Unblocking product managers** was the key acceleration: Confident AI's dual-access design (DeepEval SDK for engineers, UI+MCP for PMs) turned 10-day cycles into 3-hour cycles.
+5. **Igor Kolodkin (Head of AI Quality)**: "Creating good datasets that represent your users' intents — it's really hard work, and engineers don't know this part well. Only product can make a good estimation of what users would ask our agents to do."
+6. **Finom evaluated LangSmith and MLflow** before choosing Confident AI. LangSmith had better LangChain integration but didn't solve the collaboration problem. MLflow was too technical for PMs.
+
+**Interview hooks:**
+
+> "The bottleneck wasn't engineer time — it was that product managers were locked out of the eval loop. Unblocking them is what turned 10 days into 3 hours. That's exactly the central AI team's leverage: not running evals yourself, but making evals accessible to the people who know what users actually do."
+
+> "5-10 active AI products with sub-agents and MCP servers — that's exactly the pattern where shared tool interfaces and eval infrastructure compound. The first product team builds the spine; every team after that goes faster."
+
+---
+
+## Product Updates (March 2026)
+
+Source: finom.co/en-de/blog/product-updates-february (published March 6, 2026)
+
+1. **ZM reports (EC Sales List) — shipped for Germany.** Was "upcoming" in prior prep; now confirmed live.
+2. **DATEV export — live.** AI Accounting output flows directly to the German accountant's DATEV workflow. This is an adoption accelerator.
+3. **Invite your accountant** — SMBs can bring their accountant into Finom. Bridges user-to-accountant collaboration.
+4. **F24 tax payments (Italy) — live on mobile.** Italy is now a live tax-filing market, adding a third market beyond DE and FR.
+5. **Accounting expansion to additional markets — confirmed in progress.**
 
 ---
 
@@ -108,11 +149,15 @@ Finom explicitly targets the **€225 billion small business financial services 
 
 The GA rollout validates the core thesis: Finom is not building AI demos — they're running production AI at scale in a compliance-critical domain.
 
-**New talking points:**
+**Updated talking points:**
 
-1. **Credit expansion** — validates agent capabilities for real financial transactions (not just categorization)
-2. **Confident AI** — shows investment in eval/observability infrastructure, not just model choice
-3. **AI Act-ready** — positions compliance as product feature, not just regulatory burden
+1. **5-10 active AI products** — the central AI team's leverage question is live, not theoretical
+2. **MCP-connected sub-agents** — confirmed architecture; you can discuss this groundedly
+3. **DATEV export + invite your accountant** — adoption is being solved through integration, not just UI
+4. **Italy F24 as a live market** — multi-market is real, not aspirational
+5. **ZM reports shipped** — roadmap items are turning into production features
+6. **Confident AI** — the mechanism that unblocked PMs and turned 10-day cycles into 3-hour ones
+7. **AI Act-ready** — positions compliance as product feature, not just regulatory burden
 
 ---
 
@@ -123,4 +168,5 @@ The GA rollout validates the core thesis: Finom is not building AI demos — the
 - [How Finom used Confident AI (Confident AI Case Study, March 18, 2026)](https://www.confident-ai.com/case-study/finom)
 - [Finom AI Accounting (Product Hunt, February 25, 2025)](https://www.producthunt.com/products/finom-ai-accounting)
 - [Finom AI-Accounting rolling out in Germany (Cogito Capital, December 12, 2025)](https://cogitocap.com/uncategorized/finom-ai-accounting-is-now-rolling-out-across-germany/)
+- [Finom Product Updates February 2026 (published March 6, 2026)](https://finom.co/en-de/blog/product-updates-february/)
 - [Finom AI Accounting website](https://accounting.finom.co/)

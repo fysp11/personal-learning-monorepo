@@ -21,7 +21,9 @@ If unclear: "Before I start — can I confirm the failure cost hierarchy? I want
 
 ## Minute 0–5 — Scope and Contracts
 
-**Deliverable**: Zod types for input, output, and confidence envelope on screen.
+**Deliverable**: Zod types (TypeScript) or Pydantic models (Python) for input, output, and confidence envelope on screen.
+
+**If Python**, key translations: `z.object` → `class Model(BaseModel)`, `z.enum` → `class Enum(str, Enum)`, `z.number()` → `float`, `z.string()` → `str`. Full reference: `prep/3-python-live-round-cheatsheet.md`.
 
 ```typescript
 // What comes in

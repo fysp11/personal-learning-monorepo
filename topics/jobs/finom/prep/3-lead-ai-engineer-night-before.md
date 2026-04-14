@@ -56,6 +56,17 @@ A single reading sequence for the evening before the April 14 interview. Each it
    - `resilience`: "[circuit:categorization] → OPEN (failure rate 60% > threshold 40%)"
    - `calibration`: per-market ECE table showing IT worst-calibrated
 
+8. **If the round might use Python** (likely — Finom uses Python for AI work):
+   ```bash
+   cd topics/jobs/finom/code/python-sync-async-refactor
+   uv sync
+   uv run pytest -q          # 6 tests should pass
+   uv run python bad_sync_api.py --self-check   # OK
+   uv run python good_async_api.py --self-check  # OK
+   ```
+   
+   Skim `INTERVIEW_DRILL.md` in that folder — it's the 10-minute talk track for the sync→async refactor scenario.
+
 ---
 
 ## Phase 4b: Skim New Proposals (5 min)
@@ -108,9 +119,10 @@ A single reading sequence for the evening before the April 14 interview. Each it
 1. Coffee
 2. Re-read the day-of card (2 min)
 3. Open terminal, run `bun run rehearsal` once (20 sec)
-4. Open Claude Code, verify authentication
-5. Increase font size for screen share
-6. Water on desk, this card on side screen
+4. If Python is possible: `cd code/python-sync-async-refactor && uv run pytest -q` once (5 sec)
+5. Open Claude Code, verify authentication
+6. Increase font size for screen share
+7. Water on desk, this card on side screen
 
 ---
 

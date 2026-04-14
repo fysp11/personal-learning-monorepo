@@ -39,9 +39,15 @@
 | Calibration bar | **ECE < 0.05** |
 | German VAT | **19% / 7%** |
 | French VAT | **20% / 10% / 5.5% / 2.1%** |
+| Italian VAT | **22% / 10% / 4%** |
+| Italian tax filing | **F24 mobile** |
+| German ZM reports | **shipped** |
+| German DATEV export | **live** |
 | Finom accounts | **200K+** |
 | GoBD retention | **10 years** |
 | Reverse charge law | **§13b UStG** |
+| Active AI products | **5-10** |
+| Confident AI impact | **10-day → 3-hour cycles** |
 
 ---
 

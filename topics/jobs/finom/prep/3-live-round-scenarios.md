@@ -24,30 +24,33 @@ Ask/clarify:
 Transaction Event
   → Stage 1: Feature Extraction (AI) — merchant name, amount, date from raw text
   → Stage 2: Category Proposal (AI) — match to SKR03/SKR04 account code
-  → Stage 3: VAT Calculation (Deterministic) — apply DE rules based on category
-  → Stage 4: Confidence Router (Deterministic) — auto-book / propose / reject
-  → Stage 5: Booking Entry (Deterministic) — create accounting record
+  → Stage 3: Evidence Gate (Deterministic) — verify receipt fields / prior-booking match / policy support
+  → Stage 4: VAT Calculation (Deterministic) — apply DE rules based on category
+  → Stage 5: Confidence Router (Deterministic) — auto-book / propose / reject
+  → Stage 6: Booking Entry (Deterministic) — create accounting record
 ```
 
 ### Key design decisions to state out loud
 
 1. "VAT calculation is deterministic — too risky for LLM"
 2. "Category proposal is the AI step — merchant text is genuinely ambiguous"
-3. "Confidence routing gives us earned autonomy — high confidence auto-books, medium proposes for approval, low rejects"
-4. "The trace captures every stage decision for auditability"
-5. "I want one operator metric from the start — review rate or minutes of review per 100 transactions — so we can prove this compresses work instead of moving it around"
+3. "High confidence is not enough by itself — I also want evidence completeness before anything auto-books"
+4. "Confidence routing gives us earned autonomy — high confidence plus evidence auto-books, medium proposes for approval, low rejects"
+5. "The trace captures every stage decision for auditability"
+6. "I want one operator metric from the start — review rate or minutes of review per 100 transactions — so we can prove this compresses work instead of moving it around"
 
 ### Implementation order (50 min)
 
 1. Define typed interfaces: `TransactionInput`, `CategoryProposal`, `VatCalculation`, `BookingEntry`, `WorkflowOutcome` (10 min)
 2. Implement deterministic VAT calculation with market config (10 min)
 3. Implement categorization function (mock AI with keyword matching) (10 min)
-4. Wire the orchestrator with confidence routing (10 min)
-5. Add trace/observability and test cases (10 min)
+4. Wire the orchestrator with evidence gate plus confidence routing (10 min)
+5. Add trace/observability and test cases, including one missing-evidence case (10 min)
 
 ### What to say if they probe further
 
 - "For production, the categorization function would call an LLM with structured output (Zod schema or JSON mode)"
+- "I would not auto-book off model confidence alone; unsupported claims stay in proposal mode"
 - "I'd add a learning loop: user overrides feed back into the model or update keyword rules"
 - "For France, I'd parameterize the market config — same workflow shape, different account codes and VAT rates"
 
@@ -63,7 +66,7 @@ Transaction Event
 2. Draw stage boundaries: where does input parsing end? Where does policy start? Where is the LLM call?
 3. Extract each stage into a function with typed input/output.
 4. Add confidence at each AI boundary.
-5. Add a routing decision after the AI stages.
+5. Add an evidence gate and routing decision after the AI stages.
 6. Wire stages through a simple orchestrator.
 7. Add a trace array that captures each stage result.
 
@@ -77,6 +80,7 @@ Transaction Event
 
 - Tax rules baked into the LLM prompt → extract to deterministic function
 - Single confidence threshold for the whole pipeline → per-stage confidence
+- High-confidence result with no supporting evidence → block auto-action
 - No trace/audit trail → add structured logging
 - Auto-action on low-confidence → add proposal mode
 
@@ -93,6 +97,7 @@ EvalRunner
   ├── FieldComparator — per-field accuracy (category, VAT rate, amount)
   ├── SeverityWeighter — critical errors (VAT) >> cosmetic errors (description)
   ├── CalibrationChecker — confidence vs actual accuracy
+  ├── EvidenceChecker — support present for every material claim
   └── ReportGenerator — per-market breakdown, regression detection
 ```
 
@@ -102,13 +107,15 @@ EvalRunner
 2. Build inline test suite: 5-8 transactions covering standard, reverse charge, exempt, mixed VAT (10 min)
 3. Implement field-level comparison (10 min)
 4. Add severity-weighted scoring (10 min)
-5. Generate summary report (10 min)
-6. Show calibration: are high-confidence results actually correct more often? (10 min)
+5. Add evidence-support checks for VAT/account claims (10 min)
+6. Generate summary report (5 min)
+7. Show calibration: are high-confidence results actually correct more often? (5 min)
 
 ### Key talking points
 
 - "Severity-weighted accuracy is more meaningful than raw accuracy — a wrong VAT rate is worse than a wrong description"
 - "Calibration tells us whether the model's confidence is trustworthy, which directly affects routing thresholds"
+- "Evidence support matters separately from confidence — unsupported certainty should never auto-act"
 - "I'd run this eval suite in CI against every model or prompt change"
 
 ---
