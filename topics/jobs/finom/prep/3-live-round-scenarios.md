@@ -209,6 +209,34 @@ HTTP Contract (unchanged)
 
 ---
 
+## Scenario G: "Something you haven't seen before"
+
+If Viktar opens with a genuinely unfamiliar problem (a domain you haven't prepped, a different workflow shape), the universal decomposition still applies. Do not freeze.
+
+### The 90-second protocol
+
+Say this:
+> "Before I start — let me make sure I understand the input, the output, and the failure cost hierarchy. I want to identify what's genuinely ambiguous versus what's policy before I touch the keyboard."
+
+Then:
+1. Identify the AI boundary: what part of the input is messy/ambiguous? That's an AI stage.
+2. Identify the deterministic boundary: what has a compliance, legal, or exact-answer constraint? That's deterministic code.
+3. Define a confidence score on the AI output. No matter the domain, this applies.
+4. Design a router: auto-act threshold, propose threshold, reject/escalate threshold.
+5. Write Pydantic models for input, AI output, and final result. Start there.
+
+### The phrase that buys time (without sounding lost)
+
+> "I'm going to define the typed contract first, because that's the forcing function for everything downstream. Two minutes."
+
+Then write `TransactionInput` (or whatever the input is), `CategoryResult` (or equivalent), and the router enum. By the time you've done that, you'll know how to continue.
+
+### What Viktar is watching for
+
+He's not checking whether you know this specific domain. He's checking whether you can decompose something unfamiliar into controllable pieces. The architecture is always: scope → AI boundary → contracts → AI stub → deterministic logic → router → orchestrator → trace. Show that pattern and you've passed.
+
+---
+
 ## Universal Moves (use in any scenario)
 
 ### Always do first

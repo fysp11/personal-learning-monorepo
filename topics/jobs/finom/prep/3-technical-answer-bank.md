@@ -97,6 +97,8 @@ I'd build a **severity-weighted evaluation framework** with four layers.
 
 I'd run this in CI against every model, prompt, or pipeline change. Production monitoring adds: override rate tracking, confidence distribution shifts, and per-market accuracy over time.
 
+**Finom-specific hook:** I saw you use Confident AI for eval infrastructure — going from 10-day improvement cycles to 3-hour iterations is exactly the velocity gain that makes eval-first development practical. That kind of eval velocity is what lets you move from shadow mode to auto-book with confidence in the data, not just confidence in the model. The evaluation framework I described is the thing you'd run inside those faster iteration cycles.
+
 ---
 
 ## Q4: "How would you generalize Germany-first workflows toward France?"
@@ -148,6 +150,8 @@ Three failure modes I've seen:
 2. Keep prompts scoped and small. Ask for one function, not a whole module. Inspect each output before moving on.
 3. Insist on a verification step — run it, test it, check the edge cases. If the tool makes it easier to write code, spend the saved time on better verification.
 4. Measure net effect, not gross output. The question isn't "how much code did we write?" — it's "how fast did we converge to a correct, maintainable solution?"
+
+**Finom-specific frame:** Ivo's question about whether Codex/Claude make engineers faster or slower is the same question Finom already answered for evals with Confident AI — 10-day cycles became 3-hour cycles. The velocity gain comes from faster feedback, not faster output. Coding agents work the same way: they're a net win when they accelerate verification cycles (e.g., "generate the test, I verify correctness"), and a net loss when they accelerate code volume without accelerating verification. The metric should be convergence speed to correct, not lines produced per hour.
 
 ---
 
@@ -411,3 +415,71 @@ BatchHealthSummary (per batch run):
 ### The key phrase
 
 > "I add confidence distribution monitoring on day one because it's the leading indicator — by the time accuracy metrics degrade, you've already misboked real transactions. Terminal state tracking catches the silent failures metrics don't see. Business KPIs connect it to what the team actually cares about."
+
+---
+
+## Q15: "If you joined, what would you own in the first 90 days?"
+
+### One-line answer
+
+> "In the first 30 days I'd ship something small and correct — not design something large. By day 60 I'd own one production component with measurable impact. By day 90 I'd have a reusable pattern two other engineers have actually used."
+
+### Full answer
+
+I'd structure it around three concrete deliverables, not a learning plan.
+
+**Days 1–30: Read the production system, then ship one thing.**
+
+I'd spend the first week reading live code, tracing one transaction from ingestion to booking entry, and understanding the actual failure modes — not the documented ones, the production ones. Then I'd pick one small, well-scoped improvement: either a missing failure mode handler, a calibration gap in one market, or a non-terminal transaction in the dead-letter queue. Ship it with tests and a trace. The goal is to prove I can operate on the real system, not just describe patterns.
+
+**Days 31–60: Own one production component with a measurable metric.**
+
+The accounting pipeline has clear seams: extraction, categorization, VAT, routing, observability. I'd take ownership of one component — most likely the confidence routing layer or the eval harness — and attach a metric I'm responsible for. If it's routing: override rate and auto-book rate, tracked weekly. If it's eval: regression detection coverage, measured in "percent of failure modes with a CI-blocking test case." The goal is that when the number moves, I know why.
+
+**Days 61–90: Produce one reusable pattern two other engineers have used.**
+
+By day 90 I want to have built one thing that two engineers who weren't involved have adopted. That's the central AI team's success condition: not "we documented a pattern" but "two teams used it and kept using it six weeks later." It could be an orchestration template, a confidence calibration helper, or a trace format. The measure is adoption, not creation.
+
+**What I would not do in the first 90 days:** redesign the architecture, propose a new evaluation framework before understanding the current one, or declare what the team should be doing differently. The learning curve in a fintech domain is real — I'd earn the right to influence direction by first demonstrating I can ship and operate within it.
+
+**If Viktar asks "but what if we don't have a clear project for you?":**
+
+> "Then I'd create one. The accounting pipeline has observable metrics — override rate, escalation rate, per-market ECE. I'd find the worst-performing metric and own improving it. The work is always there; the question is whether I can find it."
+
+---
+
+## Q16: "How would you handle a live round problem you haven't prepared for?"
+
+### One-line answer
+
+> "The problem framing is always the same: scope the input and output first, identify the failure cost hierarchy, draw the pipeline, then implement one stage at a time with typed contracts between them."
+
+### Full answer
+
+The categorization workflow is the example I've prepared, but the pattern transfers to any AI workflow problem.
+
+**The universal approach:**
+
+1. **Scope before touching the keyboard** (2 min): "The input is [X], the output must be [Y], and the worst kind of wrong is [Z]."
+
+2. **Draw the AI/deterministic boundary** (1 min): "What in this problem is judgment? What is policy? Judgment → AI stage. Policy → deterministic stage."
+
+3. **Define typed contracts** (3 min): Pydantic models or Zod schemas for input, output, and confidence envelope for the AI stage.
+
+4. **Implement the AI stage as a stub first** (5 min): Return a typed result with a confidence score. The exact LLM call is secondary — the contract matters.
+
+5. **Implement the deterministic stage** (5 min): Pure function, no side effects, testable independently.
+
+6. **Add the confidence router** (5 min): Always. This is the most important 10 lines regardless of problem domain.
+
+7. **Wire an orchestrator with a trace** (5 min): Chain the stages, capture per-stage timing and decisions.
+
+**What this looks like for common alternative problems:**
+
+- **Invoice processing**: extraction stage (AI, unstructured → structured), field validation (deterministic, required fields present), approval routing (deterministic, amount threshold or vendor rule).
+- **Support ticket triage**: intent classification (AI, freetext → category + confidence), SLA calculation (deterministic, category → response time), escalation routing (deterministic, confidence + severity).
+- **Fraud signal scoring**: feature extraction (deterministic, rule-based signals), model scoring (AI, probability), action routing (deterministic, threshold + compliance override for high-value transactions).
+
+**The invariants that apply everywhere:**
+
+Every AI workflow, regardless of domain, needs: (1) confidence scores on AI outputs, (2) deterministic policy enforcement, (3) explicit terminal states, (4) a trace per request. These are not categorization-specific — they are the architecture of any production AI workflow. Implement these and you've demonstrated production thinking regardless of the specific problem.
