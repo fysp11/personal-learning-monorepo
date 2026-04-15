@@ -10,9 +10,13 @@
 ## Immediate Actions
 
 - [ ] Confirm start date with Delphyr
-- [ ] Sign employment contract
-- [X] Confirm relocation support (housing search assistance, relocation budget, temporary accommodation)
-- [X] Confirm salary, benefits, 30% ruling eligibility, equipment
+- [x] Sign employment contract
+- [x] **CEO Michel welcomed you to the team via WhatsApp** — April 14, 2026
+- [ ] Confirm relocation support (housing search assistance, relocation budget, temporary accommodation)
+- [ ] Confirm salary, benefits, 30% ruling eligibility, equipment
+- [ ] Ask HR for employer guarantee letter (garantiebrief) — helps with rental applications
+- [ ] Ask HR about fietsplan (bike lease scheme)
+- [ ] Confirm Delphyr office address for commute planning
 - [ ] Ask HR for employer guarantee letter (garantiebrief) — helps with rental applications
 - [X] Confirm Delphyr office address for commute planning
 
