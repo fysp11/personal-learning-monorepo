@@ -210,7 +210,34 @@ If you find a mid-rent property, check the points — you could save hundreds/mo
 - Build relationships across clinical, engineering, and commercial teams
 - Establish evaluation and monitoring patterns
 
-## Living in Amsterdam — Practical Guide
+## Flight: São Paulo → Amsterdam
+
+### Routes
+- **Direct:** KLM (AMS-GRU daily), ~11h 50m
+- **One-stop:** TAP (LIS), Air France (CDG), LATAM (various), ~13–18h
+
+### Best prices (2024–2025 ranges)
+- Economy: €600–1,000 per person
+- Premium economy: €1,500–2,500 per person
+- Business: €3,000–6,000+ per person
+
+### Tips
+- Book 2–3 months ahead for best prices
+- Use Skyscanner, Google Flights, Kayak for comparison
+- KLM often has deals GRU-AMS
+- Consider TAP (Lisbon stop) — often cheapest
+- If wife joins later, book separately or as one booking? Check baggage policy
+
+### For 2 people
+- Combined booking often better value
+- Check family/duo discounts
+- Baggage: most airlines include 1 checked bag (23kg) per person
+
+### Things to confirm
+- [ ] Dates: when do you fly? Single ticket or wife's separate?
+- [ ] Delphyr start date → work backward for arrival timing
+- [ ] Baggage allowance (work laptop counts as carry-on)
+- [ ] Travel insurance for the flight/luggage
 
 ### 1. Cost of Living (monthly, couple, excluding rent)
 
