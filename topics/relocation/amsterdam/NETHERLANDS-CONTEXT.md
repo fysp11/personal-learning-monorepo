@@ -127,6 +127,9 @@
 - Deducted from gross salary (tax-free)
 - Saves ~20–30% vs buying
 - Ask Delphyr HR if they offer this
+- Typical providers: Fietsvoordeelshop, Lease-a-bike, CycleSolution
+- Covers: regular bikes, e-bikes, sometimes cargo bikes, accessories
+- Usually requires 3–6 months employment
 
 ---
 

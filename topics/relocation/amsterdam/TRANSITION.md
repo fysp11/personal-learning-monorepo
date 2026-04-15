@@ -368,6 +368,7 @@ If you find a mid-rent property, check the points — you could save hundreds/mo
 - **Hardloopvereniging Daarle** — Running club
 
 **Cycling:** Buy a bike within first week. New: €400–800 (Batavus, Gazelle). Secondhand: Marktplaats, €150–400.
+- **Fietsplan (bike lease):** Ask Delphyr HR if they offer employer-sponsored bike lease — saves 20–30% via gross salary deduction. Providers: Fietsvoordeelshop, Lease-a-bike, CycleSolution. Covers e-bikes too.
 
 ### 9. Groceries & Shopping
 
