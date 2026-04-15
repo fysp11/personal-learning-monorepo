@@ -210,6 +210,179 @@ If you find a mid-rent property, check the points — you could save hundreds/mo
 - Build relationships across clinical, engineering, and commercial teams
 - Establish evaluation and monitoring patterns
 
+## Living in Amsterdam — Practical Guide
+
+### 1. Cost of Living (monthly, couple, excluding rent)
+
+| Category | Approximate Cost |
+|----------|-----------------|
+| Groceries | €400–600 |
+| Utilities (electricity, gas, water) | €150–250 |
+| Internet | €35–50 |
+| Mobile (2 phones) | €30–50 |
+| Health insurance (2x basic) | €240–300 |
+| Household/misc | €100–200 |
+| **Total** | **€955–1,450** |
+
+**Note:** Excludes rent (see housing section). Prices are 2024–2025 estimates — verify current.
+
+### 2. Dutch Banking
+
+**Best banks for newcomers:**
+- **bunq** — Fastest to open, fully English app, online-only. Get started in days. €10/month for Easy Banker.
+- **ING** — Largest, good English, full branch network
+- **ABN AMRO** — Strong expat services
+- **Rabobank** — Cooperative, community feel
+
+**Required to open account:**
+- Valid passport
+- BSN number
+- Proof of address (rental agreement or employment contract)
+
+**Joint account:** "en/of" (either can withdraw) or "en/en" (both required). bunq makes this easy in-app.
+
+### 3. Dutch Healthcare
+
+**Basic insurance (basisverzekering):** Mandatory. ~€120–150/month per person.
+- Covers: GP, hospital, medication, mental health, physiotherapy (limited)
+
+**Providers:** CZ, VGZ, Zilveren Kruis, Menzis, Ditzo
+
+**Supplemental (aanvullend):** Optional. ~€10–50/month for dental, physiotherapy, alternative.
+
+**Compare at:** independer.nl
+
+**GP (huisarts):** Register at a practice near your home. Use zorgkaartnederland.nl to find.
+
+### 4. 30% Tax Ruling
+
+**What:** 30% of your salary is tax-free for up to 5 years (tax-free reimbursement of extraterritorial costs).
+
+**Who qualifies:** Foreign specialists with specific expertise, salary ≥~€40,000/year, recruited from outside NL.
+
+**How to apply:** Employer submits application to Belastingdienst. Takes 4–8 weeks.
+
+**Pitfalls:**
+- Not automatic — must be applied for
+- 5-year max, non-renewable
+- Some employers don't offer it
+- Cannot backdate
+- Clarify whether it's applied to gross salary or as net supplement
+
+### 5. Dutch Bureaucracy Essentials
+
+**DigiD:** Digital identity for government services. Apply at digid.nl (requires BSN).
+
+**Municipality registration (inschrijving):** Register within 5 days of arriving at your local gemeente.
+
+**Documents needed:**
+- Valid passport
+- Employment contract
+- Rental agreement (or temp accommodation address)
+- Marriage certificate (for wife)
+- LTR residence card (you)
+
+**BSN:** Received at registration. Essential for: banking, taxes, health insurance, employment.
+
+**Timeline:**
+- Day 1–5: Register at municipality, get BSN
+- Week 1: Open bank account, apply for DigiD
+- Week 2: Get health insurance, register with GP
+
+### 6. Social Integration — Expat Communities
+
+**Key groups:**
+- InterNations Amsterdam — largest expat network, monthly events
+- Amsterdam Expat Center — one-stop resource
+- Girls in Tech Amsterdam — professional networking
+- Tech meetups (meetup.com)
+
+**Facebook groups:**
+- "Expats in Amsterdam"
+- "Amsterdam International Community"
+- "Expats in Amsterdam Housing"
+
+**Regular events:**
+- Friday Drinks (various locations)
+- Capital of Ideas networking
+- Language exchange meetups (Tandem)
+
+### 7. Learning Dutch
+
+**Apps:**
+- Duolingo — basics, free
+- Babbel — conversational focus, paid
+- Nemo Taalthuis — free government course
+
+**Courses:**
+- **Grasmanet** — Intensive in-person courses
+- **UvA Summer School** — Academic option
+- **DutchCourses.nl** — Directory of schools
+
+**Timeline expectations:**
+- Basic conversational: 6–12 months of consistent study
+- Professional working proficiency: 1–2 years
+- Many Amsterdam tech workers operate in English — Dutch accelerates integration but isn't strictly required
+
+### 8. Sports & Lifestyle
+
+**Gyms:**
+- **Basic-Fit:** ~€20–25/month, many locations
+- **Fit20:** ~€30/month, strength training
+- **Health City / Mike's:** €50–80/month, premium
+
+**Sports clubs:**
+- **Amsterdamse Studenten Atletiekvereniging** — Running
+- **AMC** — Field hockey
+- Various football/soccer clubs citywide
+
+**Running:**
+- **Parkrun Amsterdam** — Saturdays, free, 5km
+- **Hardloopvereniging Daarle** — Running club
+
+**Cycling:** Buy a bike within first week. New: €400–800 (Batavus, Gazelle). Secondhand: Marktplaats, €150–400.
+
+### 9. Groceries & Shopping
+
+**Supermarkets:**
+
+| Chain | Price | Best For |
+|-------|-------|----------|
+| Albert Heijn | Mid-high | Quality, selection |
+| Jumbo | Mid | Good value, selection |
+| Lidl | Budget | Produce, basics |
+| Aldi | Budget | Basics, German products |
+
+**Weekly shop for couple:** €80–150 depending on supermarket and habits.
+
+**Markets:**
+- **Albert Cuyp Market** — Daily, biggest in NL
+- **Ten Katemarkt** — Budget produce
+- **Foodhallen** — Indoor gourmet market (De Hallen)
+- **Noordermarkt** — Organic/Saturday
+
+**Household goods:** Action (discount), Blokker, IKEA (Zuidas, Noord)
+
+### 10. Dutch Work Culture
+
+**Hours:** 36–40 hours/week standard. Flexible (glijdend werken) common.
+
+**Communication:**
+- Direct, pragmatic, low-hierarchy
+- English widely spoken in tech
+- "Say what you mean" — not rude, just efficient
+
+**Hierarchy:** Flat in startups. First-name basis. Consensus-driven (poldermodel).
+
+**Holidays:**
+- ~25 paid days/year (legal minimum)
+- Dutch public holidays only (not US/other)
+- Summer: most Dutch take July–August off
+
+**Work-life balance:** Strong. Emails after hours often discouraged. Tech startups vary — more startup energy but improving.
+
+---
+
 ## Useful Links
 - [Amsterdam.nl — New residents](https://www.amsterdam.nl/en/new-residents/)
 - [IND — Family reunification](https://ind.nl/en/family-reunification)
