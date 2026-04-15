@@ -47,16 +47,22 @@
 - Monday, March 31, 2026 - initial interview with Michel in `interviews/1-introduction--michel/`
 - Friday, April 4, 2026 - technical round prepared in `interviews/2-technical--dejan-tim/`
 
-## Current Status
-- The workspace is ready for Delphyr follow-up work, but no post-April-4 outcome has been captured yet.
-- Next action: record outcome notes for the technical round, then either prepare the next interview folder or close the loop in this README.
-- New deeper technical materials added: guardrail architecture design and post-interview analysis framework.
-- Cross-company insights connecting Delphyr and Finom prep: `../cross-company-insights.md`
+## Current Status: OFFER ACCEPTED — Joining Delphyr
 
-## New Insights (Apr 11)
-- `insights/ambient-listening-architecture-analysis.md` — full engineering analysis of Delphyr's newest product surface: ASR → diarization → SOAP structuring → privacy
-- `insights/mdt-evaluation-benchmark-framework.md` — 6-dimension evaluation framework for MDT briefing quality with severity-weighted scoring
-- `insights/clinical-ai-landscape-april-2026.md` — updated competitive landscape and company intelligence
+**Outcome:** Offer received and accepted after the technical round with Michel, Dejan, and Tim. Joining Delphyr in Amsterdam.
+
+**Next phase:** Relocation to Amsterdam. See `TRANSITION.md` for planning.
+
+**Workspace purpose shift:** This folder now transitions from interview prep to onboarding and ramp-up context. The research, insights, and code here are foundational for the first 90 days.
+
+- `insights/ambient-listening-architecture-analysis.md` — Delphyr's newest product surface: ASR → diarization → SOAP → privacy
+- `insights/mdt-evaluation-benchmark-framework.md` — evaluation framework for MDT briefing quality
+- `insights/clinical-ai-landscape-april-2026.md` — updated competitive landscape
+- `prep/Medical-RAG-Guardrails-Landscape.md` — RAG and safety review
+- `prep/rag-guardrail-architecture-design.md` — guardrail pipeline architecture
+- `prep/healthcare-ai-competitive-landscape.md` — competitive landscape analysis
+- `code/README.md` — technical rehearsal code (extraction agent + citation verification)
+- Cross-company insights: `../cross-company-insights.md`
 
 ## Best Angles
 - Production AI systems over messy data, not demos

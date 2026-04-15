@@ -48,6 +48,7 @@
 | Reverse charge law | **§13b UStG** |
 | Active AI products | **5-10** |
 | Confident AI impact | **10-day → 3-hour cycles** |
+| Accounting monetization | **€29/month after 20 free** — pipeline output = billing unit |
 
 ---
 

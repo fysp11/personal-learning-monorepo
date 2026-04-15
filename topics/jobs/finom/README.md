@@ -71,14 +71,21 @@
 - Wednesday, April 8, 2026 - second interview with Ivo in `interviews/2-central-ai--ivo/`
 - Thursday, April 9, 2026 - recruiter moved you to Interview 3: 30 minutes of technical questions with a Senior AI Engineer, then 60 minutes of live problem-solving with Claude Code or Codex
 
-## Current Status
-- The main next action is prep for Interview 3, the technical round with Viktar Adynets.
-- Round dashboard: `interviews/3-lead-ai-engineer/README.md`
-- **Primary prep files:** `prep/3-lead-ai-engineer-prep-plan.md` and `prep/3-lead-ai-engineer-day-of-card.md`
-- The Ivo interview folder README is the grounded input for Interview 3 prep.
-- The recruiter follow-up for Interview 3 confirms the `30 + 60` structure and `Claude Code` / `Codex` live format.
-- The first interview README is the distilled source for Dmitry's product, org, and stack signals.
-- The strongest prep path for the next round is: match analysis -> first-round summary -> interview 3 prep plan -> live-round drills.
+## Current Status: CLOSED — No Offer
+
+**Outcome:** Rejected after Interview 3 (April 14, 2026). Finom communicated a profile mismatch at the final round — they are looking for a different profile than what this application presented.
+
+**Timeline outcome:**
+- Interview 1 (Dmitry) — positive, moved forward
+- Interview 2 (Ivo) — positive, moved to technical round
+- Interview 3 (Viktar) — final round, no offer due to profile mismatch
+
+**What this means:** The role they need filled has different requirements than the Senior AI Engineer positioning this workspace was built around. This is a calibration gap, not a skills gap — the prep work here is transferable.
+
+**Observations for future reference:**
+- Strongest angles identified (production AI systems, agentic workflows, evaluation discipline) remain valid positioning for similar roles
+- The MAS architecture, multi-agent coordination, and Finom domain research in `insights/` and `prep/` are high-value reusable material
+- The interview workspace structure (dashboard, round folders, prep/insights split) worked well — use this pattern going forward
 - Cross-company insights connecting Finom and Delphyr prep: `../cross-company-insights.md`
 
 ## New Insights (Apr 11-12)

@@ -155,8 +155,9 @@ Do NOT start coding immediately. The interviewer watches whether you think first
 ### Products in play
 - **5-10 active AI products** (not just AI Accountant)
 - Sub-agents per domain → MCP servers → backend microservices
-- Confident AI for eval: **10-day → 3-hour** iteration cycles, **€250K+** projected savings
+- Confident AI for eval: **10-day → 3-hour** iteration cycles, **€250K+** projected savings, **60+ hrs/week reclaimed**, **3x iteration throughput**
 - DATEV export: AI Accounting output flows directly to German accountant workflow
+- Accounting monetized at **€29/month** after 20 free verified records — the pipeline's "verified record" is the billing unit; every auto-booked transaction that becomes a verified record is directly revenue-connected
 
 ---
 

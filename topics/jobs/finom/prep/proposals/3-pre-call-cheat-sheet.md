@@ -23,7 +23,8 @@
 | **22% / 10% / 4%** | Italian VAT rates | F24 tax filing live on mobile |
 | **200K+** | Finom active accounts (Apr 2026) | Scale of the problem |
 | **5-10** | Active AI products | Not just AI Accountant |
-| **10-day → 3-hour** | Eval cycle improvement (Confident AI) | Unblocking PMs was the bottleneck |
+| **€29/month** | Accounting add-on (after 20 free verified records) | Pipeline output = billing unit — auto-book = revenue |
+| **10-day → 3-hour** | Eval cycle improvement (Confident AI) | Unblocking PMs was the bottleneck; **60+ hrs/week saved, 3x throughput** |
 | **10 years** | GoBD retention requirement | Makes audit trail legally required |
 | **§13b UStG** | Reverse charge law | Always surfaces for review, never auto-books |
 

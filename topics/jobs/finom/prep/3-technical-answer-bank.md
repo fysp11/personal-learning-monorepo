@@ -42,7 +42,7 @@ I'd decompose this into five explicit stages with typed contracts between them.
 
 **Stage 1 — Feature Extraction (AI-powered).** Take the raw bank transaction — merchant name, amount, description, maybe a linked receipt — and extract structured fields. This is where AI adds value because merchant names are messy, abbreviations vary, and receipt text is noisy. I'd use an LLM with structured output (JSON schema or Zod) to produce a normalized `ExtractedTransaction` object.
 
-**Stage 2 — Category Proposal (AI-powered).** Given the extracted features, propose an SKR03 account code. This is the core classification step. I'd use either a fine-tuned classifier for common categories or an LLM with retrieval over the user's transaction history — because the same merchant might map to different accounts for different businesses. The key output is the proposed account code plus a confidence score and the evidence used to justify it, like matching receipt fields, prior similar bookings, or policy references.
+**Stage 2 — Category Proposal (AI-powered).** Given the extracted features, propose an SKR03 account code. This is the core classification step. I'd use either a fine-tuned classifier for common categories or an LLM with retrieval over the user's transaction history — because the same merchant might map to different accounts for different businesses. If retrieval is involved, I'd rewrite vague queries into a canonical merchant-plus-context form, retrieve broadly, then re-rank before the LLM sees the context so only high-signal evidence reaches the model. The key output is the proposed account code plus a confidence score and the evidence used to justify it, like matching receipt fields, prior similar bookings, or policy references.
 
 **Stage 3 — VAT Calculation (Deterministic).** Once we have a category, VAT rules are policy — 19% standard, 7% reduced, reverse charge for B2B intra-EU. This must not be LLM-powered. A wrong VAT rate is a compliance violation, not a UX annoyance. I'd build this as a pure function that takes category + market + B2B flags and returns the exact VAT breakdown.
 
@@ -50,7 +50,7 @@ I'd decompose this into five explicit stages with typed contracts between them.
 
 **Stage 5 — Booking Entry (Deterministic).** Create the double-entry accounting record: debit the expense account, credit the bank account, split out the Vorsteuer. This is mechanical once the inputs are confirmed.
 
-**What I'd measure:** approval rate (what fraction auto-books), override rate (how often users correct a proposal), severe-error rate (wrong VAT or wrong account), and per-market accuracy breakdown.
+**What I'd measure:** approval rate (what fraction auto-books), override rate (how often users correct a proposal), severe-error rate (wrong VAT or wrong account), per-market accuracy breakdown, and stage timings so I know whether latency is in extraction, retrieval, or routing rather than just "the workflow feels slow."
 
 **Why this design:** Each stage fails differently and can be improved independently. If extraction accuracy drops, we improve the extraction prompt — we don't need to retrain the categorizer. If VAT rules change for a new market, we add a config — we don't retrain anything.
 
@@ -85,7 +85,7 @@ The boundary is not "hard vs easy" — it's "failure mode." Getting a category w
 
 ### Full answer
 
-I'd build a **severity-weighted evaluation framework** with four layers.
+I'd build a **severity-weighted evaluation framework** with six layers.
 
 **Layer 1 — Field-level accuracy.** Compare each output field against ground truth: account code, VAT rate, amounts, mechanism. Report per-field accuracy, not just overall pass/fail. A wrong description is different from a wrong VAT rate.
 
@@ -93,13 +93,15 @@ I'd build a **severity-weighted evaluation framework** with four layers.
 
 **Layer 3 — Confidence calibration.** Measure Expected Calibration Error (ECE). When the model says 0.9 confidence, is it actually correct 90% of the time? Poor calibration means the routing thresholds are meaningless — you'll auto-book things you shouldn't, or escalate things that are fine.
 
-**Layer 4 — Evidence support quality.** Measure whether each material claim is backed by the expected evidence. Did the categorizer cite the receipt, merchant history, or market rule it relied on? Missing evidence should block auto-book even if raw confidence is high, because unsupported certainty is exactly how finance workflows become un-auditable.
+**Layer 4 — Evidence support quality.** Measure whether each material claim is backed by the expected evidence. Did the categorizer cite the receipt, merchant history, or market rule it relied on? Missing evidence should block auto-book even if raw confidence is high, because unsupported certainty is exactly how finance workflows become un-auditable. In practice, I want citation presence plus citation quality: if retrieval similarity is weak or the cited market rule does not actually support the action, the case should downgrade to review.
 
 **Layer 5 — Regression detection.** Compare every eval run against a baseline. If a prompt or model change makes reverse-charge detection worse, catch it before it ships. Store historical results and flag any case that changed from pass to fail.
 
-I'd run this in CI against every model, prompt, or pipeline change. Production monitoring adds: override rate tracking, confidence distribution shifts, evidence-missing rate, and per-market accuracy over time.
+**Layer 6 — Performance envelope.** Benchmark the workflow before optimizing it. I want p50/p95 latency by stage, time to first token when an interactive LLM step exists, token cost per transaction, and retrieval hit-rate. Otherwise teams optimize whatever feels slow and often miss the real bottleneck.
 
-**Finom-specific hook:** I saw you use Confident AI for eval infrastructure — going from 10-day improvement cycles to 3-hour iterations is exactly the velocity gain that makes eval-first development practical. That kind of eval velocity is what lets you move from shadow mode to auto-book with confidence in the data, not just confidence in the model. The evaluation framework I described is the thing you'd run inside those faster iteration cycles. And the key insight from your own setup: the bottleneck wasn't engineer time — it was that product managers were locked out of the eval loop. Unblocking them is what turned 10 days into 3 hours.
+I'd run this in CI against every model, prompt, or pipeline change. Production monitoring adds: override rate tracking, confidence distribution shifts, evidence-missing rate, stage latency drift, and per-market accuracy over time.
+
+**Finom-specific hook:** I saw you use Confident AI for eval infrastructure — going from 10-day improvement cycles to 3-hour iterations is exactly the velocity gain that makes eval-first development practical. That kind of eval velocity is what lets you move from shadow mode to auto-book with confidence in the data, not just confidence in the model. The evaluation framework I described is the thing you'd run inside those faster iteration cycles. And the key insight from your own setup: the bottleneck wasn't engineer time — it was that product managers were locked out of the eval loop. Unblocking them is what turned 10 days into 3 hours. Igor Kolodkin said it directly: without shared eval infrastructure, each AI product needs a dedicated engineer full-time just for the prompt improvement cycle. With it, a manager runs evals independently — that's 60+ hours per week reclaimed and 3x iteration throughput. The leverage isn't just cost savings; it's that every AI product after the first ships faster because the eval spine already exists.
 
 ---
 
@@ -184,7 +186,7 @@ Centralize the **hard reusable parts** — not every product decision.
 - Measure adoption, not just creation. A pattern that three teams use is worth more than ten patterns nobody uses.
 - Package the pattern at the integration seam teams already touch: shared contracts, one orchestration template, trace hooks, and a minimal eval harness. If adoption requires a rewrite, it is not a reusable pattern.
 
-**Finom-specific color:** Finom is running 5-10 active AI products right now — not just the AI Accountant. Each product has sub-agents connected to dedicated MCP servers and backend microservices. The central AI team's leverage comes from shared eval infrastructure (they went from 10-day improvement cycles to 3-hour cycles by unblocking product managers), shared tool interfaces, and shared observability patterns. The question is always: does the next product team start from scratch, or do they inherit a tested spine?
+**Finom-specific color:** Finom is running 5-10 active AI products right now — not just the AI Accountant. Each product has sub-agents connected to dedicated MCP servers and backend microservices. The central AI team's leverage comes from shared eval infrastructure (they went from 10-day improvement cycles to 3-hour cycles by unblocking product managers), shared tool interfaces, and shared observability patterns. The question is always: does the next product team start from scratch, or do they inherit a tested spine? Finom's own data says each AI product would need a dedicated engineer full-time for eval cycles without shared infrastructure — with it, a PM can run evals independently and the engineering capacity goes to building the next system instead of maintaining the current one.
 
 **How to avoid becoming a bottleneck:**
 - Domain teams own their outcomes. The central team provides leverage, not approval gates.
@@ -240,13 +242,13 @@ At Finom, this probably means: the ML team handles credit scoring and risk model
 
 I think about this as the "Triple Dipper" — every production AI system fights three tensions simultaneously: **latency, cost, and accuracy.** Optimizing one directly stresses the others. In a financial AI workflow, there's a fourth: **trust.** Getting that wrong doesn't just degrade UX; it creates compliance risk.
 
-**Latency:** Multi-step workflows get slow when every transaction calls the model synchronously. I'd use batching, async processing where possible, and cache common merchants or repeated patterns. Concretely, I preserve the same `GET /health`, `POST /categorize`, and `POST /categorize/batch` API contract, but change the batch path from sequential sync calls to bounded async concurrency with a semaphore. On a 20-item mock batch with 40ms/item latency, that cuts elapsed time from ~864ms to ~164ms — measurable execution leverage, not just "async sounds better." The control point is the semaphore; unbounded `asyncio.gather` looks clever and destabilizes the provider.
+**Latency:** Multi-step workflows get slow when every transaction calls the model synchronously. I'd benchmark first and split latency by stage: extraction time, retrieval time, model time, and time to first token if the workflow has an interactive step. Then I'd use batching, async processing where possible, and cache common merchants or repeated patterns. Concretely, I preserve the same `GET /health`, `POST /categorize`, and `POST /categorize/batch` API contract, but change the batch path from sequential sync calls to bounded async concurrency with a semaphore. On a 20-item mock batch with 40ms/item latency, that cuts elapsed time from ~864ms to ~164ms — measurable execution leverage, not just "async sounds better." The control point is the semaphore; unbounded `asyncio.gather` looks clever and destabilizes the provider.
 
-**Cost:** The long tail is expensive if the model runs on every item. Three levers: (1) semantic caching — cache embeddings of common merchant patterns, so repeated queries hit cache, not the model; (2) model cascading — route straightforward, high-pattern transactions through a smaller, cheaper model, and only escalate ambiguous or novel inputs to the larger model; (3) re-ranker before LLM — if categorization uses retrieval over prior transaction history, a lightweight re-ranker can filter irrelevant context before it reaches the model, cutting token cost without touching accuracy. This also reduces latency.
+**Cost:** The long tail is expensive if the model runs on every item. Three levers: (1) semantic caching — cache embeddings of common merchant patterns, so repeated queries hit cache, not the model; (2) model cascading — route straightforward, high-pattern transactions through a smaller, cheaper model, and only escalate ambiguous or novel inputs to the larger model; (3) query rewrite plus re-ranker before LLM — if categorization uses retrieval over prior transaction history, canonicalize the query first, then let a lightweight re-ranker filter irrelevant context before it reaches the model, cutting token cost without touching accuracy. This also reduces latency.
 
 **Trust:** Confidence scores drift over time. I'd monitor calibration per market, override rate, and severe-error rate. If calibration worsens (ECE climbs above 0.05), I tighten the routing threshold before accuracy metrics degrade — because accuracy is a lagging indicator, calibration is leading.
 
-The next layer is **debuggability**. Every decision needs a trace: raw input, extracted fields, model output, confidence, routing decision, and final booking. Without that, production support becomes archaeology.
+The next layer is **debuggability**. Every decision needs a trace: raw input, extracted fields, retrieval evidence, model output, confidence, routing decision, and final booking. Without that, production support becomes archaeology.
 
 Finally, I expect **workflow-specific failures**, not just model failures: bad OCR from scanned documents, stale market config, missing VAT evidence, unawaited coroutines that silently drop transactions, and support queues that grow because the proposal UX is unclear. I'd design the system to fail visibly and conservatively, then measure where humans are still getting pulled in.
 

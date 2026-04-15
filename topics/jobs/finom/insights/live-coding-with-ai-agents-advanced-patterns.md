@@ -156,6 +156,8 @@ Changed execution layer
 
 > "The control point is the semaphore. Unbounded async looks clever in a demo and unstable in production."
 
+> "Before I optimize, I want a baseline by stage. If model time is only 15% of the path and retrieval or queueing is the bottleneck, async fan-out is the wrong fix."
+
 ---
 
 ## Python Async Discipline — Named Pitfalls for Live Round
@@ -206,6 +208,8 @@ The interviewer evaluates your thinking, not just your code. These are the **ver
 
 > "Before I start coding — let me make sure I understand the boundary. The categorization is where AI adds value; VAT calculation must be deterministic because tax law isn't ambiguous. The interesting design question is what happens at the boundary — when the AI isn't sure."
 
+> "I also want a baseline metric early — review rate, p95 stage latency, or time to first token — so we can tell whether the change actually improved the workflow."
+
 ### At Confidence Router
 
 > "This is the most important 10 lines in the system. Everything upstream produces a confidence score; everything downstream depends on this routing decision. In production, I'd want this to be configurable per market because risk tolerance differs."
@@ -217,6 +221,8 @@ The interviewer evaluates your thinking, not just your code. These are the **ver
 > "I'm adding a trace because in production, when a transaction is mis-categorized, the first question is always: what did each stage decide, and what was the confidence? Without the trace, debugging is archaeology."
 
 > "I also want the trace to record the evidence bundle or missing-evidence reason, because 'the model felt good about it' is not an audit trail."
+
+> "If retrieval is part of the design, I want the final output to cite which receipt field, prior booking, or market rule justified the action. Otherwise the answer is structured but still not grounded."
 
 ### At Adoption Surface
 
@@ -238,6 +244,7 @@ The interviewer evaluates your thinking, not just your code. These are the **ver
 | **Delegation fallacy** | "Claude, design the architecture" | You design; agent implements |
 | **Review skip** | Accepting agent output without reading | 10-second pause after each generation |
 | **Speed theater** | More generated code, same or worse operator/review load | Name the metric you are improving, not just the code you are writing |
+| **Optimization without baseline** | Refactoring for speed with no stage timing data | Capture a quick before-state first: stage timings, TTFT, or p95 latency |
 | **Over-engineering** | Adding DI, factories, abstract base classes | Keep it concrete and flat |
 | **Under-explaining** | Coding in silence | Narrate decisions, especially trade-offs |
 | **Tool wrestling** | Spending 5 minutes on agent config | Know your setup cold before the interview |

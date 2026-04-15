@@ -17,6 +17,7 @@ Ask/clarify:
 - Should this handle only Germany or be multi-market from the start?
 - What is the expected output: a proposed booking entry, just a category label, or a full accounting record?
 - Should it auto-book high-confidence results or always propose?
+- What metric matters most in this slice: review rate, severe-error rate, or stage latency?
 
 ### Architecture sketch (5 min)
 
@@ -38,6 +39,7 @@ Transaction Event
 4. "Confidence routing gives us earned autonomy — high confidence plus evidence auto-books, medium proposes for approval, low rejects"
 5. "The trace captures every stage decision for auditability"
 6. "I want one operator metric from the start — review rate or minutes of review per 100 transactions — so we can prove this compresses work instead of moving it around"
+7. "If retrieval is involved, I want citation-quality checks or similarity thresholds before anything gets to auto-book"
 
 ### Implementation order (50 min)
 
@@ -45,12 +47,13 @@ Transaction Event
 2. Implement deterministic VAT calculation with market config (10 min)
 3. Implement categorization function (mock AI with keyword matching) (10 min)
 4. Wire the orchestrator with evidence gate plus confidence routing (10 min)
-5. Add trace/observability and test cases, including one missing-evidence case (10 min)
+5. Add trace/observability and test cases, including one missing-evidence case and one weak-evidence downgrade case (10 min)
 
 ### What to say if they probe further
 
 - "For production, the categorization function would call an LLM with structured output (Zod schema or JSON mode)"
 - "I would not auto-book off model confidence alone; unsupported claims stay in proposal mode"
+- "If I needed retrieval, I'd rewrite the query into a canonical merchant-context form, re-rank the hits, and require the final answer to point to the evidence it used"
 - "I'd add a learning loop: user overrides feed back into the model or update keyword rules"
 - "For France, I'd parameterize the market config — same workflow shape, different account codes and VAT rates"
 
@@ -108,7 +111,7 @@ EvalRunner
 3. Implement field-level comparison (10 min)
 4. Add severity-weighted scoring (10 min)
 5. Add evidence-support checks for VAT/account claims (10 min)
-6. Generate summary report (5 min)
+6. Generate summary report with baseline latency / cost fields (5 min)
 7. Show calibration: are high-confidence results actually correct more often? (5 min)
 
 ### Key talking points
@@ -116,6 +119,7 @@ EvalRunner
 - "Severity-weighted accuracy is more meaningful than raw accuracy — a wrong VAT rate is worse than a wrong description"
 - "Calibration tells us whether the model's confidence is trustworthy, which directly affects routing thresholds"
 - "Evidence support matters separately from confidence — unsupported certainty should never auto-act"
+- "I'd benchmark before optimizing — otherwise we risk tuning prompts while the real bottleneck is retrieval or queueing"
 - "I'd run this eval suite in CI against every model or prompt change"
 
 ---
@@ -251,6 +255,7 @@ He's not checking whether you know this specific domain. He's checking whether y
 - Separate AI-powered steps from deterministic steps
 - Define typed contracts between stages
 - Name the business/operator metric the slice is supposed to improve
+- Name one baseline measurement you will preserve or improve
 
 ### Always build
 - Confidence propagation
@@ -262,6 +267,7 @@ He's not checking whether you know this specific domain. He's checking whether y
 - "This is where the AI adds value — the input is genuinely ambiguous"
 - "This part stays deterministic — the failure cost is compliance-related"
 - "I would measure [specific metric] to know this is actually reducing manual work"
+- "Before I optimize, I want a baseline by stage so I know whether the bottleneck is model time, retrieval, or orchestration"
 - "I'm optimizing for a slice a domain team could actually adopt next week, not a demo-only architecture"
 
 ### Never do
