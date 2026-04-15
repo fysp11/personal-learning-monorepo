@@ -51,7 +51,7 @@
 
 **Outcome:** Offer received and accepted after the technical round with Michel, Dejan, and Tim. Joining Delphyr in Amsterdam.
 
-**Next phase:** Relocation to Amsterdam. See `TRANSITION.md` for planning.
+**Next phase:** Relocation to Amsterdam in progress. See `../../relocation/amsterdam/README.md` for full planning.
 
 **Workspace purpose shift:** This folder now transitions from interview prep to onboarding and ramp-up context. The research, insights, and code here are foundational for the first 90 days.
 
