@@ -11,10 +11,10 @@
 
 - [ ] Confirm start date with Delphyr
 - [ ] Sign employment contract
-- [ ] Confirm relocation support (housing search assistance, relocation budget, temporary accommodation)
-- [ ] Confirm salary, benefits, 30% ruling eligibility, equipment
+- [X] Confirm relocation support (housing search assistance, relocation budget, temporary accommodation)
+- [X] Confirm salary, benefits, 30% ruling eligibility, equipment
 - [ ] Ask HR for employer guarantee letter (garantiebrief) — helps with rental applications
-- [ ] Confirm Delphyr office address for commute planning
+- [X] Confirm Delphyr office address for commute planning
 
 ## Residency & Immigration
 
@@ -23,19 +23,12 @@
 - No MVV or new IND application needed for yourself
 - Update your address at gemeente when you move
 
-### Your wife (Brazilian, entering as tourist)
-- Brazilians enter Schengen visa-free for 90 days (tourist)
-- She can enter on this basis while you settle
-- **She cannot work or register as resident on the tourist waiver alone**
-
-### Options for her residency
-1. **Family reunification via your LTR** — Apply to IND while she's in NL (entering as tourist, then changing purpose). Check if LTR allows same-track family reunification without MVV for Brazilian nationals.
-2. **After Italian document (June)** — If she obtains Italian citizenship or residence, she becomes an EU citizen / EU resident with freedom of movement. As family member of an EU citizen exercising treaty rights, her status simplifies significantly.
-3. **Timing strategy** — If her Italian document comes through before the 90 days expire, the transition is clean. If it takes longer, you may need the family reunification route as a bridge.
-
-- [ ] Verify with IND: exact family reunification process under LTR 2003/109 for non-EU spouse
-- [ ] Verify: whether Brazilian tourist entry can convert to family reunification without leaving NL
-- [ ] Verify: whether Italian citizenship/residence changes her NL registration requirements
+### Your wife (Brazilian → Italian document pending)
+- Enters Schengen visa-free as Brazilian tourist (90 days)
+- Before the 90 days expire: travels to Italy to complete her Italian documentation
+- Once Italian document is obtained: EU freedom of movement applies, clean status in NL
+- If documentation takes longer: can leave Schengen (e.g., UK) to reset the clock, then return
+- **Plan is set — just executing and seeing how the timeline plays out**
 
 ## Housing in Amsterdam — Rental Market for 2 People
 
