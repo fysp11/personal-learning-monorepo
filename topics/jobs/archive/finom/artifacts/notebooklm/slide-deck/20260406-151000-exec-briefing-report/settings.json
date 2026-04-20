@@ -1,0 +1,15 @@
+{
+  "artifact_type": "slide-deck",
+  "settings": {
+    "slide_count": "8-10",
+    "style": "business",
+    "include_speaker_notes": true,
+    "include_charts": false,
+    "focus": "exec-briefing-report"
+  },
+  "tips": [
+    "Keep each slide decision-oriented rather than descriptive.",
+    "Use speaker notes to capture nuance instead of overloading slide bullets.",
+    "Treat Glassdoor as background color, not a headline."
+  ]
+}

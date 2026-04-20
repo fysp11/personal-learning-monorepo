@@ -1,0 +1,21 @@
+{
+  "name": "finom-mas-coordination-demo",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "demo": "bun run accounting-mas-pipeline.ts",
+    "rehearsal": "bun run live-round-rehearsal.ts",
+    "eval": "bun run eval-harness.ts",
+    "calibration": "bun run confidence-calibration.ts",
+    "multi-market": "bun run multi-market-expansion-drill.ts",
+    "mcp-server": "bun run mcp-accounting-server.ts",
+    "resilience": "bun run production-resilience-patterns.ts",
+    "autonomous-batch": "bun run autonomous-batch-processor.ts",
+    "refactoring-exercise": "bun run refactoring-exercise.ts",
+    "observability": "bun run observability-patterns.ts"
+  },
+  "dependencies": {
+    "zod": "^4.3.6"
+  }
+}

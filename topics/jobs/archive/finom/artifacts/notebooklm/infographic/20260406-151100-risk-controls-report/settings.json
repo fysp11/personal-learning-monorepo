@@ -1,0 +1,14 @@
+{
+  "artifact_type": "infographic",
+  "settings": {
+    "detail_level": "standard",
+    "orientation": "portrait",
+    "style": "professional",
+    "focus": "risk-controls-report"
+  },
+  "tips": [
+    "Use the workflow stages as the backbone of the layout.",
+    "Keep each failure mode tied to a control mechanism.",
+    "Prefer compact labels over long explanatory paragraphs."
+  ]
+}

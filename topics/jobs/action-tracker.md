@@ -28,10 +28,10 @@
 ## Week 2: Apr 7-14, 2026
 
 ### Before Finom 3rd Round (Apr 14)
-- [x] Complete MCP skill server experiment (built in `finom/experiments/mcp-accounting-skills/`)
+- [x] Complete MCP skill server experiment (built in `ai-engineering/experiments/mcp-accounting-skills/`)
 - [x] Practice system design answer — system design template built (`cross-company-system-design-template.md`)
-- [x] Build confidence calibration experiment (`finom/code/confidence-calibration.ts` — verified running)
-- [x] Build multi-market expansion drill (`finom/code/multi-market-expansion-drill.ts` — verified running)
+- [x] Build confidence calibration experiment (`ai-engineering/code/confidence-calibration.ts` — verified running)
+- [x] Build multi-market expansion drill (`ai-engineering/code/multi-market-expansion-drill.ts` — verified running)
 - [x] Create hostile follow-up question bank (`finom/prep/3-lead-ai-hostile-followups.md`)
 - [x] Create day-of quick reference card (`finom/prep/3-lead-ai-engineer-day-of-card.md`)
 - [ ] Know UStVA filing process step-by-step
@@ -122,8 +122,8 @@
 - [x] `cross-company-system-design-template.md` — reusable 7-step system design answer framework with Finom and Delphyr instantiations
 
 ### Finom — New Code Experiments (Apr 11)
-- [x] `finom/code/confidence-calibration.ts` — ECE, Platt scaling, per-market comparison, threshold analysis (verified running)
-- [x] `finom/code/multi-market-expansion-drill.ts` — DE/FR/IT/NL tax rules, config validation, zero-code market addition (verified running)
+- [x] `ai-engineering/code/confidence-calibration.ts` — ECE, Platt scaling, per-market comparison, threshold analysis (verified running)
+- [x] `ai-engineering/code/multi-market-expansion-drill.ts` — DE/FR/IT/NL tax rules, config validation, zero-code market addition (verified running)
 
 ### Delphyr — New Code Experiments (Apr 11)
 - [x] `delphyr/code/soap-extraction-pipeline.ts` — transcript → SOAP notes, negation detection, citation linking, safety checks (verified running)
@@ -137,9 +137,9 @@
 
 ### All Code Experiments Verified Running (Apr 11)
 All 7 runnable experiments tested successfully:
-- `finom/code`: `rehearsal`, `calibration`, `multi-market` ✅ (bun)
+- `ai-engineering/code`: `rehearsal`, `calibration`, `multi-market` ✅ (bun)
 - `delphyr/code`: `soap`, `citation` ✅ (bun)
-- `finom/experiments/mcp-accounting-skills`: 32/32 tests pass ✅ (pytest)
+- `ai-engineering/experiments/mcp-accounting-skills`: 32/32 tests pass ✅ (pytest)
 - `delphyr/experiments/agent-safety-harness`: 17/17 tests pass ✅ (pytest)
 
 ### Finom — Final Prep (Apr 11)

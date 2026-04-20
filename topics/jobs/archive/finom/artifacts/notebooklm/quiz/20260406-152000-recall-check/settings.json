@@ -1,0 +1,13 @@
+{
+  "artifact_type": "quiz",
+  "settings": {
+    "question_count": "standard",
+    "difficulty": "medium",
+    "focus": "recall-check"
+  },
+  "tips": [
+    "Use the round README and Ivo note as anchors.",
+    "Prioritize distinctions over isolated facts.",
+    "Ask for answer explanations, not just correct choices."
+  ]
+}

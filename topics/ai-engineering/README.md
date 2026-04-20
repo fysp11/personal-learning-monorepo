@@ -24,6 +24,13 @@ It is a systems-and-product workspace.
 ## Resources (High-Signal)
 
 - `resources/2026-04-20-agentic-design-patterns-system-theoretic-study.md` - paper study: subsystem decomposition, failure taxonomy, and concrete rules for designing agentic systems
+- `resources/2026-04-20-transferable-agentic-patterns.md` - synthesis of reusable patterns across AEO, retrieval, evals, observability, deterministic guardrails, and agentic workflows
+- `resources/2026-04-20-multi-agent-system-architecture-for-fintech.md` - extracted MAS architecture note for fintech workflows, now generalized for AI engineering use
+
+## Code
+
+- `code/README.md` - reusable MAS, calibration, observability, and sync/async demos extracted from interview prep
+- `experiments/mcp-accounting-skills/README.md` - MCP accounting skill experiment and tests
 
 ## What To Know By Heart
 

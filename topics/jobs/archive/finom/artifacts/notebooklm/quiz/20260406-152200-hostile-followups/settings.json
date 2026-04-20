@@ -1,0 +1,13 @@
+{
+  "artifact_type": "quiz",
+  "settings": {
+    "question_count": "standard",
+    "difficulty": "hard",
+    "focus": "hostile-followups"
+  },
+  "tips": [
+    "Use the question-drafting strategy as the structure source.",
+    "Bias toward follow-ups that reveal weak tradeoff thinking.",
+    "Ask for recovery components, not polished scripts."
+  ]
+}

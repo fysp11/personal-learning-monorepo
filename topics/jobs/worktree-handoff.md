@@ -28,7 +28,7 @@ Excluded:
 
 - `topics/jobs/finom/README.md`
 - `topics/jobs/finom/prep/3-lead-ai-engineer-prep-plan.md`
-- `topics/jobs/finom/code/live-round-rehearsal.ts`
+- `topics/ai-engineering/code/live-round-rehearsal.ts`
 - `topics/jobs/cross-company-ai-adoption-engineering.md`
 
 ### Consolidated Finom read

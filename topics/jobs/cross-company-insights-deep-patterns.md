@@ -262,8 +262,8 @@ The patterns above are now backed by working code experiments:
 
 | Pattern | Finom Implementation | Delphyr Implementation |
 |---------|---------------------|----------------------|
-| Pattern 1 (Confidence Routing) | `finom/code/confidence-calibration.ts` — ECE, Platt scaling, threshold analysis | `delphyr/code/soap-extraction-pipeline.ts` — confidence per SOAP entry |
-| Pattern 3 (Deterministic Boundaries) | `finom/code/multi-market-expansion-drill.ts` — tax rules as data, not code | `delphyr/code/citation-verification.ts` — deterministic claim matching |
+| Pattern 1 (Confidence Routing) | `ai-engineering/code/confidence-calibration.ts` — ECE, Platt scaling, threshold analysis | `delphyr/code/soap-extraction-pipeline.ts` — confidence per SOAP entry |
+| Pattern 3 (Deterministic Boundaries) | `ai-engineering/code/multi-market-expansion-drill.ts` — tax rules as data, not code | `delphyr/code/citation-verification.ts` — deterministic claim matching |
 | Pattern 5 (Error Taxonomy) | `cross-company-error-taxonomy-worked-examples.md` — Finom tree | Same file — Delphyr clinical error tree |
 | Pattern 6 (Feedback Loops) | `cross-company-production-feedback-loops.md` — correction routing | Same file — clinical correction handling |
 

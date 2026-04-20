@@ -1,0 +1,14 @@
+{
+  "artifact_type": "audio-overview",
+  "settings": {
+    "duration": "medium",
+    "tone": "technical",
+    "hosts": "auto",
+    "focus": "ai-accounting-risk"
+  },
+  "tips": [
+    "Use the risk simulation as the spine of the conversation.",
+    "Push the hosts to contrast strong and weak risk answers.",
+    "Keep the discussion centered on workflow control, not generalized model capability."
+  ]
+}
