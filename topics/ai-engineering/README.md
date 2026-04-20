@@ -21,6 +21,10 @@ This is not primarily a model-research workspace.
 
 It is a systems-and-product workspace.
 
+## Resources (High-Signal)
+
+- `resources/2026-04-20-agentic-design-patterns-system-theoretic-study.md` - paper study: subsystem decomposition, failure taxonomy, and concrete rules for designing agentic systems
+
 ## What To Know By Heart
 
 These are the concepts and technologies you should be able to explain clearly without hand-waving.
