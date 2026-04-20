@@ -6,6 +6,37 @@ Saved: 2026-04-11
 
 Interview 3 is a 60-minute live coding round with Claude Code / Codex. Ivo explicitly cares whether these tools make engineers faster or slower. This insight goes beyond the rehearsal code to document **meta-patterns** — how to operate during the live round itself.
 
+## Post-round correction: what the live round actually punished
+
+The retrospective changes the weighting:
+
+- The interviewer likely scored **implementation fluency under pressure**, not just architecture quality.
+- Long scoping hurts if it pushes visible coding too late.
+- TypeScript-first thinking adds drag if the round turns out to be Python.
+- Verification only counts if the interviewer can see it happening.
+
+The corrected posture is:
+
+> Be a strong implementer who thinks architecturally, not an architect waiting to implement.
+
+That means: freeze the contract fast, code the thin vertical slice, and narrate the invariants while the code is moving.
+
+## The 90-second scope rule
+
+The first explanation should fit in under 90 seconds:
+
+1. Input
+2. Output
+3. Worst kind of wrong
+4. AI vs deterministic boundary
+5. First implementation slice
+
+Default opener:
+
+> "Input: transaction plus optional receipt. Output: booked entry or review item. Worst wrong: VAT treatment. Categorization is AI; VAT, routing, and booking are deterministic. I'll define the models and router first, then fill the categorization step."
+
+If the interviewer wants more depth, expand after code is moving.
+
 ---
 
 ## The Three Modes of Agent-Assisted Coding
@@ -25,6 +56,8 @@ You: review contracts, adjust naming, add domain constraints
 **Why this works for interviews:** The interviewer sees you making architectural decisions while the agent handles mechanical typing. You're demonstrating judgment, not delegation.
 
 **Anti-pattern:** Asking the agent to "design the system" — this is the one thing you must do yourself.
+
+**Correction from the retrospective:** keep this mode short. If scaffold mode becomes a 7-minute architecture monologue, it reads as hesitation, not judgment.
 
 ### Mode 2: Implementation Mode (Minutes 5-45)
 
@@ -92,6 +125,33 @@ This is the "earned autonomy" pattern Ivo described — start conservative, wide
 
 ---
 
+## Evidence Gate as the Second Control Point
+
+Confidence alone is not enough for finance-sensitive workflows. The second control point is evidence completeness.
+
+### The pattern
+
+```typescript
+const canAutoBook =
+  result.confidence >= thresholds.autoBook &&
+  result.evidence.isComplete &&
+  !result.evidence.hasPolicyConflict;
+```
+
+### Why this matters in the interview
+
+- It shows you understand that unsupported certainty is not real trust.
+- It upgrades observability from "we logged the answer" to "we know why the answer was allowed to act."
+- It gives you a cleaner deterministic boundary: the model can propose, but code decides whether the proposal is sufficiently supported.
+
+### Good live-round phrasing
+
+> "I don't want to auto-book off confidence alone. I want confidence plus evidence completeness, otherwise the system is confident and un-auditable."
+
+> "This keeps proposal mode useful: the model can still move work forward, but unsupported claims stay reviewable instead of silently becoming ledger entries."
+
+---
+
 ## Execution-Model Refactor Pattern
 
 One especially strong live-round move is to improve throughput **without** changing the public interface. This shows mature engineering judgment because you protect downstream integrations while still fixing the bottleneck.
@@ -128,6 +188,40 @@ Changed execution layer
 > "I'm not going to redesign the world here. I'll keep the contract fixed, isolate the slow execution path, and swap sequential waiting for bounded concurrency so the gain is measurable and low-risk."
 
 > "The control point is the semaphore. Unbounded async looks clever in a demo and unstable in production."
+
+> "Before I optimize, I want a baseline by stage. If model time is only 15% of the path and retrieval or queueing is the bottleneck, async fan-out is the wrong fix."
+
+## Python-first default when the language is open
+
+Finom's environment made Python the safer default. The live-round posture should assume:
+
+- `Pydantic` for typed contracts
+- `async def` plus `asyncio` for execution model work
+- small pure functions for deterministic stages
+- one visible test or runnable example before polishing abstractions
+
+Good phrasing:
+
+> "I'll keep the architecture the same, but I'll express it in idiomatic Python first so the implementation speed is visible."
+
+> "I care more about one clean working slice in Python than about showing every possible abstraction."
+
+## Verification ritual the interviewer can see
+
+After every agent-generated edit:
+
+1. Pause
+2. Read the generated code
+3. State one thing you checked
+4. Then continue
+
+Examples:
+
+> "I'm checking that the router still returns one terminal state per transaction."
+
+> "I want to make sure this async refactor preserved response ordering and error shape."
+
+Without that explicit pause, the interviewer cannot tell disciplined verification from blind acceptance.
 
 ---
 
@@ -179,13 +273,27 @@ The interviewer evaluates your thinking, not just your code. These are the **ver
 
 > "Before I start coding — let me make sure I understand the boundary. The categorization is where AI adds value; VAT calculation must be deterministic because tax law isn't ambiguous. The interesting design question is what happens at the boundary — when the AI isn't sure."
 
+> "I also want a baseline metric early — review rate, p95 stage latency, or time to first token — so we can tell whether the change actually improved the workflow."
+
 ### At Confidence Router
 
 > "This is the most important 10 lines in the system. Everything upstream produces a confidence score; everything downstream depends on this routing decision. In production, I'd want this to be configurable per market because risk tolerance differs."
 
+> "I also want to tie this to operator economics immediately: if this lowers automation errors but raises review minutes per 100 transactions, we didn't really improve the workflow."
+
 ### At Observability
 
 > "I'm adding a trace because in production, when a transaction is mis-categorized, the first question is always: what did each stage decide, and what was the confidence? Without the trace, debugging is archaeology."
+
+> "I also want the trace to record the evidence bundle or missing-evidence reason, because 'the model felt good about it' is not an audit trail."
+
+> "If retrieval is part of the design, I want the final output to cite which receipt field, prior booking, or market rule justified the action. Otherwise the answer is structured but still not grounded."
+
+### At Adoption Surface
+
+> "I'm keeping the public contract small and obvious so a product team could adopt this without rewriting their service boundary. If the reusable path is heavier than the local workaround, teams will bypass it."
+
+> "I want the agent to generate one bounded slice at a time because that keeps review burden low and makes the pattern easier for other engineers to trust."
 
 ### At Multi-Market Extension
 
@@ -200,6 +308,8 @@ The interviewer evaluates your thinking, not just your code. These are the **ver
 | **Volume trap** | Generating 300 lines in first 5 minutes | Scope small, verify often |
 | **Delegation fallacy** | "Claude, design the architecture" | You design; agent implements |
 | **Review skip** | Accepting agent output without reading | 10-second pause after each generation |
+| **Speed theater** | More generated code, same or worse operator/review load | Name the metric you are improving, not just the code you are writing |
+| **Optimization without baseline** | Refactoring for speed with no stage timing data | Capture a quick before-state first: stage timings, TTFT, or p95 latency |
 | **Over-engineering** | Adding DI, factories, abstract base classes | Keep it concrete and flat |
 | **Under-explaining** | Coding in silence | Narrate decisions, especially trade-offs |
 | **Tool wrestling** | Spending 5 minutes on agent config | Know your setup cold before the interview |

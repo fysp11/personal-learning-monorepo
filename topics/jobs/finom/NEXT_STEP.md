@@ -60,7 +60,7 @@ And from Ivo's framing:
 
 Finom-specific business read:
 
-> Ivo pointed to tax workflow automation in `Germany` with movement toward `France`; treat the France part as interview-derived, not public intel.
+> Ivo pointed to tax workflow automation in `Germany` with movement toward `France`; treat the France part as interview-derived, not public intel. Italy (F24) is now a confirmed live tax-filing market. Three markets are in production.
 
 ### Good framing
 
@@ -143,10 +143,10 @@ Finom-specific business read:
 
 ---
 
-## Prep Materials Index (Updated Apr 12 — Iteration 9)
+### Prep Materials Index (Updated Apr 14 — Iteration 10)
 
 ### Day-Of (read in this order)
-1. `prep/proposals/3-pre-call-cheat-sheet.md` — **15 min before call**: key numbers, deterministic/AI splits, maturity ladder, GoBD one-liner, France delta, day-of checklist
+1. `prep/proposals/3-pre-call-cheat-sheet.md` — **15 min before call**: key numbers, deterministic/AI splits, maturity ladder, GoBD one-liner, Italy + DATEV signals, day-of checklist
 2. `prep/3-lead-ai-engineer-day-of-card.md` — 2-min skim: thesis, checklist, key numbers, gap responses
 3. `prep/fresh-intel-april-2026.md` — canonical public signals: AI Accountant GA, 200K+ accounts
 

@@ -2,7 +2,12 @@
 
 This folder is the job-search prep workspace.
 
-Each company lives in its own folder under `topics/jobs/<company>/`. The goal is to keep all research, prep, notes, and interview-specific artifacts in one place so a company can be resumed quickly without reconstructing context.
+**Current status (April 14, 2026):** Job search CLOSED. Offer from Delphyr accepted; Finom rejected.
+
+| Company | Status | Outcome |
+|---------|--------|---------|
+| **Delphyr** | ACCEPTED | Joining in Amsterdam. See `delphyr/TRANSITION.md` for relocation planning. |
+| **Finom** | REJECTED | No offer after Interview 3 (profile mismatch). See `finom/CLOSURE.md` for lessons learned. |
 
 ## Cross-Company Resources
 

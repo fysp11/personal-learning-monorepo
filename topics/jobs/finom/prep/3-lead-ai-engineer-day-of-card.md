@@ -44,14 +44,29 @@ Format: Claude Code or Codex live exercise
 
 ---
 
+## T-Minus 5 Min
+
+If you have only 5 minutes before the call: **read `prep/3-final-5min-card.md`** — it has the one sentence, the three things to prove, the key numbers, and the live round first-move. Nothing else needed.
+
+---
+
 ## Before the Call (15 min)
 
+### If the exercise is in TypeScript
 - [ ] Terminal open, font size large for screen share
 - [ ] `bun run rehearsal` verified working (Finom code folder)
 - [ ] Claude Code authenticated and responsive
 - [ ] Zod available (`import { z } from "zod"` works)
 - [ ] Second monitor or split screen ready
 - [ ] Water, notes, this card visible on side screen
+
+### If the exercise is in Python (likely — Finom uses Python for AI)
+- [ ] `cd code/python-sync-async-refactor && uv sync` verified
+- [ ] `uv run pytest -q` passes (6 tests)
+- [ ] Pydantic available (`from pydantic import BaseModel` works)
+- [ ] Claude Code authenticated (or uv+python environment ready)
+- [ ] Quick reference: `prep/3-python-live-round-cheatsheet.md`
+- [ ] Key type mappings in head: `z.object` → `class Model(BaseModel)`, `z.enum` → `class Enum(str, Enum)`, `async function` → `async def`
 
 ---
 
@@ -91,13 +106,15 @@ Do NOT start coding immediately. The interviewer watches whether you think first
 
 ### Architecture first, implementation second
 
-1. Define type contracts (Zod schemas) — 3 min
+1. Define type contracts (Zod schemas if TypeScript, Pydantic models if Python) — 3 min
 2. Implement categorization (AI-powered stage) — 8 min
 3. Implement tax calculation (deterministic) — 5 min
 4. Add confidence router — 3 min
 5. Wire orchestrator with trace — 5 min
 6. Test cases (happy path + edge case) — 5 min
 7. Add market extensibility if time — 10 min
+
+**Language-flex:** If they ask for Python, translate on the fly — `z.object` → `class Model(BaseModel)`, `z.enum` → `class Enum(str, Enum)`, `async function` → `async def`, `Promise.all` → `asyncio.gather`. The architecture is the same; only the types change. Full Python reference: `prep/3-python-live-round-cheatsheet.md`.
 
 ### Things to say out loud
 
@@ -109,6 +126,7 @@ Do NOT start coding immediately. The interviewer watches whether you think first
 | At router | "This is the most important 10 lines in the system" |
 | At trace | "Without this, debugging is archaeology" |
 | If stuck | "Let me step back and think about what we need next" |
+| At verification | "I'm the project owner here — I set the rules, the agent fills in, and I verify every output" |
 
 ### Red flags to avoid
 
@@ -127,15 +145,25 @@ Do NOT start coding immediately. The interviewer watches whether you think first
 | Standard VAT | 19% | 20% | 22% |
 | Reduced VAT | 7% | 5.5% / 10% | 4% / 5% / 10% |
 | Chart standard | SKR03 | PCG | Piano dei Conti |
-| E-invoicing | No | Interview-derived target / unconfirmed | Yes (SDI) |
+| Tax filing | UStVA | CA3 | F24 (mobile) |
+| E-invoicing | No | Target/unconfirmed | Yes (SDI) |
+| Amt export | DATEV | — | — |
+| ZM reports | ✓ (shipped) | — | — |
 
-*France values here are interview-derived planning assumptions, not public-canonical intel.*
+*France values are interview-derived planning assumptions, not public-canonical intel. Italy F24 is confirmed live.*
+
+### Products in play
+- **5-10 active AI products** (not just AI Accountant)
+- Sub-agents per domain → MCP servers → backend microservices
+- Confident AI for eval: **10-day → 3-hour** iteration cycles, **€250K+** projected savings, **60+ hrs/week reclaimed**, **3x iteration throughput**
+- DATEV export: AI Accounting output flows directly to German accountant workflow
+- Accounting monetized at **€29/month** after 20 free verified records — the pipeline's "verified record" is the billing unit; every auto-booked transaction that becomes a verified record is directly revenue-connected
 
 ---
 
 ## Gap Responses (if challenged)
 
-**"No fintech experience"** → "I ran an SMB — I've done UStVA filing from the user side. The engineering patterns are domain-agnostic; the domain knowledge is learnable."
+**"No fintech experience"** → "Domain arbitrage — industry knowledge is the #1 differentiator in AI engineering right now, and I have it from the user side. I ran an SMB, I've done UStVA filing, I know what the accounting workflows feel like when they're broken. The engineering patterns — confidence routing, evals, observability — are domain-agnostic. The domain knowledge I already have; the German tax specifics are learnable and deterministic."
 
 **"No C#/.NET"** → "AI work is Python. I'd interact with C# through APIs. Learning to read C# is weeks, not months."
 

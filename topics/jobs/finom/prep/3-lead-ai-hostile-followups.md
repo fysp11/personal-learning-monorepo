@@ -100,7 +100,7 @@ The existing interview simulation targets Interview 2 signals. This document cov
 
 ### Q: "You don't have fintech experience. Why should we hire you?"
 
-> "I don't have fintech domain experience, but I have SMB experience — I ran Fysp Tech, which means I've actually done the accounting workflows you're automating. I know what UStVA filing feels like from the user side. The engineering patterns — confidence routing, evaluation, observability, multi-agent coordination — are domain-agnostic. What's domain-specific is the chart of accounts and tax rules, which are learnable and deterministic."
+> "I don't have fintech domain experience, but that's exactly where domain arbitrage applies — industry knowledge is the #1 differentiator in AI engineering right now. I have SMB experience from running Fysp Tech, which means I've actually done the accounting workflows you're automating. I know what UStVA filing feels like from the user side — where the friction is, what a bad auto-categorization does to your month-end close. The engineering patterns — confidence routing, evaluation, observability, multi-agent coordination — are domain-agnostic. What's domain-specific is the chart of accounts and tax rules, which are learnable and deterministic. I already have the harder part: understanding the user's problem."
 
 ### Q: "You don't know C#/.NET. Half our backend is C#."
 
@@ -109,6 +109,57 @@ The existing interview simulation targets Interview 2 signals. This document cov
 ### Q: "What's the biggest risk if we hire you?"
 
 > "Ramp time on fintech domain specifics — German accounting conventions, banking integrations, regulatory nuance. The mitigation is that I learn fast and I have real SMB context from running my own company. The engineering patterns are already there; the domain knowledge is the growth area."
+
+---
+
+## Category 7: Algorithmic Precision (Viktar's Competitive Programming Background)
+
+Viktar has a competitive programming background (ICPC/NERC 2019-2020). He may probe whether you think precisely about invariants, edge cases, and correctness — not just architecture.
+
+### Q: "What are the invariants your system must maintain?"
+
+> "Three that must hold on every transaction, always:
+> 1. **Terminal state**: every ingested transaction reaches exactly one terminal state within SLA — no silent drops, no dual-processing.
+> 2. **Idempotency**: re-processing the same transaction (same idempotency key) produces the same output — idempotency key = hash(transaction_id + batch_id).
+> 3. **Auditability**: every routing decision is logged with the input hash, confidence score, threshold, and outcome at time-of-decision — not reconstructed afterward.
+>
+> These aren't aspirational — they're things you enforce in the code. Terminal state is enforced by the lifecycle registry. Idempotency is enforced by checking the key before any write. Auditability is enforced by logging before returning, not after."
+
+**Why this works**: Names invariants specifically, distinguishes enforcement from aspiration.
+
+### Q: "How do you prove your confidence router is correct?"
+
+> "I write it as a pure function with no side effects, then test it against a complete coverage of the input space. There are 4 terminal states and 2 hard constraints (reverse charge, confidence thresholds). Every path through the routing logic maps to exactly one terminal state — that's testable exhaustively with a small input set. The correctness argument is: (a) I can enumerate all inputs that produce each output, (b) every input maps to exactly one output, (c) there's no input that maps to zero outputs (no unhandled case). That's a property test, not just a unit test."
+
+**Hostile follow-up:** "What if a new market has a different compliance override?"
+
+> "The override list is part of the MarketPolicy, not hardcoded in the router. Each market policy declares which transaction properties trigger a mandatory human-review override. The router evaluates the policy's override list before applying confidence thresholds — so the invariant holds: override wins, confidence routing is secondary."
+
+### Q: "Your pipeline has 5 stages. How do you handle a failure in stage 3?"
+
+> "Each stage has an explicit failure contract — it either returns a valid typed result or throws a typed error. On stage failure: (1) log the failure with correlation ID and stage name, (2) the transaction moves to an explicit `error_logged` terminal state — not dropped, (3) the error is routed to a dead-letter queue for replay or manual triage. I don't catch-all-and-continue because that would let a failed extraction silently propagate into a wrong categorization. Fail fast, log explicitly, never swallow."
+
+**Hostile follow-up:** "What if you want to retry just stage 3?"
+
+> "If stage 3 is idempotent and has a known transient failure (timeout, rate limit), you can retry it up to N times with exponential backoff before marking `error_logged`. If the first two stages are expensive (OCR), you cache their outputs by transaction hash — on retry, you skip them and resume from stage 3. This only works if stage outputs are stored, not streamed. The trade-off: more storage, but stage-level retry without re-running the full pipeline."
+
+### Q: "How do you handle the case where the same transaction is submitted twice?"
+
+> "Idempotency key. Every transaction gets a key derived from its content (or the upstream system's identifier) before it enters the pipeline. On receipt, I check: has this key already been processed? If yes, return the existing result — no new pipeline run. This prevents double-booking. The idempotency check must happen before any side effect, including the first LLM call. The key is stored in a fast lookup (Redis or similar) with TTL matching the deduplication window."
+
+---
+
+## Category 8: System Behavior Under Load
+
+### Q: "Your categorization service is 60% of the latency. How do you fix it?"
+
+> "Two passes. First: does it need to be in the hot path? If this is batch processing (month-end), I can move categorization to a background queue — the user doesn't need the result synchronously. If it must be synchronous, second pass: can I skip the model for most calls? Merchant caching means AWS, GitHub, Stripe categorize instantly from cache — those are 60%+ of real-world volume. For the remaining 40% that need the model, I apply bounded async concurrency: semaphore-limited `asyncio.gather`, not sequential calls. On a 20-item batch at 40ms/item: sequential = 864ms, async with concurrency 5 = ~164ms."
+
+**Why specific numbers matter**: Shows you've actually measured this, not just described it conceptually.
+
+### Q: "What's your approach to testing a categorization model before it goes to production?"
+
+> "Four-level evaluation framework. Level 1: field-level accuracy against labeled test set — per-field, not just end-to-end. Level 2: severity-weighted accuracy — wrong VAT rate is catastrophically worse than wrong description; weight failures accordingly. Level 3: calibration check — ECE below 0.05 means confidence scores are trustworthy for routing. Level 4: regression detection — compare this run against the baseline run; any case that changed from pass to fail is a regression and blocks shipping. I'd run all four in CI against every model or prompt change."
 
 ---
 
@@ -121,4 +172,8 @@ Run through these 5 scenarios in 15 minutes:
 3. **Live coding recovery** — acknowledge a gap, pivot to the most valuable next action
 4. **Scale challenge** — merchant caching, batch processing, anomaly detection
 5. **Self-awareness** — fintech gap answer, delivered without defensiveness
+
+Viktar precision drills (add 5 min):
+6. **State the 3 invariants** — terminal state, idempotency, auditability — in 45 seconds
+7. **Describe stage failure handling** — fail fast, error_logged terminal state, dead-letter queue
 
