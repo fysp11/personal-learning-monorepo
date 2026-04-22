@@ -367,3 +367,130 @@ BatchHealthSummary (per batch run):
 ### The key phrase
 
 > "I add confidence distribution monitoring on day one because it's the leading indicator — by the time accuracy metrics degrade, you've already misboked real transactions. Terminal state tracking catches the silent failures metrics don't see. Business KPIs connect it to what the team actually cares about."
+
+---
+
+## Q13: "What invariants does your pipeline maintain?"
+
+**(Viktar-specific — CP-mindset question. Most candidates give a vague process answer. The right answer names specific invariants as formal properties.)**
+
+### One-line answer
+
+> Three invariants: every transaction reaches a terminal state, VAT logic is deterministic, and confidence scores are calibrated before routing thresholds are trusted.
+
+### Full answer
+
+An invariant is a property that must always hold — not a goal, but a guarantee the system is designed to enforce. I maintain three in the accounting pipeline:
+
+**Invariant 1: Every transaction reaches exactly one terminal state.**
+
+No transaction is allowed to linger in a non-terminal state past the SLA window. Terminal states are: `auto_booked`, `proposal_sent`, `rejected`, `requires_review`. If a transaction enters the pipeline and does not reach one of these, the system has failed — not the user, the system. The TransactionLifecycleRegistry enforces this by tracking state transitions and running a scheduled `findStrandedTransactions()` query. Any stranded transaction triggers a dead-letter alert.
+
+This maps to FM-15 (Silent Reject). Without this invariant, transactions can disappear silently.
+
+**Invariant 2: VAT calculation is always deterministic.**
+
+No VAT rate, reverse charge detection, or exemption determination is computed by the LLM. Policy is code — the MarketPolicy module, with unit tests. This invariant holds regardless of confidence, market, or transaction type. The categorization stage may produce ambiguous output; the VAT stage never does.
+
+This maps to FM-07, FM-08, FM-09. Violating this invariant turns a compliance-critical operation into a probabilistic one.
+
+**Invariant 3: Confidence scores are calibrated before being used for routing.**
+
+Thresholds (0.85 auto-book, 0.55 proposal floor) are only trustworthy if the model's confidence scores are calibrated. ECE < 0.05 is the gate condition. In a new market, or after any model change, this invariant is violated until calibration is verified on a held-out set. The system must start at maximum conservatism (100% human review) and only widen after the invariant is re-established.
+
+This maps to FM-04 and FM-10. A well-configured threshold on miscalibrated scores is worse than no threshold at all, because it creates false confidence in the routing.
+
+### Why invariants matter to a CP-minded interviewer
+
+Properties that always hold are easier to reason about, test, and maintain than goals that "usually hold." Invariants make the system's behavior predictable under adversarial inputs, edge cases, and production drift — exactly what CP training optimizes for.
+
+---
+
+## Q14: "How do you design the cold-start problem for a new market — no German data to fall back on?"
+
+### One-line answer
+
+> Start at Level 0 (shadow mode), collect the first 500–1000 human-reviewed transactions, verify ECE, then advance through the maturity ladder with market-specific thresholds.
+
+### Full answer
+
+The cold-start problem in a new market (France, Italy) has two layers: the categorization model may be miscalibrated on the new market's vocabulary and document style, and the confidence thresholds that work for Germany have no empirical basis in the new market yet.
+
+**Step 1: Isolate the new market in shadow mode (Level 0).**
+
+All transactions from the new market run through the full pipeline internally, but outputs are discarded. The system compares its predictions against human-reviewed decisions and measures agreement rate and ECE on the same corpus. No user-visible output until this phase is complete.
+
+**Step 2: Collect a calibration corpus.**
+
+Aim for 500–1000 reviewed transactions covering the main category distribution: standard purchases, cross-border B2B (reverse charge if applicable in the new market), exempt services, mixed-rate invoices. This is the labeled set used to fit Platt scaling and validate thresholds.
+
+**Step 3: Validate before opening any automation path.**
+
+ECE must be below 0.05 on the calibration corpus before setting any confidence threshold. This is market-specific — Germany at Level 3 doesn't imply France is ready for Level 1.
+
+**Step 4: Launch at maximum conservatism (Level 1 — Suggest mode).**
+
+Initial thresholds are higher than Germany's: auto-book at 0.92+ instead of 0.85. Every suggestion is surfaced to the user for confirmation. Track acceptance rate and override patterns to identify systematic miscategorizations specific to the new market.
+
+**Step 5: Advance through the maturity ladder using new-market-specific data.**
+
+The advancement criteria from Q10 apply, but the data used to measure them comes only from the new market's transaction history. Germany's 95%+ confirmation rate does not transfer; France must earn its own.
+
+**What cannot be skipped:**
+- Shadow mode before any user-visible output
+- Market-specific calibration corpus
+- ECE verification before confidence-based routing
+
+**What changes when adding France vs Italy:**
+- PCG chart of accounts vs Piano dei Conti — policy module only, no pipeline changes
+- France has 4 VAT rates vs Germany's 2 — more complex but still deterministic
+- Italy has mandatory SDI e-invoicing from day one — requires the SDI ingestion hook activated at launch, not after calibration
+
+### Key phrase
+
+> "The cold-start invariant: a new market starts at Level 0 and earns its way up independently of what Germany has proven. Confidence scores from a different market distribution are not portable."
+
+---
+
+## Q15: "Your model is well-calibrated but only 70% accurate. What do you do?"
+
+### One-line answer
+
+> Well-calibrated but low accuracy is a model quality problem, not a calibration problem. The fix is upstream: features, training data, or architecture — Platt scaling does nothing here.
+
+### Full answer
+
+This is a critical diagnostic distinction. Calibration and accuracy are independent properties, and conflating them leads to the wrong intervention.
+
+**What calibration means:** When the model says "I'm 70% confident," it is right 70% of the time. A perfectly calibrated model at 70% accuracy is honest — its scores reliably predict its behavior.
+
+**What accuracy means:** Overall, the model makes the right prediction 70% of the time.
+
+**These two properties can vary independently:**
+- Well-calibrated, low accuracy: model reliably knows it's uncertain — but is wrong often. Needs better features or training data.
+- Poorly calibrated, high accuracy: model is right often but its confidence is unreliable — you can't trust the routing thresholds.
+- Both problems: needs data, architecture, and calibration fix.
+
+**For the 70% accurate but well-calibrated case:**
+
+The routing thresholds still work correctly — the model knows when it's unsure. But 70% accuracy means 30% of transactions need human review even when the model is "confident." That's a user experience problem and a cost problem.
+
+**Interventions for low accuracy:**
+1. **Feature engineering** — Is the model seeing enough context? OCR text only, or also vendor history, amount, date, account type?
+2. **Training data quality and distribution** — Is the training set representative of the tail cases that are failing? Small business categories vs enterprise subscriptions often fail differently.
+3. **Model architecture** — Is a classifier the right approach, or would a retrieval-augmented approach (similar transactions from the same user/account) improve the long tail?
+4. **Category granularity** — Is the label space too fine-grained? If "restaurant" and "business lunch" are separate categories with similar input, merging them might improve accuracy without hurting product utility.
+5. **Active learning on the tail** — The cases the model gets wrong are the highest-signal training examples. Sample them for human labeling and fine-tune on the failure distribution.
+
+**What you should NOT do:**
+- Widen the auto-book threshold to compensate (the model is still wrong 30% of the time)
+- Blame the calibration layer (it's working correctly)
+- Apply Platt scaling (it only remaps probabilities, it can't improve underlying prediction quality)
+
+**Metric to track:**
+
+Per-category accuracy breakdown, not aggregate accuracy. A model at 70% aggregate accuracy might be 95% accurate on the easy, high-volume categories and 40% on the compliance-sensitive tail (reverse charge, exempt services). The aggregate number hides the failure distribution.
+
+### Key phrase
+
+> "Calibration tells you whether to trust the confidence score. Accuracy tells you whether the model's best guess is right. Well-calibrated low accuracy means the confidence score is honest about the model's limitations — you know when to escalate. The fix is upstream, not in the routing layer."
