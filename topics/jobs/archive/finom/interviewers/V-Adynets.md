@@ -46,6 +46,47 @@ He is likely checking whether you can:
 - ship an end-to-end slice in the live exercise without losing technical control
 - influence adoption through team relationships, not just architecture
 
+## CP-Background Interview Tactics
+
+If the competitive programming match is correct, Viktar values precision over breadth. These tactics are calibrated for that mindset:
+
+### What will impress him
+
+1. **Name failure modes, don't describe them vaguely.** Say "FM-07 is reverse charge miss" not "the system might miss reverse charge." CP thinking = enumerate the state space.
+
+2. **State invariants before explaining behavior.** "My pipeline maintains three invariants: terminal state enforcement, deterministic VAT, and calibrated confidence scores before routing." This is how CP practitioners reason — invariants first, behavior second.
+
+3. **Name the edge case without being asked.** When describing VAT, proactively say "the edge case is mixed-rate invoices (FM-12) — one line at 19%, one at 7%, the system must split, not average." Don't wait for "what about mixed rates?"
+
+4. **Prefer exact numbers over approximate ones.** "ECE < 0.05" not "the confidence scores should be reliable." "P50 drops 2σ below baseline" not "confidence might decrease."
+
+5. **Draw the boundary between the deterministic and probabilistic parts precisely.** CP training hates fuzz. "VAT calculation is deterministic: 19%, 7%, reverse charge, exempt — these are rules. Only the text extraction and category classification are probabilistic. The deterministic layer wraps the probabilistic layer."
+
+6. **Distinguish between two things that look similar but need different fixes.** Calibration vs accuracy (Q15). Staged workflow vs single agent (Q11). Confidence threshold vs model quality. CP practitioners learn to identify which problem they're actually solving before choosing the algorithm.
+
+### What will put him off
+
+- Vague answers: "we'd handle edge cases" → say which ones and how
+- Framework name-dropping without reasoning: "I'd use LangGraph" without saying why it fits the invariants you just described
+- Confidence without verification: accepting generated code without reading it out loud
+- Over-engineering: adding abstractions the problem doesn't require
+- Treating the live coding exercise as a speed test: precision matters more than how much code was written
+
+### CP-specific question patterns to expect
+
+- "What properties does your system always maintain?" → name the invariants (Q13)
+- "What breaks first at 10x load?" → name specific failure modes with detection signals
+- "Design this so adding market 3 requires zero core changes" → MarketPolicy interface + config-as-data
+- "Your confidence is 0.86. It's a reverse charge transaction. What happens?" → compliance override fires, routes to `requires_review` regardless
+- "Show me the case where your routing is wrong and you can't detect it" → FM-04 overconfident miscategorization before calibration is verified; ECE is the leading indicator
+
+### Real-time signals during the interview
+
+- He asks "what else?" after your answer → he's checking if you named the edge cases; add the tail
+- He probes the exact threshold → justify from calibration data, not gut feel
+- He asks "why not just...?" → it's usually a trap to get you to admit you'd put policy in the model; don't
+- He stays silent after your answer → he's deciding if you went deep enough; add one more edge case
+
 ## Best Prep Anchor
 
 Use this frame:
