@@ -1,5 +1,15 @@
 # Entities
 
+This folder is now mainly for extraction infrastructure and templates.
+
+Canonical durable notes that were previously stored here have been moved into topic homes under `topics/`, for example:
+
+- `topics/ai-engineering/foundations/`
+- `topics/codex/notes/`
+- `topics/mcp/notes/`
+- `topics/notebooklm/notes/`
+- `topics/jobs/archive/finom/entities/`
+
 Use this folder for durable entities that should stay easy to retrieve across topics.
 
 Good entity types:

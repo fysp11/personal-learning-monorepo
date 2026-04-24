@@ -16,8 +16,12 @@ learning/
   topics/
     helm-mastery/
     jobs/
-    langgraph/
     ai-engineering/
+    ai-sandboxes/
+    codex/
+    langgraph/
+    mcp/
+    notebooklm/
 ```
 
 Each folder under `topics/` is a focused learning area. You can treat each one as an isolated mini-project with its own notes, code, and experiments.
@@ -40,7 +44,7 @@ Example:
 ```text
 topics/langgraph/
   README.md
-  notes/
+  sources/
 
 topics/jobs/
   delphyr/          # Research, interview prep, notes

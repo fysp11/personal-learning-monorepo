@@ -26,11 +26,13 @@ It is a systems-and-product workspace.
 - `resources/2026-04-20-agentic-design-patterns-system-theoretic-study.md` - paper study: subsystem decomposition, failure taxonomy, and concrete rules for designing agentic systems
 - `resources/2026-04-20-transferable-agentic-patterns.md` - synthesis of reusable patterns across AEO, retrieval, evals, observability, deterministic guardrails, and agentic workflows
 - `resources/2026-04-20-multi-agent-system-architecture-for-fintech.md` - extracted MAS architecture note for fintech workflows, now generalized for AI engineering use
+- `resources/2026-04-23-multica-autopilot-feature.md` - research note on Multica Autopilot as a scheduled/triggered job-dispatch layer for AI coding agents
 
 ## Code
 
 - `code/README.md` - reusable MAS, calibration, observability, and sync/async demos extracted from interview prep
 - `experiments/mcp-accounting-skills/README.md` - MCP accounting skill experiment and tests
+- `foundations/README.md` - durable core notes migrated from extracted entities into the topic tree
 
 ## What To Know By Heart
 
